@@ -36,95 +36,83 @@
 <path fill="none" stroke="black" d="M73.56,-96.25C81.72,-95.03 90.6,-93.7 99.43,-92.38"></path>
 <polygon fill="black" stroke="black" points="99.97,-95.84 109.35,-90.9 98.94,-88.91 99.97,-95.84"></polygon>
 </g>
-<!-- @wireapp/protocol&#45;messaging -->
-<g id="node4" class="node module-_wireapp_protocol_messaging maintainer-wireapp_owner maintainer-lipis maintainer-ffflorian maintainer-wireapp_member maintainer-yserz maintainer-andylnd maintainer-bennycode license-gpl_3_0" data-module="@wireapp/protocol-messaging">
-<title>@wireapp/protocol-messaging</title>
-<path fill="none" stroke="black" d="M379.84,-204.3C379.84,-204.3 251.04,-204.3 251.04,-204.3 247.8,-204.3 244.57,-201.07 244.57,-197.83 244.57,-197.83 244.57,-191.37 244.57,-191.37 244.57,-188.13 247.8,-184.9 251.04,-184.9 251.04,-184.9 379.84,-184.9 379.84,-184.9 383.07,-184.9 386.31,-188.13 386.31,-191.37 386.31,-191.37 386.31,-197.83 386.31,-197.83 386.31,-201.07 383.07,-204.3 379.84,-204.3"></path>
-<text text-anchor="middle" x="315.44" y="-191.3" font-family="Roboto Condensed, sans-serif" font-size="11.00">@wireapp/protocol-messaging</text>
+<!-- @wireapp/commons -->
+<g id="node4" class="node module-_wireapp_commons maintainer-wireapp_owner maintainer-lipis maintainer-ffflorian maintainer-wireapp_member maintainer-yserz maintainer-andylnd maintainer-bennycode license-gpl_3_0" data-module="@wireapp/commons">
+<title>@wireapp/commons</title>
+<path fill="none" stroke="black" d="M357.86,-204.3C357.86,-204.3 273.02,-204.3 273.02,-204.3 269.78,-204.3 266.55,-201.07 266.55,-197.83 266.55,-197.83 266.55,-191.37 266.55,-191.37 266.55,-188.13 269.78,-184.9 273.02,-184.9 273.02,-184.9 357.86,-184.9 357.86,-184.9 361.09,-184.9 364.33,-188.13 364.33,-191.37 364.33,-191.37 364.33,-197.83 364.33,-197.83 364.33,-201.07 361.09,-204.3 357.86,-204.3"></path>
+<text text-anchor="middle" x="315.44" y="-191.3" font-family="Roboto Condensed, sans-serif" font-size="11.00">@wireapp/commons</text>
 </g>
-<!-- @wireapp/core&#45;&gt;@wireapp/protocol&#45;messaging -->
+<!-- @wireapp/api&#45;client&#45;&gt;@wireapp/commons -->
 <g id="edge3" class="edge">
-<title>@wireapp/core-&gt;@wireapp/protocol-messaging</title>
-<path fill="none" stroke="black" d="M46.98,-111.26C59.75,-124.03 84.15,-146.24 109.54,-157.6 148.61,-175.08 195.38,-184.3 234.36,-189.17"></path>
-<polygon fill="black" stroke="black" points="234.28,-192.69 244.62,-190.38 235.09,-185.73 234.28,-192.69"></polygon>
-</g>
-<!-- @wireapp/store&#45;engine -->
-<g id="node5" class="node module-_wireapp_store_engine maintainer-wireapp_owner maintainer-lipis maintainer-ffflorian maintainer-wireapp_member maintainer-yserz maintainer-andylnd maintainer-bennycode license-gpl_3_0" data-module="@wireapp/store-engine">
-<title>@wireapp/store-engine</title>
-<path fill="none" stroke="black" d="M363.45,-19.3C363.45,-19.3 267.43,-19.3 267.43,-19.3 264.2,-19.3 260.96,-16.07 260.96,-12.83 260.96,-12.83 260.96,-6.37 260.96,-6.37 260.96,-3.13 264.2,0.1 267.43,0.1 267.43,0.1 363.45,0.1 363.45,0.1 366.68,0.1 369.91,-3.13 369.91,-6.37 369.91,-6.37 369.91,-12.83 369.91,-12.83 369.91,-16.07 366.68,-19.3 363.45,-19.3"></path>
-<text text-anchor="middle" x="315.44" y="-6.3" font-family="Roboto Condensed, sans-serif" font-size="11.00">@wireapp/store-engine</text>
-</g>
-<!-- @wireapp/core&#45;&gt;@wireapp/store&#45;engine -->
-<g id="edge4" class="edge">
-<title>@wireapp/core-&gt;@wireapp/store-engine</title>
-<path fill="none" stroke="black" d="M54.13,-91.91C68.39,-83.78 89.82,-72.29 109.54,-64.6 158.05,-45.7 215.45,-30.9 257.14,-21.44"></path>
-<polygon fill="black" stroke="black" points="258.13,-24.81 267.12,-19.21 256.6,-17.98 258.13,-24.81"></polygon>
-</g>
-<!-- @wireapp/api&#45;client&#45;&gt;@wireapp/protocol&#45;messaging -->
-<g id="edge7" class="edge">
-<title>@wireapp/api-client-&gt;@wireapp/protocol-messaging</title>
+<title>@wireapp/api-client-&gt;@wireapp/commons</title>
 <path fill="none" stroke="black" d="M179.26,-148.31C196.16,-156.62 221.66,-168.5 244.75,-176.6 250.42,-178.59 256.41,-180.46 262.41,-182.2"></path>
 <polygon fill="black" stroke="black" points="261.88,-185.68 272.45,-184.98 263.75,-178.94 261.88,-185.68"></polygon>
 </g>
-<!-- @wireapp/commons -->
-<g id="node6" class="node module-_wireapp_commons maintainer-wireapp_owner maintainer-lipis maintainer-ffflorian maintainer-wireapp_member maintainer-yserz maintainer-andylnd maintainer-bennycode license-gpl_3_0" data-module="@wireapp/commons">
-<title>@wireapp/commons</title>
-<path fill="none" stroke="black" d="M357.86,-167.3C357.86,-167.3 273.02,-167.3 273.02,-167.3 269.78,-167.3 266.55,-164.07 266.55,-160.83 266.55,-160.83 266.55,-154.37 266.55,-154.37 266.55,-151.13 269.78,-147.9 273.02,-147.9 273.02,-147.9 357.86,-147.9 357.86,-147.9 361.09,-147.9 364.33,-151.13 364.33,-154.37 364.33,-154.37 364.33,-160.83 364.33,-160.83 364.33,-164.07 361.09,-167.3 357.86,-167.3"></path>
-<text text-anchor="middle" x="315.44" y="-154.3" font-family="Roboto Condensed, sans-serif" font-size="11.00">@wireapp/commons</text>
-</g>
-<!-- @wireapp/api&#45;client&#45;&gt;@wireapp/commons -->
-<g id="edge5" class="edge">
-<title>@wireapp/api-client-&gt;@wireapp/commons</title>
-<path fill="none" stroke="black" d="M207.28,-144.4C222.84,-146.32 240.32,-148.47 256.59,-150.48"></path>
-<polygon fill="black" stroke="black" points="256.18,-153.95 266.53,-151.7 257.03,-147 256.18,-153.95"></polygon>
-</g>
 <!-- @wireapp/priority&#45;queue -->
-<g id="node8" class="node module-_wireapp_priority_queue maintainer-wireapp_owner maintainer-lipis maintainer-ffflorian maintainer-wireapp_member maintainer-yserz maintainer-andylnd maintainer-bennycode license-gpl_3_0" data-module="@wireapp/priority-queue">
+<g id="node6" class="node module-_wireapp_priority_queue maintainer-wireapp_owner maintainer-lipis maintainer-ffflorian maintainer-wireapp_member maintainer-yserz maintainer-andylnd maintainer-bennycode license-gpl_3_0" data-module="@wireapp/priority-queue">
 <title>@wireapp/priority-queue</title>
 <path fill="none" stroke="black" d="M367.51,-130.3C367.51,-130.3 263.37,-130.3 263.37,-130.3 260.14,-130.3 256.9,-127.07 256.9,-123.83 256.9,-123.83 256.9,-117.37 256.9,-117.37 256.9,-114.13 260.14,-110.9 263.37,-110.9 263.37,-110.9 367.51,-110.9 367.51,-110.9 370.74,-110.9 373.97,-114.13 373.97,-117.37 373.97,-117.37 373.97,-123.83 373.97,-123.83 373.97,-127.07 370.74,-130.3 367.51,-130.3"></path>
 <text text-anchor="middle" x="315.44" y="-117.3" font-family="Roboto Condensed, sans-serif" font-size="11.00">@wireapp/priority-queue</text>
 </g>
 <!-- @wireapp/api&#45;client&#45;&gt;@wireapp/priority&#45;queue -->
-<g id="edge6" class="edge">
+<g id="edge4" class="edge">
 <title>@wireapp/api-client-&gt;@wireapp/priority-queue</title>
 <path fill="none" stroke="black" d="M207.28,-133.1C219.71,-131.65 233.37,-130.06 246.65,-128.51"></path>
 <polygon fill="black" stroke="black" points="247.18,-131.97 256.71,-127.33 246.37,-125.02 247.18,-131.97"></polygon>
 </g>
-<!-- @wireapp/cryptobox&#45;&gt;@wireapp/store&#45;engine -->
-<g id="edge11" class="edge">
-<title>@wireapp/cryptobox-&gt;@wireapp/store-engine</title>
-<path fill="none" stroke="black" d="M172.01,-73.88C187.73,-61.45 216.75,-40.06 244.75,-27.6 249.09,-25.67 253.68,-23.92 258.34,-22.33"></path>
-<polygon fill="black" stroke="black" points="259.48,-25.64 267.97,-19.3 257.38,-18.96 259.48,-25.64"></polygon>
+<!-- @wireapp/protocol&#45;messaging -->
+<g id="node8" class="node module-_wireapp_protocol_messaging maintainer-wireapp_owner maintainer-lipis maintainer-ffflorian maintainer-wireapp_member maintainer-yserz maintainer-andylnd maintainer-bennycode license-gpl_3_0" data-module="@wireapp/protocol-messaging">
+<title>@wireapp/protocol-messaging</title>
+<path fill="none" stroke="black" d="M379.84,-167.3C379.84,-167.3 251.04,-167.3 251.04,-167.3 247.8,-167.3 244.57,-164.07 244.57,-160.83 244.57,-160.83 244.57,-154.37 244.57,-154.37 244.57,-151.13 247.8,-147.9 251.04,-147.9 251.04,-147.9 379.84,-147.9 379.84,-147.9 383.07,-147.9 386.31,-151.13 386.31,-154.37 386.31,-154.37 386.31,-160.83 386.31,-160.83 386.31,-164.07 383.07,-167.3 379.84,-167.3"></path>
+<text text-anchor="middle" x="315.44" y="-154.3" font-family="Roboto Condensed, sans-serif" font-size="11.00">@wireapp/protocol-messaging</text>
+</g>
+<!-- @wireapp/api&#45;client&#45;&gt;@wireapp/protocol&#45;messaging -->
+<g id="edge5" class="edge">
+<title>@wireapp/api-client-&gt;@wireapp/protocol-messaging</title>
+<path fill="none" stroke="black" d="M207.28,-144.4C215.93,-145.47 225.19,-146.61 234.49,-147.76"></path>
+<polygon fill="black" stroke="black" points="234.24,-151.25 244.59,-149 235.09,-144.3 234.24,-151.25"></polygon>
 </g>
 <!-- @wireapp/lru&#45;cache -->
-<g id="node7" class="node module-_wireapp_lru_cache maintainer-wireapp_owner maintainer-lipis maintainer-ffflorian maintainer-wireapp_member maintainer-yserz maintainer-andylnd maintainer-bennycode license-gpl_3_0" data-module="@wireapp/lru-cache">
+<g id="node5" class="node module-_wireapp_lru_cache maintainer-wireapp_owner maintainer-lipis maintainer-ffflorian maintainer-wireapp_member maintainer-yserz maintainer-andylnd maintainer-bennycode license-gpl_3_0" data-module="@wireapp/lru-cache">
 <title>@wireapp/lru-cache</title>
 <path fill="none" stroke="black" d="M356.5,-93.3C356.5,-93.3 274.38,-93.3 274.38,-93.3 271.15,-93.3 267.91,-90.07 267.91,-86.83 267.91,-86.83 267.91,-80.37 267.91,-80.37 267.91,-77.13 271.15,-73.9 274.38,-73.9 274.38,-73.9 356.5,-73.9 356.5,-73.9 359.73,-73.9 362.96,-77.13 362.96,-80.37 362.96,-80.37 362.96,-86.83 362.96,-86.83 362.96,-90.07 359.73,-93.3 356.5,-93.3"></path>
 <text text-anchor="middle" x="315.44" y="-80.3" font-family="Roboto Condensed, sans-serif" font-size="11.00">@wireapp/lru-cache</text>
 </g>
 <!-- @wireapp/cryptobox&#45;&gt;@wireapp/lru&#45;cache -->
-<g id="edge8" class="edge">
+<g id="edge6" class="edge">
 <title>@wireapp/cryptobox-&gt;@wireapp/lru-cache</title>
 <path fill="none" stroke="black" d="M208.97,-83.6C224.39,-83.6 241.57,-83.6 257.51,-83.6"></path>
 <polygon fill="black" stroke="black" points="257.78,-87.1 267.78,-83.6 257.78,-80.1 257.78,-87.1"></polygon>
 </g>
 <!-- @wireapp/cryptobox&#45;&gt;@wireapp/priority&#45;queue -->
-<g id="edge9" class="edge">
+<g id="edge7" class="edge">
 <title>@wireapp/cryptobox-&gt;@wireapp/priority-queue</title>
 <path fill="none" stroke="black" d="M200.28,-93.22C219.85,-97.92 243.58,-103.61 264.32,-108.58"></path>
 <polygon fill="black" stroke="black" points="263.7,-112.03 274.24,-110.96 265.33,-105.22 263.7,-112.03"></polygon>
 </g>
 <!-- @wireapp/proteus -->
-<g id="node9" class="node module-_wireapp_proteus maintainer-wireapp_owner maintainer-lipis maintainer-ffflorian maintainer-wireapp_member maintainer-yserz maintainer-andylnd maintainer-bennycode license-gpl_3_0" data-module="@wireapp/proteus">
+<g id="node7" class="node module-_wireapp_proteus maintainer-wireapp_owner maintainer-lipis maintainer-ffflorian maintainer-wireapp_member maintainer-yserz maintainer-andylnd maintainer-bennycode license-gpl_3_0" data-module="@wireapp/proteus">
 <title>@wireapp/proteus</title>
 <path fill="none" stroke="black" d="M352.46,-56.3C352.46,-56.3 278.41,-56.3 278.41,-56.3 275.18,-56.3 271.95,-53.07 271.95,-49.83 271.95,-49.83 271.95,-43.37 271.95,-43.37 271.95,-40.13 275.18,-36.9 278.41,-36.9 278.41,-36.9 352.46,-36.9 352.46,-36.9 355.7,-36.9 358.93,-40.13 358.93,-43.37 358.93,-43.37 358.93,-49.83 358.93,-49.83 358.93,-53.07 355.7,-56.3 352.46,-56.3"></path>
 <text text-anchor="middle" x="315.44" y="-43.3" font-family="Roboto Condensed, sans-serif" font-size="11.00">@wireapp/proteus</text>
 </g>
 <!-- @wireapp/cryptobox&#45;&gt;@wireapp/proteus -->
-<g id="edge10" class="edge">
+<g id="edge8" class="edge">
 <title>@wireapp/cryptobox-&gt;@wireapp/proteus</title>
 <path fill="none" stroke="black" d="M200.28,-73.98C219.85,-69.28 243.58,-63.59 264.32,-58.62"></path>
 <polygon fill="black" stroke="black" points="265.33,-61.98 274.24,-56.24 263.7,-55.17 265.33,-61.98"></polygon>
+</g>
+<!-- @wireapp/store&#45;engine -->
+<g id="node9" class="node module-_wireapp_store_engine maintainer-wireapp_owner maintainer-lipis maintainer-ffflorian maintainer-wireapp_member maintainer-yserz maintainer-andylnd maintainer-bennycode license-gpl_3_0" data-module="@wireapp/store-engine">
+<title>@wireapp/store-engine</title>
+<path fill="none" stroke="black" d="M363.45,-19.3C363.45,-19.3 267.43,-19.3 267.43,-19.3 264.2,-19.3 260.96,-16.07 260.96,-12.83 260.96,-12.83 260.96,-6.37 260.96,-6.37 260.96,-3.13 264.2,0.1 267.43,0.1 267.43,0.1 363.45,0.1 363.45,0.1 366.68,0.1 369.91,-3.13 369.91,-6.37 369.91,-6.37 369.91,-12.83 369.91,-12.83 369.91,-16.07 366.68,-19.3 363.45,-19.3"></path>
+<text text-anchor="middle" x="315.44" y="-6.3" font-family="Roboto Condensed, sans-serif" font-size="11.00">@wireapp/store-engine</text>
+</g>
+<!-- @wireapp/cryptobox&#45;&gt;@wireapp/store&#45;engine -->
+<g id="edge9" class="edge">
+<title>@wireapp/cryptobox-&gt;@wireapp/store-engine</title>
+<path fill="none" stroke="black" d="M172.01,-73.88C187.73,-61.45 216.75,-40.06 244.75,-27.6 249.09,-25.67 253.68,-23.92 258.34,-22.33"></path>
+<polygon fill="black" stroke="black" points="259.48,-25.64 267.97,-19.3 257.38,-18.96 259.48,-25.64"></polygon>
 </g>
 <!-- @wireapp/cbor -->
 <g id="node10" class="node module-_wireapp_cbor maintainer-wireapp_owner maintainer-lipis maintainer-ffflorian maintainer-wireapp_member maintainer-yserz maintainer-andylnd maintainer-bennycode license-gpl_3_0" data-module="@wireapp/cbor">
@@ -133,7 +121,7 @@
 <text text-anchor="middle" x="459.2" y="-43.3" font-family="Roboto Condensed, sans-serif" font-size="11.00">@wireapp/cbor</text>
 </g>
 <!-- @wireapp/proteus&#45;&gt;@wireapp/cbor -->
-<g id="edge12" class="edge">
+<g id="edge10" class="edge">
 <title>@wireapp/proteus-&gt;@wireapp/cbor</title>
 <path fill="none" stroke="black" d="M358.97,-46.6C375.59,-46.6 394.69,-46.6 411.67,-46.6"></path>
 <polygon fill="black" stroke="black" points="411.93,-50.1 421.93,-46.6 411.93,-43.1 411.93,-50.1"></polygon>
