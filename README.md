@@ -1,6 +1,6 @@
-# ts-lerna-template
+# Wire for Web: Core
 
-A template for managing TypeScript packages with Lerna.
+![Core packages](./wire_web_packages_core.svg)
 
 ## Getting started
 
