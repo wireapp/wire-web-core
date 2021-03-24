@@ -1,9 +1,3 @@
 {
-  "extends": "./tsconfig.build.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@wireapp/*": ["packages/*/src"]
-    }
-  }
+  "extends": "./tsconfig.build.json"
 }

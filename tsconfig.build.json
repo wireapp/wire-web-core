@@ -7,9 +7,9 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": ["dom", "es2017"],
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "lib": ["DOM", "ES2017"],
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "noEmitOnError": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
@@ -18,7 +18,7 @@
     "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es6"
+    "target": "ES6"
   },
   "exclude": ["node_modules"]
 }
