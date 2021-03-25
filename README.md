@@ -16,7 +16,7 @@ This monorepo provides core packages which are required to send and receive encr
 
 ## Development
 
-### Pre-phrase
+### Preface
 
 Every package comes with two TypeScript compiler configurations (`tsconfig.json` & `tsconfig.build.json`). The "build" config should **only** be used, when building a package for publication on npm. All other local development should never make use of compiled JavaScript code and always stick to the standard "tsconfig.json".
 
