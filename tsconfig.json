@@ -3,8 +3,9 @@
   "compilerOptions": {
     "baseUrl": "./packages",
     "paths": {
-      "@wireapp/cbor": ["cbor/src"],
-      "@wireapp/proteus": ["proteus/src"]
+      "@wireapp/*": [
+        "*/src"
+      ]
     }
   }
 }
