@@ -14,8 +14,8 @@
   "description": "Axolotl protocol implementation for TypeScript.",
   "files": [
     "src",
-    "!src/**/!(*.d).ts",
-    "!src/demo"
+    "!src/**/*.test.*",
+    "!src/**/!(*.d).ts"
   ],
   "license": "GPL-3.0",
   "main": "src/index",
