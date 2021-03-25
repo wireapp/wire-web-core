@@ -45,6 +45,6 @@ Start with version "0.0.0" in `package.json` when creating a completely new pack
 
 Publish all packages that have changed:
 
-```bash
+```
 yarn release
 ```

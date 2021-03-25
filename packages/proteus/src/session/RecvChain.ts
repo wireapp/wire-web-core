@@ -17,8 +17,7 @@
  *
  */
 
-import {Decoder, Encoder} from "@wireapp/cbor";
-
+import {Decoder, Encoder} from '@wireapp/cbor';
 import {PublicKey} from '../keys/PublicKey';
 import {ChainKey, MessageKeys} from './';
 import {DecodeError, DecryptError, ProteusError} from '../errors';

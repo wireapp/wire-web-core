@@ -17,8 +17,7 @@
  *
  */
 
-import {Decoder, Encoder} from "@wireapp/cbor";
-
+import {Decoder, Encoder} from '@wireapp/cbor';
 import {MemoryUtil} from '../util/';
 import {DecodeError, DecryptError, ProteusError} from '../errors/';
 import {SessionState} from './SessionState';

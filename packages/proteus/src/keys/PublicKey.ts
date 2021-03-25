@@ -18,8 +18,8 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
+import {Decoder, Encoder} from '@wireapp/cbor';
 import {DecodeError, InputError} from '../errors/';
-import {Decoder, Encoder} from "@wireapp/cbor";
 
 export class PublicKey {
   readonly pub_edward: Uint8Array;

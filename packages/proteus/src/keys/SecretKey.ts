@@ -17,9 +17,8 @@
  *
  */
 
-import {Decoder, Encoder} from "@wireapp/cbor";
+import {Decoder, Encoder} from '@wireapp/cbor';
 import * as sodium from 'libsodium-wrappers-sumo';
-
 import {ArrayUtil} from '../util/';
 import type {PublicKey} from './PublicKey';
 import {DecodeError, InputError} from '../errors';

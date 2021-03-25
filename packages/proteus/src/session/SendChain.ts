@@ -17,7 +17,7 @@
  *
  */
 
-import {Decoder, Encoder} from "@wireapp/cbor";
+import {Decoder, Encoder} from '@wireapp/cbor';
 
 import {KeyPair} from '../keys/KeyPair';
 import {ChainKey} from './ChainKey';

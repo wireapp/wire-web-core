@@ -17,10 +17,10 @@
  *
  */
 
+import {Decoder, Encoder} from '@wireapp/cbor';
 import {MacKey} from '../derived/MacKey';
 import {Message} from './Message';
 import {DecodeError} from '../errors';
-import {Decoder, Encoder} from "@wireapp/cbor";
 
 export class Envelope {
   readonly _message_enc: Uint8Array;

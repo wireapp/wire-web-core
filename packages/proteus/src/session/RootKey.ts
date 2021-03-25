@@ -17,8 +17,7 @@
  *
  */
 
-import {Decoder, Encoder} from "@wireapp/cbor";
-
+import {Decoder, Encoder} from '@wireapp/cbor';
 import {ChainKey} from './ChainKey';
 import {CipherKey, DerivedSecrets} from '../derived/';
 import {DecodeError, InputError} from '../errors';

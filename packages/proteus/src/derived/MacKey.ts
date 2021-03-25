@@ -18,8 +18,8 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
+import {Decoder, Encoder} from '@wireapp/cbor';
 import {DecodeError} from '../errors';
-import {Decoder, Encoder} from "@wireapp/cbor";
 
 export class MacKey {
   readonly key: Uint8Array;

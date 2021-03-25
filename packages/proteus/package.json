@@ -14,7 +14,7 @@
   "license": "GPL-3.0",
   "main": "src/index",
   "name": "@wireapp/proteus",
-  "repository": "https://github.com/wireapp/wire-web-core/tree/master/packages/proteus",
+  "repository": "https://github.com/wireapp/wire-web-core/tree/main/packages/proteus",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "clean": "rimraf src/**/*{.js,.js.map,.d.ts} .nyc_output coverage",

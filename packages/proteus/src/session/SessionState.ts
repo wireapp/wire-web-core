@@ -17,8 +17,7 @@
  *
  */
 
-import {Decoder, Encoder} from "@wireapp/cbor";
-
+import {Decoder, Encoder} from '@wireapp/cbor';
 import {ArrayUtil, MemoryUtil} from '../util/';
 import {DerivedSecrets} from '../derived/DerivedSecrets';
 import {IdentityKey, IdentityKeyPair, KeyPair, PreKeyBundle, PublicKey} from '../keys/';
