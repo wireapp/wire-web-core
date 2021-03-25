@@ -10,7 +10,7 @@
   "name": "@wireapp/cbor",
   "repository": "https://github.com/wireapp/wire-web-core/tree/main/packages/cbor",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "clean": "rimraf src/**/*{.js,.js.map,.d.ts} .nyc_output coverage",
     "dist": "yarn clean && yarn build",
     "test": "nyc --nycrc-path=../../nyc.config.js jasmine --config=jasmine.json"

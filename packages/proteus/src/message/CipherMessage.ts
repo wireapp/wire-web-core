@@ -17,7 +17,7 @@
  *
  */
 
-import * as CBOR from '@wireapp/cbor';
+import {Decoder, Encoder} from "@wireapp/cbor";
 
 import {PublicKey} from '../keys/PublicKey';
 import {SessionTag} from './SessionTag';
@@ -47,7 +47,7 @@ export class CipherMessage extends Message {
     this.cipher_text = cipherText;
   }
 
-  encode(encoder: CBOR.Encoder): CBOR.Encoder {
+  encode(encoder: Encoder): Encoder {
     encoder.object(CipherMessage.propertiesLength);
     encoder.u8(0);
     this.session_tag.encode(encoder);
@@ -61,7 +61,7 @@ export class CipherMessage extends Message {
     return encoder.bytes(this.cipher_text);
   }
 
-  static decode(decoder: CBOR.Decoder): CipherMessage {
+  static decode(decoder: Decoder): CipherMessage {
     const propertiesLength = decoder.object();
     if (propertiesLength === CipherMessage.propertiesLength) {
       decoder.u8();

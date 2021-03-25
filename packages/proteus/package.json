@@ -1,15 +1,9 @@
 {
   "dependencies": {
-    "@types/ed2curve": "0.2.2",
     "@types/libsodium-wrappers-sumo": "0.7.5",
     "@types/node": "~14",
     "@wireapp/cbor": "4.6.27",
-    "ed2curve": "0.3.0",
     "libsodium-wrappers-sumo": "0.7.9"
-  },
-  "devDependencies": {
-    "@wireapp/cryptobox": "12.2.56",
-    "@wireapp/store-engine": "4.5.30"
   },
   "description": "Axolotl protocol implementation for TypeScript.",
   "files": [
@@ -22,7 +16,7 @@
   "name": "@wireapp/proteus",
   "repository": "https://github.com/wireapp/wire-web-core/tree/master/packages/proteus",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "clean": "rimraf src/**/*{.js,.js.map,.d.ts} .nyc_output coverage",
     "dist": "yarn clean && yarn build",
     "test": "nyc --nycrc-path=../../nyc.config.js jasmine --config=jasmine.json"

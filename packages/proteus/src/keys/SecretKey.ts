@@ -17,7 +17,7 @@
  *
  */
 
-import * as CBOR from '@wireapp/cbor';
+import {Decoder, Encoder} from "@wireapp/cbor";
 import * as sodium from 'libsodium-wrappers-sumo';
 
 import {ArrayUtil} from '../util/';
@@ -57,13 +57,13 @@ export class SecretKey {
     return sharedSecret;
   }
 
-  encode(encoder: CBOR.Encoder): CBOR.Encoder {
+  encode(encoder: Encoder): Encoder {
     encoder.object(SecretKey.propertiesLength);
     encoder.u8(0);
     return encoder.bytes(this.sec_edward);
   }
 
-  static decode(decoder: CBOR.Decoder): SecretKey {
+  static decode(decoder: Decoder): SecretKey {
     const propertiesLength = decoder.object();
     if (propertiesLength === SecretKey.propertiesLength) {
       decoder.u8();

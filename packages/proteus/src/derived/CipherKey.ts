@@ -17,10 +17,9 @@
  *
  */
 
-import * as CBOR from '@wireapp/cbor';
 import * as sodium from 'libsodium-wrappers-sumo';
-
 import {DecodeError} from '../errors';
+import {Decoder, Encoder} from "@wireapp/cbor";
 
 export class CipherKey {
   readonly key: Uint8Array;
@@ -48,13 +47,13 @@ export class CipherKey {
     return this.encrypt(ciphertext, nonce);
   }
 
-  encode(encoder: CBOR.Encoder): CBOR.Encoder {
+  encode(encoder: Encoder): Encoder {
     encoder.object(CipherKey.propertiesLength);
     encoder.u8(0);
     return encoder.bytes(this.key);
   }
 
-  static decode(decoder: CBOR.Decoder): CipherKey {
+  static decode(decoder: Decoder): CipherKey {
     const propertiesLength = decoder.object();
     if (propertiesLength === CipherKey.propertiesLength) {
       decoder.u8();

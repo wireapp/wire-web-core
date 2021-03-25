@@ -1,3 +1,10 @@
 {
-  "extends": "./tsconfig.build.json"
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "baseUrl": "./packages",
+    "paths": {
+      "@wireapp/cbor": ["cbor/src"],
+      "@wireapp/proteus": ["proteus/src"]
+    }
+  }
 }

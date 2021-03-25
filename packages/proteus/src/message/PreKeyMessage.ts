@@ -17,7 +17,7 @@
  *
  */
 
-import * as CBOR from '@wireapp/cbor';
+import {Decoder, Encoder} from "@wireapp/cbor";
 
 import {IdentityKey, PublicKey} from '../keys/';
 import {DecodeError, InputError} from '../errors/';
@@ -39,7 +39,7 @@ export class PreKeyMessage extends Message {
     this.message = message;
   }
 
-  encode(encoder: CBOR.Encoder): CBOR.Encoder {
+  encode(encoder: Encoder): Encoder {
     encoder.object(PreKeyMessage.propertiesLength);
     encoder.u8(0);
     encoder.u16(this.prekey_id);
@@ -51,7 +51,7 @@ export class PreKeyMessage extends Message {
     return this.message.encode(encoder);
   }
 
-  static decode(decoder: CBOR.Decoder): PreKeyMessage {
+  static decode(decoder: Decoder): PreKeyMessage {
     const propertiesLength = decoder.object();
     if (propertiesLength === PreKeyMessage.propertiesLength) {
       decoder.u8();

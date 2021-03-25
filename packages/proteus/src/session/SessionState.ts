@@ -17,7 +17,7 @@
  *
  */
 
-import * as CBOR from '@wireapp/cbor';
+import {Decoder, Encoder} from "@wireapp/cbor";
 
 import {ArrayUtil, MemoryUtil} from '../util/';
 import {DerivedSecrets} from '../derived/DerivedSecrets';
@@ -188,16 +188,16 @@ export class SessionState {
   }
 
   serialise(): ArrayBuffer {
-    const encoder = new CBOR.Encoder();
+    const encoder = new Encoder();
     this.encode(encoder);
     return encoder.get_buffer();
   }
 
   static deserialise(buf: ArrayBuffer): SessionState {
-    return SessionState.decode(new CBOR.Decoder(buf));
+    return SessionState.decode(new Decoder(buf));
   }
 
-  encode(encoder: CBOR.Encoder): CBOR.Encoder {
+  encode(encoder: Encoder): Encoder {
     encoder.object(SessionState.propertiesLength);
     encoder.u8(0);
     encoder.array(this.recv_chains.length);
@@ -210,7 +210,7 @@ export class SessionState {
     return encoder.u32(this.prev_counter);
   }
 
-  static decode(decoder: CBOR.Decoder): SessionState {
+  static decode(decoder: Decoder): SessionState {
     const propertiesLength = decoder.object();
     if (propertiesLength === SessionState.propertiesLength) {
       decoder.u8();

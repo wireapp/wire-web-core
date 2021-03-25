@@ -17,7 +17,7 @@
  *
  */
 
-import * as CBOR from '@wireapp/cbor';
+import {Decoder, Encoder} from "@wireapp/cbor";
 import * as sodium from 'libsodium-wrappers-sumo';
 
 import {DecodeError, InputError} from '../errors';
@@ -73,7 +73,7 @@ export class KeyPair {
     }
   }
 
-  encode(encoder: CBOR.Encoder): CBOR.Encoder {
+  encode(encoder: Encoder): Encoder {
     encoder.object(KeyPair.propertiesLength);
 
     encoder.u8(0);
@@ -85,7 +85,7 @@ export class KeyPair {
     return encoder;
   }
 
-  static decode(decoder: CBOR.Decoder): KeyPair {
+  static decode(decoder: Decoder): KeyPair {
     const propertiesLength = decoder.object();
     if (propertiesLength === KeyPair.propertiesLength) {
       decoder.u8();

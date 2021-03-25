@@ -17,7 +17,7 @@
  *
  */
 
-import * as CBOR from '@wireapp/cbor';
+import {Decoder, Encoder} from "@wireapp/cbor";
 
 import {DerivedSecrets, MacKey} from '../derived/';
 import {MessageKeys} from './MessageKeys';
@@ -49,7 +49,7 @@ export class ChainKey {
     return new MessageKeys(derivedSecrets.cipher_key, derivedSecrets.mac_key, this.idx);
   }
 
-  encode(encoder: CBOR.Encoder): CBOR.Encoder {
+  encode(encoder: Encoder): Encoder {
     encoder.object(ChainKey.propertiesLength);
     encoder.u8(0);
     this.key.encode(encoder);
@@ -57,7 +57,7 @@ export class ChainKey {
     return encoder.u32(this.idx);
   }
 
-  static decode(decoder: CBOR.Decoder): ChainKey {
+  static decode(decoder: Decoder): ChainKey {
     const propertiesLength = decoder.object();
     if (propertiesLength === ChainKey.propertiesLength) {
       decoder.u8();

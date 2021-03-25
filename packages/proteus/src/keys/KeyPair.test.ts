@@ -26,7 +26,7 @@ describe('KeyPair', () => {
     const signature = keyPair.secret_key.sign(message);
     const badSignature = new Uint8Array(signature);
 
-    badSignature.forEach((obj, index) => {
+    badSignature.forEach((_, index) => {
       badSignature[index] = ~badSignature[index];
     });
 

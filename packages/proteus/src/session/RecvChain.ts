@@ -17,7 +17,7 @@
  *
  */
 
-import * as CBOR from '@wireapp/cbor';
+import {Decoder, Encoder} from "@wireapp/cbor";
 
 import {PublicKey} from '../keys/PublicKey';
 import {ChainKey, MessageKeys} from './';
@@ -110,7 +110,7 @@ export class RecvChain {
     }
   }
 
-  encode(encoder: CBOR.Encoder): CBOR.Encoder[] {
+  encode(encoder: Encoder): Encoder[] {
     encoder.object(RecvChain.propertiesLength);
     encoder.u8(0);
     this.chain_key.encode(encoder);
@@ -122,7 +122,7 @@ export class RecvChain {
     return this.message_keys.map(key => key.encode(encoder));
   }
 
-  static decode(decoder: CBOR.Decoder): RecvChain {
+  static decode(decoder: Decoder): RecvChain {
     const propertiesLength = decoder.object();
     if (propertiesLength === RecvChain.propertiesLength) {
       decoder.u8();

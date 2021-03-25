@@ -17,7 +17,7 @@
  *
  */
 
-import * as CBOR from '@wireapp/cbor';
+import {Decoder, Encoder} from "@wireapp/cbor";
 
 import {KeyPair} from './KeyPair';
 import {DecodeError, InputError} from '../errors';
@@ -83,16 +83,16 @@ export class PreKey {
   }
 
   serialise(): ArrayBuffer {
-    const encoder = new CBOR.Encoder();
+    const encoder = new Encoder();
     this.encode(encoder);
     return encoder.get_buffer();
   }
 
   static deserialise(buf: ArrayBuffer): PreKey {
-    return PreKey.decode(new CBOR.Decoder(buf));
+    return PreKey.decode(new Decoder(buf));
   }
 
-  encode(encoder: CBOR.Encoder): CBOR.Encoder {
+  encode(encoder: Encoder): Encoder {
     encoder.object(PreKey.propertiesLength);
     encoder.u8(0);
     encoder.u8(this.version);
@@ -102,7 +102,7 @@ export class PreKey {
     return this.key_pair.encode(encoder);
   }
 
-  static decode(decoder: CBOR.Decoder): PreKey {
+  static decode(decoder: Decoder): PreKey {
     const propertiesLength = decoder.object();
     if (propertiesLength === PreKey.propertiesLength) {
       decoder.u8();

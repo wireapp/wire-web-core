@@ -17,7 +17,7 @@
  *
  */
 
-import * as CBOR from '@wireapp/cbor';
+import {Decoder, Encoder} from "@wireapp/cbor";
 import * as sodium from 'libsodium-wrappers-sumo';
 
 import {DecodeError} from '../errors/DecodeError';
@@ -35,11 +35,11 @@ export class SessionTag {
     return sodium.to_hex(this.tag);
   }
 
-  encode(encoder: CBOR.Encoder): CBOR.Encoder {
+  encode(encoder: Encoder): Encoder {
     return encoder.bytes(this.tag);
   }
 
-  static decode(decoder: CBOR.Decoder): SessionTag {
+  static decode(decoder: Decoder): SessionTag {
     const length = 16;
 
     const bytes = new Uint8Array(decoder.bytes());

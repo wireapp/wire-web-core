@@ -17,8 +17,8 @@
  *
  */
 
+import { DecodeError } from '@wireapp/cbor';
 import * as Proteus from '../../';
-import * as CBOR from '@wireapp/cbor';
 
 describe('Envelope', () => {
   const mac_key = new Proteus.derived.MacKey(new Uint8Array(32).fill(1));
@@ -76,7 +76,7 @@ describe('Envelope', () => {
     try {
       Proteus.message.Envelope.deserialise(empty_buffer);
     } catch (error) {
-      expect(error instanceof CBOR.DecodeError).toBe(true);
+      expect(error instanceof DecodeError).toBe(true);
     }
   });
 });

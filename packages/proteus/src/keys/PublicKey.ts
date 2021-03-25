@@ -17,10 +17,9 @@
  *
  */
 
-import * as CBOR from '@wireapp/cbor';
 import * as sodium from 'libsodium-wrappers-sumo';
-
 import {DecodeError, InputError} from '../errors/';
+import {Decoder, Encoder} from "@wireapp/cbor";
 
 export class PublicKey {
   readonly pub_edward: Uint8Array;
@@ -47,13 +46,13 @@ export class PublicKey {
     return sodium.to_hex(this.pub_edward);
   }
 
-  encode(encoder: CBOR.Encoder): CBOR.Encoder {
+  encode(encoder: Encoder): Encoder {
     encoder.object(PublicKey.propertiesLength);
     encoder.u8(0);
     return encoder.bytes(this.pub_edward);
   }
 
-  static decode(decoder: CBOR.Decoder): PublicKey {
+  static decode(decoder: Decoder): PublicKey {
     const propertiesLength = decoder.object();
     if (propertiesLength === PublicKey.propertiesLength) {
       decoder.u8();

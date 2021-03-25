@@ -17,11 +17,10 @@
  *
  */
 
-import * as CBOR from '@wireapp/cbor';
-
 import {MacKey} from '../derived/MacKey';
 import {Message} from './Message';
 import {DecodeError} from '../errors';
+import {Decoder, Encoder} from "@wireapp/cbor";
 
 export class Envelope {
   readonly _message_enc: Uint8Array;
@@ -44,17 +43,17 @@ export class Envelope {
 
   /** @returns The serialized message envelope */
   serialise(): ArrayBuffer {
-    const encoder = new CBOR.Encoder();
+    const encoder = new Encoder();
     this.encode(encoder);
     return encoder.get_buffer();
   }
 
   static deserialise(buf: ArrayBuffer): Envelope {
-    const decoder = new CBOR.Decoder(buf);
+    const decoder = new Decoder(buf);
     return Envelope.decode(decoder);
   }
 
-  encode(encoder: CBOR.Encoder): CBOR.Encoder {
+  encode(encoder: Encoder): Encoder {
     encoder.object(3);
     encoder.u8(0);
     encoder.u8(this.version);
@@ -68,7 +67,7 @@ export class Envelope {
     return encoder.bytes(this._message_enc);
   }
 
-  static decode(decoder: CBOR.Decoder): Envelope {
+  static decode(decoder: Decoder): Envelope {
     const propertiesLength = decoder.object();
     if (propertiesLength === 3) {
       decoder.u8();

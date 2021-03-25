@@ -17,7 +17,7 @@
  *
  */
 
-import * as CBOR from '@wireapp/cbor';
+import {Decoder, Encoder} from "@wireapp/cbor";
 
 import {PublicKey} from './PublicKey';
 import {DecodeError} from '../errors';
@@ -40,13 +40,13 @@ export class IdentityKey {
     return this.public_key.fingerprint();
   }
 
-  encode(encoder: CBOR.Encoder): CBOR.Encoder {
+  encode(encoder: Encoder): Encoder {
     encoder.object(IdentityKey.propertiesLength);
     encoder.u8(0);
     return this.public_key.encode(encoder);
   }
 
-  static decode(decoder: CBOR.Decoder): IdentityKey {
+  static decode(decoder: Decoder): IdentityKey {
     const propertiesLength = decoder.object();
     if (propertiesLength === IdentityKey.propertiesLength) {
       decoder.u8();

@@ -17,7 +17,7 @@
  *
  */
 
-import * as CBOR from '@wireapp/cbor';
+import {Decoder, Encoder} from "@wireapp/cbor";
 
 import {KeyPair} from '../keys/KeyPair';
 import {ChainKey} from './ChainKey';
@@ -33,7 +33,7 @@ export class SendChain {
     this.ratchet_key = keypair;
   }
 
-  encode(encoder: CBOR.Encoder): CBOR.Encoder {
+  encode(encoder: Encoder): Encoder {
     encoder.object(SendChain.propertiesLength);
     encoder.u8(0);
     this.chain_key.encode(encoder);
@@ -41,7 +41,7 @@ export class SendChain {
     return this.ratchet_key.encode(encoder);
   }
 
-  static decode(decoder: CBOR.Decoder): SendChain {
+  static decode(decoder: Decoder): SendChain {
     const propertiesLength = decoder.object();
     if (propertiesLength === SendChain.propertiesLength) {
       decoder.u8();

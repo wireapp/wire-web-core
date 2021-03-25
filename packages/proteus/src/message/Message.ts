@@ -17,15 +17,14 @@
  *
  */
 
-import * as CBOR from '@wireapp/cbor';
-
+import {Decoder, Encoder} from '@wireapp/cbor';
 import {DecodeError} from '../errors/DecodeError';
 
 export class Message {
   constructor() {}
 
   serialise(): ArrayBuffer {
-    const encoder = new CBOR.Encoder();
+    const encoder = new Encoder();
     if (this instanceof CipherMessage) {
       encoder.u8(1);
     } else if (this instanceof PreKeyMessage) {
@@ -39,7 +38,7 @@ export class Message {
   }
 
   static deserialise<T extends CipherMessage | PreKeyMessage>(buf: ArrayBuffer): T {
-    const decoder = new CBOR.Decoder(buf);
+    const decoder = new Decoder(buf);
 
     switch (decoder.u8()) {
       case 1:

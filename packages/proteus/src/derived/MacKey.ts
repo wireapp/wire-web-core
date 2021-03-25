@@ -17,10 +17,9 @@
  *
  */
 
-import * as CBOR from '@wireapp/cbor';
 import * as sodium from 'libsodium-wrappers-sumo';
-
 import {DecodeError} from '../errors';
+import {Decoder, Encoder} from "@wireapp/cbor";
 
 export class MacKey {
   readonly key: Uint8Array;
@@ -47,13 +46,13 @@ export class MacKey {
     return sodium.crypto_auth_hmacsha256_verify(signature, msg, this.key);
   }
 
-  encode(encoder: CBOR.Encoder): CBOR.Encoder {
+  encode(encoder: Encoder): Encoder {
     encoder.object(MacKey.propertiesLength);
     encoder.u8(0);
     return encoder.bytes(this.key);
   }
 
-  static decode(decoder: CBOR.Decoder): MacKey {
+  static decode(decoder: Decoder): MacKey {
     const propertiesLength = decoder.object();
     if (propertiesLength === MacKey.propertiesLength) {
       decoder.u8();

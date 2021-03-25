@@ -17,7 +17,7 @@
  *
  */
 
-import * as CBOR from '@wireapp/cbor';
+import {Decoder, Encoder} from "@wireapp/cbor";
 
 import {MemoryUtil} from '../util/';
 import {DecodeError, DecryptError, ProteusError} from '../errors/';
@@ -287,17 +287,17 @@ export class Session {
   }
 
   serialise(): ArrayBuffer {
-    const encoder = new CBOR.Encoder();
+    const encoder = new Encoder();
     this.encode(encoder);
     return encoder.get_buffer();
   }
 
   static deserialise(local_identity: IdentityKeyPair, buf: ArrayBuffer): Session {
-    const decoder = new CBOR.Decoder(buf);
+    const decoder = new Decoder(buf);
     return this.decode(local_identity, decoder);
   }
 
-  encode(encoder: CBOR.Encoder): void {
+  encode(encoder: Encoder): void {
     encoder.object(6);
     encoder.u8(0);
     encoder.u8(this.version);
@@ -330,7 +330,7 @@ export class Session {
     }
   }
 
-  static decode(localIdentity: IdentityKeyPair, decoder: CBOR.Decoder): Session {
+  static decode(localIdentity: IdentityKeyPair, decoder: Decoder): Session {
     let version;
     let sessionTag;
     let remoteIdentity;

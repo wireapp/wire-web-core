@@ -17,7 +17,7 @@
  *
  */
 
-import * as CBOR from '@wireapp/cbor';
+import {Decoder, Encoder} from "@wireapp/cbor";
 
 import {IdentityKey, KeyPair, SecretKey} from './';
 import {DecodeError} from '../errors';
@@ -40,17 +40,17 @@ export class IdentityKeyPair {
   }
 
   serialise(): ArrayBuffer {
-    const encoder = new CBOR.Encoder();
+    const encoder = new Encoder();
     this.encode(encoder);
     return encoder.get_buffer();
   }
 
   static deserialise(buf: ArrayBuffer): IdentityKeyPair {
-    const decoder = new CBOR.Decoder(buf);
+    const decoder = new Decoder(buf);
     return IdentityKeyPair.decode(decoder);
   }
 
-  encode(encoder: CBOR.Encoder): CBOR.Encoder {
+  encode(encoder: Encoder): Encoder {
     encoder.object(IdentityKeyPair.propertiesLength);
     encoder.u8(0);
     encoder.u8(this.version);
@@ -60,7 +60,7 @@ export class IdentityKeyPair {
     return this.public_key.encode(encoder);
   }
 
-  static decode(decoder: CBOR.Decoder): IdentityKeyPair {
+  static decode(decoder: Decoder): IdentityKeyPair {
     const propertiesLength = decoder.object();
     if (propertiesLength === IdentityKeyPair.propertiesLength) {
       decoder.u8();

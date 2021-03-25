@@ -17,7 +17,7 @@
  *
  */
 
-import * as CBOR from '@wireapp/cbor';
+import {Decoder, Encoder} from "@wireapp/cbor";
 import * as sodium from 'libsodium-wrappers-sumo';
 
 import {IdentityKey, IdentityKeyPair, PreKey, PreKeyAuth, PublicKey} from './';
@@ -86,7 +86,7 @@ export class PreKeyBundle {
   }
 
   serialise(): ArrayBuffer {
-    const encoder = new CBOR.Encoder();
+    const encoder = new Encoder();
     this.encode(encoder);
     return encoder.get_buffer();
   }
@@ -99,10 +99,10 @@ export class PreKeyBundle {
   }
 
   static deserialise(buf: ArrayBuffer): PreKeyBundle {
-    return PreKeyBundle.decode(new CBOR.Decoder(buf));
+    return PreKeyBundle.decode(new Decoder(buf));
   }
 
-  encode(encoder: CBOR.Encoder): CBOR.Encoder {
+  encode(encoder: Encoder): Encoder {
     encoder.object(PreKeyBundle.propertiesLength);
     encoder.u8(0);
     encoder.u8(this.version);
@@ -118,7 +118,7 @@ export class PreKeyBundle {
     return this.signature ? encoder.bytes(this.signature) : encoder.null();
   }
 
-  static decode(decoder: CBOR.Decoder): PreKeyBundle {
+  static decode(decoder: Decoder): PreKeyBundle {
     const propertiesLength = decoder.object();
     if (propertiesLength === PreKeyBundle.propertiesLength) {
       decoder.u8();
