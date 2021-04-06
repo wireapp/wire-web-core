@@ -214,14 +214,14 @@ export class Session {
   }
 
   async decrypt(prekey_store: PreKeyStore, envelope: Envelope): Promise<Uint8Array> {
-    const preKeyMessage = envelope.message;
+    const {message} = envelope;
 
-    if (preKeyMessage instanceof CipherMessage) {
-      return this._decrypt_cipher_message(envelope, preKeyMessage);
+    if (message instanceof CipherMessage) {
+      return this._decrypt_cipher_message(envelope, message);
     }
 
-    if (preKeyMessage instanceof PreKeyMessage) {
-      const actual_fingerprint = preKeyMessage.identity_key.fingerprint();
+    if (message instanceof PreKeyMessage) {
+      const actual_fingerprint = message.identity_key.fingerprint();
       const expected_fingerprint = this.remote_identity.fingerprint();
 
       if (actual_fingerprint !== expected_fingerprint) {
@@ -229,7 +229,7 @@ export class Session {
         throw new DecryptError.RemoteIdentityChanged(message, DecryptError.CODE.CASE_204);
       }
 
-      return this._decrypt_prekey_message(envelope, preKeyMessage, prekey_store);
+      return this._decrypt_prekey_message(envelope, message, prekey_store);
     }
 
     throw new DecryptError('Unknown message type.', DecryptError.CODE.CASE_200);
