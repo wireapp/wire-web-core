@@ -20,8 +20,8 @@
 /* eslint-disable no-magic-numbers */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import {IdentityKey, PublicKey } from '../keys';
-import {CipherMessage, Message, PreKeyMessage, SessionTag } from '../message';
+import {IdentityKey, PublicKey} from '../keys';
+import {CipherMessage, Message, PreKeyMessage, SessionTag} from '../message';
 
 beforeAll(async () => {
   await sodium.ready;
@@ -55,13 +55,7 @@ describe('Message', () => {
     const expected =
       '01a500502a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a010c020d03a10058208575c082e488ce8dee0584a779f452f0e91acd89bce81dacd037a276874fc50f044a0102030405060708090a';
 
-    const msg = new CipherMessage(
-      sessionTag,
-      12,
-      13,
-      ratchetKey,
-      new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
-    );
+    const msg = new CipherMessage(sessionTag, 12, 13, ratchetKey, new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
 
     const bytes = new Uint8Array(msg.serialise());
     expect(expected).toBe(sodium.to_hex(bytes).toLowerCase());

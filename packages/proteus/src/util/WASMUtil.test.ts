@@ -17,7 +17,7 @@
  *
  */
 
-import { WASMUtil } from "../util";
+import {WASMUtil} from '../util';
 
 describe('WASMUtil', () => {
   describe('isUsingWASM', () => {

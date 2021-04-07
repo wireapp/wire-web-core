@@ -17,8 +17,8 @@
  *
  */
 
-import {KeyPair, PreKey} from "../keys";
-import {MemoryUtil} from "../util";
+import {KeyPair, PreKey} from '../keys';
+import {MemoryUtil} from '../util';
 
 describe('MemoryUtil', () => {
   describe('zeroize', () => {

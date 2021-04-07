@@ -640,9 +640,9 @@ describe('Session', () => {
 
     it('pathological case', async () => {
       const numberOfParticipants = 32;
-      const alice_ident =  IdentityKeyPair.new();
+      const alice_ident = IdentityKeyPair.new();
 
-      const bob_ident =  IdentityKeyPair.new();
+      const bob_ident = IdentityKeyPair.new();
 
       const preKeys = PreKey.generate_prekeys(0, numberOfParticipants);
       const bob_store = new SimplePreKeyStore('bobStore', preKeys);

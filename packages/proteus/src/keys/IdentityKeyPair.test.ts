@@ -18,7 +18,7 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import {IdentityKeyPair} from "../keys";
+import {IdentityKeyPair} from '../keys';
 
 beforeAll(async () => {
   await sodium.ready;

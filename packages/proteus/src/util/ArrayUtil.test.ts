@@ -17,7 +17,7 @@
  *
  */
 
-import { ArrayUtil } from "../util";
+import {ArrayUtil} from '../util';
 
 /* eslint-disable no-magic-numbers */
 
@@ -29,10 +29,7 @@ describe('HMAC-based Key Derivation Function', () => {
   });
 
   it('concatenates two buffers', () => {
-    const actual = ArrayUtil.concatenate_array_buffers([
-      new Uint8Array([1, 2, 3]),
-      new Uint8Array([4, 5, 6]),
-    ]);
+    const actual = ArrayUtil.concatenate_array_buffers([new Uint8Array([1, 2, 3]), new Uint8Array([4, 5, 6])]);
     const expected = new Uint8Array([1, 2, 3, 4, 5, 6]);
     expect(actual).toEqual(expected);
   });

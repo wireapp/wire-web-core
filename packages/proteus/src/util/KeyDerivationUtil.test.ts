@@ -18,7 +18,7 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import { KeyDerivationUtil } from '../util';
+import {KeyDerivationUtil} from '../util';
 
 beforeAll(async () => {
   await sodium.ready;
