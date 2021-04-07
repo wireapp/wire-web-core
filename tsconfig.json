@@ -3,9 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./packages",
     "paths": {
-      "@wireapp/*": [
-        "*/src"
-      ]
+      "@wireapp/*": ["*/src"]
     }
   }
 }

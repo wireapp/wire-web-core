@@ -20,7 +20,7 @@ This monorepo provides core packages which are required to send and receive encr
 
 Every package comes with two TypeScript compiler configurations (`tsconfig.json` & `tsconfig.build.json`). The "build" config should **only** be used, when building a package for publication on npm. All other local development should never make use of compiled JavaScript code and always stick to the standard "tsconfig.json".
 
-Thanks to the "paths" configuration in the main [tsconfig.json](./tsconfig.json), it is possible to make changes in a sub-package (e.g. "cbor") which take immediate (without prior compilation) effect on dependent packages (e.g. "proteus"). This only works, when there is no compiled (JS) code in the sub-package. 
+Thanks to the "paths" configuration in the main [tsconfig.json](./tsconfig.json), it is possible to make changes in a sub-package (e.g. "cbor") which take immediate (without prior compilation) effect on dependent packages (e.g. "proteus"). This only works, when there is no compiled (JS) code in the sub-package.
 
 ### Getting started
 

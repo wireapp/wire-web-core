@@ -17,7 +17,7 @@
  *
  */
 
-import { DecodeError } from '@wireapp/cbor';
+import {DecodeError} from '@wireapp/cbor';
 import * as Proteus from '../../';
 
 describe('Envelope', () => {

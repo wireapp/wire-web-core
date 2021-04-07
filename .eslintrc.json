@@ -1,0 +1,28 @@
+{
+  "env": {
+    "jasmine": true
+  },
+  "extends": ["@wireapp/eslint-config"],
+  "globals": {
+    "NodeJS": "readonly"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/typedef": "off",
+        "no-unused-vars": "off"
+      }
+    }
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["jasmine"],
+  "rules": {
+    "id-length": "off",
+    "no-dupe-class-members": "off",
+    "no-magic-numbers": "off",
+    "valid-jsdoc": "off"
+  }
+}

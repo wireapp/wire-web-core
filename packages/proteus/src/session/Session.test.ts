@@ -18,10 +18,10 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import { PreKey, IdentityKeyPair, PreKeyBundle } from '../keys';
-import {CipherMessage, Envelope } from '../message';
-import {PreKeyStore, Session} from "../session";
-import {DecryptError, ProteusError } from '../errors';
+import {PreKey, IdentityKeyPair, PreKeyBundle} from '../keys';
+import {CipherMessage, Envelope} from '../message';
+import {PreKeyStore, Session} from '../session';
+import {DecryptError, ProteusError} from '../errors';
 
 class SimplePreKeyStore implements PreKeyStore {
   readonly prekeys: Map<number, ArrayBuffer> = new Map();
@@ -46,10 +46,7 @@ class SimplePreKeyStore implements PreKeyStore {
   }
 }
 
-const assert_serialise_deserialise = (
-  localIdentity: IdentityKeyPair,
-  session: Session,
-): void => {
+const assert_serialise_deserialise = (localIdentity: IdentityKeyPair, session: Session): void => {
   const bytes = session.serialise();
 
   const deser = Session.deserialise(localIdentity, bytes);
@@ -100,10 +97,7 @@ describe('Session', () => {
 
   describe('Serialisation', () => {
     it('can be serialised and deserialized to/from CBOR', async () => {
-      const [alice_ident, bob_ident] = await Promise.all([
-        IdentityKeyPair.new(),
-        IdentityKeyPair.new(),
-      ]);
+      const [alice_ident, bob_ident] = await Promise.all([IdentityKeyPair.new(), IdentityKeyPair.new()]);
       const bob_store = new SimplePreKeyStore('bobStore', await PreKey.generate_prekeys(0, 10));
 
       const bob_prekey = await bob_store.load_prekey(0);

@@ -1,0 +1,21 @@
+# Labels based on PR title
+'type: refactoring 🛠':
+  title: '^refactor(\(.+\))?:.*'
+'type: bug / fix 🐞':
+  title: '^(run)?fix(\(.+\))?:.*'
+'type: chore 🧹':
+  title: '^chore(\(.+\))?:.*'
+'type: documentation 📋':
+  title: '^docs(\(.+\))?:.*'
+'type: feature / request ✨':
+  title: '^feat(\(.+\))?:.*'
+'type: test 👷':
+  title: '^test(\(.+\))?:.*'
+
+# Labels based on changed files
+'comp: infrastructure':
+  files:
+    - 'bin/.*'
+    - '.github/.*'
+    - '.travis.yml'
+    - 'lerna.json'
