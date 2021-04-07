@@ -80,7 +80,7 @@ describe('Session', () => {
       const bob = IdentityKeyPair.new();
       const bobPreKey = await bobStore.load_prekey(0);
       const bobPreKeyBundle = new PreKeyBundle(bob.public_key, bobPreKey!);
-      const aliceToBob = await Session.init_from_prekey(alice, bobPreKeyBundle);
+      const aliceToBob = Session.init_from_prekey(alice, bobPreKeyBundle);
 
       const plaintext = 'Hello Bob!';
 
@@ -103,7 +103,7 @@ describe('Session', () => {
       const bob_prekey = await bob_store.load_prekey(0);
       const bob_bundle = new PreKeyBundle(bob_ident.public_key, bob_prekey!);
 
-      const alice = await Session.init_from_prekey(alice_ident, bob_bundle);
+      const alice = Session.init_from_prekey(alice_ident, bob_bundle);
       expect(alice.session_states[alice.session_tag.toString()].state.recv_chains.length).toEqual(1);
       expect(alice.pending_prekey!.length).toBe(2);
 
@@ -120,7 +120,7 @@ describe('Session', () => {
       const bob_prekey = await bob_store.load_prekey(0);
       const bob_bundle = new PreKeyBundle(bob_ident.public_key, bob_prekey!);
 
-      const alice = await Session.init_from_prekey(alice_ident, bob_bundle);
+      const alice = Session.init_from_prekey(alice_ident, bob_bundle);
       expect(alice.session_states[alice.session_tag.toString()].state.recv_chains.length).toBe(1);
 
       const hello_bob = await alice.encrypt('Hello Bob!');
@@ -186,7 +186,7 @@ describe('Session', () => {
       const bob_prekey = await bob_store.load_prekey(0);
       const bob_bundle = new PreKeyBundle(bob_ident.public_key, bob_prekey!);
 
-      const alice = await Session.init_from_prekey(alice_ident, bob_bundle);
+      const alice = Session.init_from_prekey(alice_ident, bob_bundle);
       const hello_bob = await alice.encrypt('Hello Bob!');
 
       const bob = await assert_init_from_message(bob_ident, bob_store, hello_bob, 'Hello Bob!');
@@ -223,7 +223,7 @@ describe('Session', () => {
       const bob_prekey = await bob_store.load_prekey(0);
       const bob_bundle = new PreKeyBundle(bob_ident.public_key, bob_prekey!);
 
-      const alice = await Session.init_from_prekey(alice_ident, bob_bundle);
+      const alice = Session.init_from_prekey(alice_ident, bob_bundle);
       const message = await alice.encrypt('Hello Bob!');
 
       const bob = await assert_init_from_message(bob_ident, bob_store, message, 'Hello Bob!');
@@ -274,7 +274,7 @@ describe('Session', () => {
       const bob_prekey = await bob_store.load_prekey(0);
       const bob_bundle = new PreKeyBundle(bob_ident.public_key, bob_prekey!);
 
-      const alice = await Session.init_from_prekey(alice_ident, bob_bundle);
+      const alice = Session.init_from_prekey(alice_ident, bob_bundle);
       const hello_bob1 = await alice.encrypt('Hello Bob1!');
       const hello_bob2 = await alice.encrypt('Hello Bob2!');
       const hello_bob3 = await alice.encrypt('Hello Bob3!');
@@ -307,10 +307,10 @@ describe('Session', () => {
       const alice_prekey = await alice_store.load_prekey(0);
       const alice_bundle = new PreKeyBundle(alice_ident.public_key, alice_prekey!);
 
-      const alice = await Session.init_from_prekey(alice_ident, bob_bundle);
+      const alice = Session.init_from_prekey(alice_ident, bob_bundle);
       const hello_bob_encrypted = await alice.encrypt('Hello Bob!');
 
-      const bob = await Session.init_from_prekey(bob_ident, alice_bundle);
+      const bob = Session.init_from_prekey(bob_ident, alice_bundle);
       const hello_alice = await bob.encrypt('Hello Alice!');
 
       expect(alice.session_tag.toString()).not.toEqual(bob.session_tag.toString());
@@ -348,11 +348,11 @@ describe('Session', () => {
       const alice_prekey = await alice_store.load_prekey(0);
       const alice_bundle = new PreKeyBundle(alice_ident.public_key, alice_prekey!);
 
-      const alice = await Session.init_from_prekey(alice_ident, bob_bundle);
+      const alice = Session.init_from_prekey(alice_ident, bob_bundle);
       const hello_bob_plaintext = 'Hello Bob!';
       const hello_bob_encrypted = await alice.encrypt(hello_bob_plaintext);
 
-      const bob = await Session.init_from_prekey(bob_ident, alice_bundle);
+      const bob = Session.init_from_prekey(bob_ident, alice_bundle);
       const hello_alice_plaintext = 'Hello Alice!';
       const hello_alice_encrypted = await bob.encrypt(hello_alice_plaintext);
 
@@ -423,7 +423,7 @@ describe('Session', () => {
       const bob_prekey = await bob_store.load_prekey(0);
       const bob_bundle = new PreKeyBundle(bob_ident.public_key, bob_prekey!);
 
-      const alice = await Session.init_from_prekey(alice_ident, bob_bundle);
+      const alice = Session.init_from_prekey(alice_ident, bob_bundle);
 
       const hello_bob_plaintext = 'Hello Bob!';
       const hello_bob_encrypted = await alice.encrypt(hello_bob_plaintext);
@@ -449,7 +449,7 @@ describe('Session', () => {
       const bob_prekey = await bob_store.load_prekey(0);
       const bob_bundle = new PreKeyBundle(bob_ident.public_key, bob_prekey!);
 
-      const alice = await Session.init_from_prekey(alice_ident, bob_bundle);
+      const alice = Session.init_from_prekey(alice_ident, bob_bundle);
 
       const hello_bob_plaintext = 'Hello Bob!';
       const hello_bob_encrypted = await alice.encrypt(hello_bob_plaintext);
@@ -548,7 +548,7 @@ describe('Session', () => {
       expect(bob_prekey!.key_id).toBe(0);
       const bob_bundle = new PreKeyBundle(bob_ident.public_key, bob_prekey!);
 
-      const alice = await Session.init_from_prekey(alice_ident, bob_bundle);
+      const alice = Session.init_from_prekey(alice_ident, bob_bundle);
 
       const hello_bob1_plaintext = 'Hello Bob!';
       const hello_bob1_encrypted = await alice.encrypt(hello_bob1_plaintext);
@@ -581,7 +581,7 @@ describe('Session', () => {
 
       const bob_ident = IdentityKeyPair.new();
 
-      const pre_keys = [await PreKey.last_resort()];
+      const pre_keys = [PreKey.last_resort()];
       const bob_store = new SimplePreKeyStore('bob_store', pre_keys);
 
       const bob_prekey = await bob_store.load_prekey(PreKey.MAX_PREKEY_ID);
@@ -589,7 +589,7 @@ describe('Session', () => {
 
       const bob_bundle = new PreKeyBundle(bob_ident.public_key, bob_prekey!);
 
-      const alice = await Session.init_from_prekey(alice_ident, bob_bundle);
+      const alice = Session.init_from_prekey(alice_ident, bob_bundle);
 
       const hello_bob1_plaintext = 'Hello Bob1!';
       const hello_bob1_encrypted = await alice.encrypt(hello_bob1_plaintext);
@@ -622,7 +622,7 @@ describe('Session', () => {
       const bob_bundle = new PreKeyBundle(bob_ident.public_key, bob_prekey!);
 
       // Alice encrypts a message for Bob
-      const alice = await Session.init_from_prekey(alice_ident, bob_bundle);
+      const alice = Session.init_from_prekey(alice_ident, bob_bundle);
       const hello_bob = await alice.encrypt('Hello Bob!');
 
       // Bob decrypts the message from Alice
@@ -636,6 +636,46 @@ describe('Session', () => {
       const decrypted_message = await alice.decrypt(alice_store, messageForAlice);
 
       expect(sodium.to_string(decrypted_message)).toBe(messageForAlicePlain);
+    }, 10000);
+
+    it('pathological case', async () => {
+      const numberOfParticipants = 32;
+      const alice_ident =  IdentityKeyPair.new();
+
+      const bob_ident =  IdentityKeyPair.new();
+
+      const preKeys = PreKey.generate_prekeys(0, numberOfParticipants);
+      const bob_store = new SimplePreKeyStore('bobStore', preKeys);
+      const bob_prekeys = Array.from(bob_store.prekeys, ([_keyId, prekey]) => PreKey.deserialise(prekey));
+
+      const participants = await Promise.all(
+        bob_prekeys.map(pk => {
+          const bundle = new PreKeyBundle(bob_ident.public_key, pk);
+          return Session.init_from_prekey(alice_ident, bundle);
+        }),
+      );
+
+      expect(participants.length).toBe(numberOfParticipants);
+
+      const message = await participants[0].encrypt('Hello Bob!');
+      const bob = await assert_init_from_message(bob_ident, bob_store, message, 'Hello Bob!');
+
+      await Promise.all(
+        participants.map(async participant => {
+          await Promise.all(Array.from({length: 900}, () => participant.encrypt('hello')));
+          const encrypted_message = await participant.encrypt('Hello Bob!');
+          expect(sodium.to_string(await bob.decrypt(bob_store, encrypted_message))).toBe('Hello Bob!');
+        }),
+      );
+
+      expect(Object.keys(bob.session_states).length).toBe(numberOfParticipants);
+
+      await Promise.all(
+        participants.map(async participant => {
+          const encrypted_message = await participant.encrypt('Hello Bob!');
+          expect(sodium.to_string(await bob.decrypt(bob_store, encrypted_message))).toBe('Hello Bob!');
+        }),
+      );
     }, 10000);
   });
 });

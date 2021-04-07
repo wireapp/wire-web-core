@@ -39,11 +39,11 @@ export class SessionState {
     this.send_chain = sendChain;
   }
 
-  static async init_as_alice(
+  static init_as_alice(
     aliceIdentityPair: IdentityKeyPair,
     aliceBase: IdentityKeyPair | KeyPair,
     bobPreKeyBundle: PreKeyBundle,
-  ): Promise<SessionState> {
+  ): SessionState {
     const masterKey = ArrayUtil.concatenate_array_buffers([
       aliceIdentityPair.secret_key.shared_secret(bobPreKeyBundle.public_key),
       aliceBase.secret_key.shared_secret(bobPreKeyBundle.identity_key.public_key),

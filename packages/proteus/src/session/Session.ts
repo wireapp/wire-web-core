@@ -68,10 +68,10 @@ export class Session {
    * @param local_identity Alice's Identity Key Pair
    * @param remote_pkbundle Bob's Pre-Key Bundle
    */
-  static async init_from_prekey(local_identity: IdentityKeyPair, remote_pkbundle: PreKeyBundle): Promise<Session> {
+  static init_from_prekey(local_identity: IdentityKeyPair, remote_pkbundle: PreKeyBundle): Session {
     const alice_base = KeyPair.new();
 
-    const state = await SessionState.init_as_alice(local_identity, alice_base, remote_pkbundle);
+    const state = SessionState.init_as_alice(local_identity, alice_base, remote_pkbundle);
 
     const session_tag = new SessionTag();
 
