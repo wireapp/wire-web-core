@@ -6,7 +6,9 @@ You can find the published source code at [github.com/wireapp](https://github.co
 
 For licensing information, see the attached LICENSE file and the list of third-party licenses at [wire.com/legal/licenses/](https://wire.com/legal/licenses/).
 
-# Wire for Web: Core [![CI Status](https://github.com/wireapp/wire-web-core/actions/workflows/test_build_release.yml/badge.svg?branch=main)](https://github.com/wireapp/wire-web-core/actions/workflows/test_build_release.yml) [![Linting Status](https://github.com/wireapp/wire-web-core/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/wireapp/wire-web-core/actions/workflows/lint.yml)
+# Wire for Web: Core
+
+[![CI Status](https://github.com/wireapp/wire-web-core/actions/workflows/test_build_release.yml/badge.svg?branch=main)](https://github.com/wireapp/wire-web-core/actions/workflows/test_build_release.yml) [![Linting Status](https://github.com/wireapp/wire-web-core/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/wireapp/wire-web-core/actions/workflows/lint.yml)
 
 ![Core packages](./wire_web_packages_core.svg)
 
