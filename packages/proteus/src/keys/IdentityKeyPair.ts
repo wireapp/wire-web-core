@@ -34,7 +34,7 @@ export class IdentityKeyPair {
     this.version = version;
   }
 
-  static async new(): Promise<IdentityKeyPair> {
+  static new(): IdentityKeyPair {
     const keyPair = KeyPair.new();
     return new IdentityKeyPair(new IdentityKey(keyPair.public_key), keyPair.secret_key, 1);
   }

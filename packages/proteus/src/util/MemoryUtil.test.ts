@@ -17,8 +17,8 @@
  *
  */
 
-import { KeyPair, PreKey } from "../keys";
-import { MemoryUtil } from "../util";
+import {KeyPair, PreKey} from "../keys";
+import {MemoryUtil} from "../util";
 
 describe('MemoryUtil', () => {
   describe('zeroize', () => {
@@ -56,7 +56,7 @@ describe('MemoryUtil', () => {
     });
 
     it('deeply zeroizes a PreKey', async () => {
-      const prekey = await PreKey.new(0);
+      const prekey = PreKey.new(0);
 
       MemoryUtil.zeroize(prekey);
       prekey.key_pair.secret_key.sec_edward.every(value => expect(value).toBe(0));

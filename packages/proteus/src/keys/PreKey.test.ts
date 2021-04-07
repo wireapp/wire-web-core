@@ -18,7 +18,7 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import { PreKey } from '../keys';
+import {PreKey} from '../keys';
 
 beforeAll(async () => {
   await sodium.ready;
@@ -26,9 +26,9 @@ beforeAll(async () => {
 
 describe('PreKey', () => {
   describe('Generation', () => {
-    it('generates a PreKey', async () => {
+    it('generates a PreKey', () => {
       const key_id = 0;
-      const preKey = await PreKey.new(key_id);
+      const preKey = PreKey.new(key_id);
       expect(preKey.key_id).toBe(key_id);
     });
 
@@ -38,26 +38,26 @@ describe('PreKey', () => {
     });
 
     it('generates ranges of PreKeys', async () => {
-      let prekeys = await PreKey.generate_prekeys(0, 0);
+      let prekeys = PreKey.generate_prekeys(0, 0);
       expect(prekeys.length).toBe(0);
 
-      prekeys = await PreKey.generate_prekeys(0, 1);
+      prekeys = PreKey.generate_prekeys(0, 1);
       expect(prekeys.length).toBe(1);
       expect(prekeys[0].key_id).toBe(0);
 
-      prekeys = await PreKey.generate_prekeys(0, 10);
+      prekeys = PreKey.generate_prekeys(0, 10);
       expect(prekeys.length).toBe(10);
       expect(prekeys[0].key_id).toBe(0);
       expect(prekeys[9].key_id).toBe(9);
 
-      prekeys = await PreKey.generate_prekeys(3000, 10);
+      prekeys = PreKey.generate_prekeys(3000, 10);
       expect(prekeys.length).toBe(10);
       expect(prekeys[0].key_id).toBe(3000);
       expect(prekeys[9].key_id).toBe(3009);
     });
 
     it('does not include the last resort PreKey', async () => {
-      let prekeys = await PreKey.generate_prekeys(65530, 10);
+      let prekeys = PreKey.generate_prekeys(65530, 10);
       expect(prekeys.length).toBe(10);
       expect(prekeys[0].key_id).toBe(65530);
       expect(prekeys[1].key_id).toBe(65531);
@@ -70,7 +70,7 @@ describe('PreKey', () => {
       expect(prekeys[8].key_id).toBe(3);
       expect(prekeys[9].key_id).toBe(4);
 
-      prekeys = await PreKey.generate_prekeys(PreKey.MAX_PREKEY_ID, 1);
+      prekeys = PreKey.generate_prekeys(PreKey.MAX_PREKEY_ID, 1);
       expect(prekeys.length).toBe(1);
       expect(prekeys[0].key_id).toBe(0);
     });
@@ -78,7 +78,7 @@ describe('PreKey', () => {
 
   describe('Serialisation', () => {
     it('serialises and deserialises correctly', async () => {
-      const pk = await PreKey.new(0);
+      const pk = PreKey.new(0);
       const pk_bytes = pk.serialise();
       const pk_copy = PreKey.deserialise(pk_bytes);
 

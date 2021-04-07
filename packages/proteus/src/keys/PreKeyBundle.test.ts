@@ -18,27 +18,27 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import { IdentityKeyPair, PreKey, PreKeyAuth, PreKeyBundle } from '../keys';
+import {IdentityKeyPair, PreKey, PreKeyAuth, PreKeyBundle} from '../keys';
 
 beforeAll(async () => {
   await sodium.ready;
 });
 
 describe('PreKeyBundle', () => {
-  it('creates a bundle', async () => {
-    const [id_pair, prekey] = await Promise.all([IdentityKeyPair.new(), PreKey.new(1)]);
+  it('creates a bundle', () => {
+    const [id_pair, prekey] = [IdentityKeyPair.new(), PreKey.new(1)];
     const bundle = new PreKeyBundle(id_pair.public_key, prekey);
     expect(bundle.verify()).toBe(PreKeyAuth.UNKNOWN);
   });
 
-  it('creates a valid signed bundle', async () => {
-    const [id_pair, prekey] = await Promise.all([IdentityKeyPair.new(), PreKey.new(1)]);
+  it('creates a valid signed bundle', () => {
+    const [id_pair, prekey] = [IdentityKeyPair.new(), PreKey.new(1)];
     const bundle = PreKeyBundle.signed(id_pair, prekey);
     expect(bundle.verify()).toBe(PreKeyAuth.VALID);
   });
 
-  it('serialises and deserialise an unsigned bundle', async () => {
-    const [id_pair, prekey] = await Promise.all([IdentityKeyPair.new(), PreKey.new(1)]);
+  it('serialises and deserialise an unsigned bundle', () => {
+    const [id_pair, prekey] = [IdentityKeyPair.new(), PreKey.new(1)];
     const bundle = new PreKeyBundle(id_pair.public_key, prekey);
 
     expect(bundle.verify()).toBe(PreKeyAuth.UNKNOWN);
@@ -55,8 +55,8 @@ describe('PreKeyBundle', () => {
     expect(sodium.to_hex(new Uint8Array(pkb_bytes))).toBe(sodium.to_hex(new Uint8Array(pkb_copy.serialise())));
   });
 
-  it('serialises and deserialises a signed bundle', async () => {
-    const [id_pair, prekey] = await Promise.all([IdentityKeyPair.new(), PreKey.new(1)]);
+  it('serialises and deserialises a signed bundle', () => {
+    const [id_pair, prekey] = [IdentityKeyPair.new(), PreKey.new(1)];
     const bundle = PreKeyBundle.signed(id_pair, prekey);
     expect(bundle.verify()).toBe(PreKeyAuth.VALID);
 
@@ -76,10 +76,10 @@ describe('PreKeyBundle', () => {
   it('generates a serialised JSON format', async () => {
     const pre_key_id = 72;
 
-    const [identity_key_pair, pre_key] = await Promise.all([
+    const [identity_key_pair, pre_key] = [
       IdentityKeyPair.new(),
       PreKey.new(pre_key_id),
-    ]);
+    ];
     const public_identity_key = identity_key_pair.public_key;
     const pre_key_bundle = new PreKeyBundle(public_identity_key, pre_key);
     const serialised_pre_key_bundle_json = pre_key_bundle.serialised_json();

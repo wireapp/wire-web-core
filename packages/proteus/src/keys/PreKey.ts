@@ -38,23 +38,21 @@ export class PreKey {
     this.version = version;
   }
 
-  static async new(preKeyId: number): Promise<PreKey> {
+  static new(preKeyId: number): PreKey {
     const keyPair = KeyPair.new();
     return new PreKey(keyPair, preKeyId, 1);
   }
 
-  static last_resort(): Promise<PreKey> {
+  static last_resort(): PreKey {
     return PreKey.new(PreKey.MAX_PREKEY_ID);
   }
 
-  static async generate_prekeys(start: number, size: number): Promise<PreKey[]> {
+  static generate_prekeys(start: number, size: number): PreKey[] {
     if (size === 0) {
       return [];
     }
 
-    return Promise.all(
-      Array.from({length: size}).map((_, index) => PreKey.new((start + index) % PreKey.MAX_PREKEY_ID)),
-    );
+    return Array.from({length: size}).map((_, index) => PreKey.new((start + index) % PreKey.MAX_PREKEY_ID));
   }
 
   serialise(): ArrayBuffer {
