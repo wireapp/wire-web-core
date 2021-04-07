@@ -18,9 +18,9 @@
  */
 
 import {DecodeError} from '@wireapp/cbor';
-import { MacKey } from '../derived';
-import { IdentityKey, KeyPair, PublicKey } from '../keys';
-import {CipherMessage, Envelope, PreKeyMessage, SessionTag } from '../message';
+import {MacKey} from '../derived';
+import {IdentityKey, KeyPair, PublicKey} from '../keys';
+import {CipherMessage, Envelope, PreKeyMessage, SessionTag} from '../message';
 
 describe('Envelope', () => {
   const mac_key = new MacKey(new Uint8Array(32).fill(1));
@@ -32,9 +32,9 @@ describe('Envelope', () => {
   let ratchetKey: PublicKey;
 
   beforeAll(async () => {
-    identityKey = new IdentityKey((KeyPair.new()).public_key);
-    baseKey = (KeyPair.new()).public_key;
-    ratchetKey = (KeyPair.new()).public_key;
+    identityKey = new IdentityKey(KeyPair.new().public_key);
+    baseKey = KeyPair.new().public_key;
+    ratchetKey = KeyPair.new().public_key;
   });
 
   it('encapsulates a CipherMessage', () => {

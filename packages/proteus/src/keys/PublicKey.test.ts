@@ -17,7 +17,7 @@
  *
  */
 
-import { KeyPair } from "./KeyPair";
+import {KeyPair} from './KeyPair';
 
 describe('Public Key', () => {
   it('rejects shared secrets at the point of infinity', async () => {

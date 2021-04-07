@@ -20,7 +20,7 @@
 /* eslint-disable no-magic-numbers */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import { MacKey } from '../derived';
+import {MacKey} from '../derived';
 
 beforeAll(async () => {
   await sodium.ready;

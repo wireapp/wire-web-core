@@ -76,10 +76,7 @@ describe('PreKeyBundle', () => {
   it('generates a serialised JSON format', async () => {
     const pre_key_id = 72;
 
-    const [identity_key_pair, pre_key] = [
-      IdentityKeyPair.new(),
-      PreKey.new(pre_key_id),
-    ];
+    const [identity_key_pair, pre_key] = [IdentityKeyPair.new(), PreKey.new(pre_key_id)];
     const public_identity_key = identity_key_pair.public_key;
     const pre_key_bundle = new PreKeyBundle(public_identity_key, pre_key);
     const serialised_pre_key_bundle_json = pre_key_bundle.serialised_json();

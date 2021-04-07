@@ -18,7 +18,7 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import { CipherKey } from '../derived';
+import {CipherKey} from '../derived';
 
 interface Vector {
   key: string;
