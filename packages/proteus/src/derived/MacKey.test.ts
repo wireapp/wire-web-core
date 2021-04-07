@@ -19,8 +19,8 @@
 
 /* eslint-disable no-magic-numbers */
 
-import * as Proteus from '../../';
 import * as sodium from 'libsodium-wrappers-sumo';
+import { MacKey } from '../derived';
 
 beforeAll(async () => {
   await sodium.ready;
@@ -30,7 +30,7 @@ describe('Mac Key', () => {
   it('encodes a message', () => {
     const key_material_buffer = new ArrayBuffer(32);
     const typed_key_material = new Uint8Array(key_material_buffer);
-    const mac_key = new Proteus.derived.MacKey(typed_key_material);
+    const mac_key = new MacKey(typed_key_material);
     const message = sodium.from_string('hello');
 
     const authentication_code = mac_key.sign(message);
@@ -49,7 +49,7 @@ describe('Mac Key', () => {
     // prettier-ignore
     const key = new Uint8Array([15, 61, 178, 141, 34, 114, 210, 82, 206, 161, 179, 78, 187, 60, 132, 17, 255, 23, 66, 215, 138, 84, 215, 117, 169, 50, 70, 165, 78, 243, 39, 242]);
 
-    const mac_key = new Proteus.derived.MacKey(key);
+    const mac_key = new MacKey(key);
 
     expect(mac_key.verify(signature, msg)).toBe(true);
   });
@@ -60,7 +60,7 @@ describe('Mac Key', () => {
     // prettier-ignore
     const key = new Uint8Array([15, 61, 178, 141, 34, 114, 210, 82, 206, 161, 179, 78, 187, 60, 132, 17, 255, 23, 66, 215, 138, 84, 215, 117, 169, 50, 70, 165, 78, 243, 39, 242]);
 
-    const mac_key = new Proteus.derived.MacKey(key);
+    const mac_key = new MacKey(key);
 
     const signature = mac_key.sign(msg);
 
@@ -68,7 +68,7 @@ describe('Mac Key', () => {
   });
 
   it('verifies calculated data', async () => {
-    const mac_key = new Proteus.derived.MacKey(new Uint8Array(32).fill(1));
+    const mac_key = new MacKey(new Uint8Array(32).fill(1));
     const msg = sodium.from_string('This is my great message in Proteus!');
     const signature = mac_key.sign(msg);
 

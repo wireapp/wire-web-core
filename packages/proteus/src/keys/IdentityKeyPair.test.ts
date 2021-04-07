@@ -17,8 +17,8 @@
  *
  */
 
-import * as Proteus from '../../';
 import * as sodium from 'libsodium-wrappers-sumo';
+import {IdentityKeyPair} from "../keys";
 
 beforeAll(async () => {
   await sodium.ready;
@@ -26,9 +26,9 @@ beforeAll(async () => {
 
 describe('IdentityKeyPair', () => {
   it('serialises and deserialises', async () => {
-    const ikp = await Proteus.keys.IdentityKeyPair.new();
+    const ikp = await IdentityKeyPair.new();
     const ikp_bytes = ikp.serialise();
-    const ikp_deser = Proteus.keys.IdentityKeyPair.deserialise(ikp_bytes);
+    const ikp_deser = IdentityKeyPair.deserialise(ikp_bytes);
 
     expect(ikp.public_key.fingerprint()).toBe(ikp_deser.public_key.fingerprint());
     expect(sodium.to_hex(new Uint8Array(ikp_bytes))).toBe(sodium.to_hex(new Uint8Array(ikp_deser.serialise())));

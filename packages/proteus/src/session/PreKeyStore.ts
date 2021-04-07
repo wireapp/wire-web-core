@@ -20,6 +20,6 @@
 import type {PreKey} from '../keys/PreKey';
 
 export abstract class PreKeyStore {
-  abstract load_prekey(prekeyId: number): Promise<PreKey | undefined>;
+  abstract load_prekey(prekeyId: number): Promise<PreKey>;
   abstract delete_prekey(prekeyId: number): Promise<number>;
 }

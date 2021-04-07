@@ -34,11 +34,8 @@ export class KeyPair {
     this.secret_key = secretKey;
   }
 
-  static async new(): Promise<KeyPair> {
-    await sodium.ready;
-
+  static new(): KeyPair {
     const ed25519KeyPair = sodium.crypto_sign_keypair();
-
     return new KeyPair(KeyPair.construct_public_key(ed25519KeyPair), KeyPair.construct_private_key(ed25519KeyPair));
   }
 

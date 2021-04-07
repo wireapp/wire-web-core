@@ -17,8 +17,8 @@
  *
  */
 
-import * as Proteus from '../../';
 import * as sodium from 'libsodium-wrappers-sumo';
+import { CipherKey } from '../derived';
 
 interface Vector {
   key: string;
@@ -69,7 +69,7 @@ describe('CipherKey sanity checks (IETF ChaCha20 test vectors)', () => {
       const plaintext = new Uint8Array(vector.message.length >> 1);
       const nonce = sodium.from_hex(vector.nonce);
 
-      const key = new Proteus.derived.CipherKey(sodium.from_hex(vector.key));
+      const key = new CipherKey(sodium.from_hex(vector.key));
       const cipherText = key.encrypt(plaintext, nonce);
 
       return cipherText;
@@ -85,7 +85,7 @@ describe('CipherKey sanity checks (IETF ChaCha20 test vectors)', () => {
     const decryptCipherText = (vector: Vector) => {
       const plaintext = new Uint8Array(vector.message.length >> 1);
       const nonce = sodium.from_hex(vector.nonce);
-      const key = new Proteus.derived.CipherKey(sodium.from_hex(vector.key));
+      const key = new CipherKey(sodium.from_hex(vector.key));
       const ciphertext = key.encrypt(plaintext, nonce);
 
       return {

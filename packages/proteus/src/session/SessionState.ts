@@ -58,7 +58,7 @@ export class SessionState {
 
     const receiveChains = [new RecvChain(chainkey, bobPreKeyBundle.public_key)];
 
-    const sendRatchet = await KeyPair.new();
+    const sendRatchet = KeyPair.new();
     const [rootKey, chk] = rootkey.dh_ratchet(sendRatchet, bobPreKeyBundle.public_key);
     const sendChain = new SendChain(chk, sendRatchet);
 
@@ -88,7 +88,7 @@ export class SessionState {
   }
 
   async ratchet(ratchetKey: PublicKey): Promise<void> {
-    const newRatchet = await KeyPair.new();
+    const newRatchet = KeyPair.new();
 
     const [receiveRootKey, receiveChainKey] = this.root_key.dh_ratchet(this.send_chain.ratchet_key, ratchetKey);
 

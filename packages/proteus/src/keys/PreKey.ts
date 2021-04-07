@@ -19,7 +19,7 @@
 
 import {Decoder, Encoder} from '@wireapp/cbor';
 import {KeyPair} from './KeyPair';
-import {DecodeError, InputError} from '../errors';
+import {DecodeError} from '../errors';
 
 /**
  * Pre-generated (and regularly refreshed) pre-keys.
@@ -39,29 +39,8 @@ export class PreKey {
   }
 
   static async new(preKeyId: number): Promise<PreKey> {
-    this.validate_pre_key_id(preKeyId);
-
-    const keyPair = await KeyPair.new();
+    const keyPair = KeyPair.new();
     return new PreKey(keyPair, preKeyId, 1);
-  }
-
-  static validate_pre_key_id(preKeyId: number): void {
-    if (preKeyId === undefined) {
-      throw new InputError.TypeError('PreKey ID is undefined.', InputError.CODE.CASE_404);
-    }
-
-    if (typeof preKeyId === 'string') {
-      throw new InputError.TypeError(`PreKey ID "${preKeyId}" is a string.`, InputError.CODE.CASE_403);
-    }
-
-    if (preKeyId % 1 !== 0) {
-      throw new InputError.TypeError(`PreKey ID "${preKeyId}" is a floating-point number.`, InputError.CODE.CASE_403);
-    }
-
-    if (preKeyId < 0 || preKeyId > PreKey.MAX_PREKEY_ID) {
-      const message = `PreKey ID (${preKeyId}) must be between or equal to 0 and ${PreKey.MAX_PREKEY_ID}.`;
-      throw new InputError.RangeError(message, InputError.CODE.CASE_400);
-    }
   }
 
   static last_resort(): Promise<PreKey> {
@@ -69,9 +48,6 @@ export class PreKey {
   }
 
   static async generate_prekeys(start: number, size: number): Promise<PreKey[]> {
-    this.validate_pre_key_id(start);
-    this.validate_pre_key_id(size);
-
     if (size === 0) {
       return [];
     }

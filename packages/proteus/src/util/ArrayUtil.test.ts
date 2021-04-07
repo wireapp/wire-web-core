@@ -17,19 +17,19 @@
  *
  */
 
-/* eslint-disable no-magic-numbers */
+import { ArrayUtil } from "../util";
 
-import * as Proteus from '../../';
+/* eslint-disable no-magic-numbers */
 
 describe('HMAC-based Key Derivation Function', () => {
   it('creates a new buffer from a given buffer', () => {
-    const actual = Proteus.util.ArrayUtil.concatenate_array_buffers([new Uint8Array([1, 2, 3])]);
+    const actual = ArrayUtil.concatenate_array_buffers([new Uint8Array([1, 2, 3])]);
     const expected = new Uint8Array([1, 2, 3]);
     expect(actual).toEqual(expected);
   });
 
   it('concatenates two buffers', () => {
-    const actual = Proteus.util.ArrayUtil.concatenate_array_buffers([
+    const actual = ArrayUtil.concatenate_array_buffers([
       new Uint8Array([1, 2, 3]),
       new Uint8Array([4, 5, 6]),
     ]);
@@ -38,7 +38,7 @@ describe('HMAC-based Key Derivation Function', () => {
   });
 
   it('concatenates three buffers', () => {
-    const actual = Proteus.util.ArrayUtil.concatenate_array_buffers([
+    const actual = ArrayUtil.concatenate_array_buffers([
       new Uint8Array([1, 2, 3]),
       new Uint8Array([4, 5, 6]),
       new Uint8Array([7, 8, 9]),
@@ -48,7 +48,7 @@ describe('HMAC-based Key Derivation Function', () => {
   });
 
   it('concatenates four buffers', () => {
-    const actual = Proteus.util.ArrayUtil.concatenate_array_buffers([
+    const actual = ArrayUtil.concatenate_array_buffers([
       new Uint8Array([1, 2, 3]),
       new Uint8Array([4, 5, 6]),
       new Uint8Array([7, 8, 9]),
@@ -64,7 +64,7 @@ describe('assert_is_not_zeros', () => {
     const array = new Uint8Array(32).fill(0);
 
     try {
-      Proteus.util.ArrayUtil.assert_is_not_zeros(array);
+      ArrayUtil.assert_is_not_zeros(array);
       fail();
     } catch (error) {
       expect(error.message).toBe('Array consists only of zeros');
@@ -74,6 +74,6 @@ describe('assert_is_not_zeros', () => {
   it('does not throw if an array consists of random numbers', () => {
     // prettier-ignore
     const array = new Uint8Array([194, 3, 205, 50, 90, 113, 33, 56, 87, 189, 211, 4, 113, 152, 186, 107, 127, 199, 114, 23, 165, 171, 177, 128, 123, 65, 173, 129, 70, 132, 121, 193]);
-    Proteus.util.ArrayUtil.assert_is_not_zeros(array);
+    ArrayUtil.assert_is_not_zeros(array);
   });
 });

@@ -69,7 +69,7 @@ export class Session {
    * @param remote_pkbundle Bob's Pre-Key Bundle
    */
   static async init_from_prekey(local_identity: IdentityKeyPair, remote_pkbundle: PreKeyBundle): Promise<Session> {
-    const alice_base = await KeyPair.new();
+    const alice_base = KeyPair.new();
 
     const state = await SessionState.init_as_alice(local_identity, alice_base, remote_pkbundle);
 
@@ -127,19 +127,20 @@ export class Session {
   }
 
   private async _new_state(preKeyStore: PreKeyStore, preKeyMessage: PreKeyMessage): Promise<SessionState> {
-    const pre_key = await preKeyStore.load_prekey(preKeyMessage.prekey_id);
-    if (pre_key) {
+    try {
+      const pre_key = await preKeyStore.load_prekey(preKeyMessage.prekey_id);
       return SessionState.init_as_bob(
         this.local_identity,
         pre_key.key_pair,
         preKeyMessage.identity_key,
         preKeyMessage.base_key,
       );
+    } catch (error) {
+      throw new ProteusError(
+        `Unable to find PreKey with ID "${preKeyMessage.prekey_id}" in PreKey store "${preKeyStore.constructor.name}".`,
+        ProteusError.CODE.CASE_101,
+      );
     }
-    throw new ProteusError(
-      `Unable to find PreKey with ID "${preKeyMessage.prekey_id}" in PreKey store "${preKeyStore.constructor.name}".`,
-      ProteusError.CODE.CASE_101,
-    );
   }
 
   private _insert_session_state(sessionTag: SessionTag, state: SessionState): void {

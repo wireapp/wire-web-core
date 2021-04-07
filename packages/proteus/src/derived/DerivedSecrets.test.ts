@@ -19,8 +19,8 @@
 
 /* eslint-disable no-magic-numbers */
 
-import * as Proteus from '../../';
 import * as sodium from 'libsodium-wrappers-sumo';
+import { DerivedSecrets } from '../derived';
 
 beforeAll(async () => {
   await sodium.ready;
@@ -36,7 +36,7 @@ describe('Key Derivation Function (KDF)', () => {
     const expected_mac_key = new Uint8Array([186, 163, 142, 225, 211, 131, 100, 164, 80, 51, 180, 42, 177, 132, 72, 250, 246, 241, 41, 108, 146, 140, 247, 197, 205, 242, 32, 150, 186, 122, 45, 57]);
     const info = 'hash_ratchet';
 
-    const derived_secret = Proteus.derived.DerivedSecrets.kdf_without_salt(input, info);
+    const derived_secret = DerivedSecrets.kdf_without_salt(input, info);
 
     const cipher_key = derived_secret.cipher_key.key;
     const mac_key = derived_secret.mac_key.key;
@@ -54,7 +54,7 @@ describe('Key Derivation Function (KDF)', () => {
     const nonce = sodium.from_string('00000000');
     const plain_text = sodium.from_string('plaintext');
 
-    const derived_secret = Proteus.derived.DerivedSecrets.kdf_without_salt(input, info);
+    const derived_secret = DerivedSecrets.kdf_without_salt(input, info);
 
     const encrypted_text = derived_secret.cipher_key.encrypt(plain_text, nonce);
     expect(encrypted_text).not.toEqual(plain_text);

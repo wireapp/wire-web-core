@@ -17,8 +17,8 @@
  *
  */
 
-import * as Proteus from '../../';
 import * as sodium from 'libsodium-wrappers-sumo';
+import { IdentityKeyPair, PreKey, PreKeyAuth, PreKeyBundle } from '../keys';
 
 beforeAll(async () => {
   await sodium.ready;
@@ -26,27 +26,27 @@ beforeAll(async () => {
 
 describe('PreKeyBundle', () => {
   it('creates a bundle', async () => {
-    const [id_pair, prekey] = await Promise.all([Proteus.keys.IdentityKeyPair.new(), Proteus.keys.PreKey.new(1)]);
-    const bundle = new Proteus.keys.PreKeyBundle(id_pair.public_key, prekey);
-    expect(bundle.verify()).toBe(Proteus.keys.PreKeyAuth.UNKNOWN);
+    const [id_pair, prekey] = await Promise.all([IdentityKeyPair.new(), PreKey.new(1)]);
+    const bundle = new PreKeyBundle(id_pair.public_key, prekey);
+    expect(bundle.verify()).toBe(PreKeyAuth.UNKNOWN);
   });
 
   it('creates a valid signed bundle', async () => {
-    const [id_pair, prekey] = await Promise.all([Proteus.keys.IdentityKeyPair.new(), Proteus.keys.PreKey.new(1)]);
-    const bundle = Proteus.keys.PreKeyBundle.signed(id_pair, prekey);
-    expect(bundle.verify()).toBe(Proteus.keys.PreKeyAuth.VALID);
+    const [id_pair, prekey] = await Promise.all([IdentityKeyPair.new(), PreKey.new(1)]);
+    const bundle = PreKeyBundle.signed(id_pair, prekey);
+    expect(bundle.verify()).toBe(PreKeyAuth.VALID);
   });
 
   it('serialises and deserialise an unsigned bundle', async () => {
-    const [id_pair, prekey] = await Promise.all([Proteus.keys.IdentityKeyPair.new(), Proteus.keys.PreKey.new(1)]);
-    const bundle = new Proteus.keys.PreKeyBundle(id_pair.public_key, prekey);
+    const [id_pair, prekey] = await Promise.all([IdentityKeyPair.new(), PreKey.new(1)]);
+    const bundle = new PreKeyBundle(id_pair.public_key, prekey);
 
-    expect(bundle.verify()).toBe(Proteus.keys.PreKeyAuth.UNKNOWN);
+    expect(bundle.verify()).toBe(PreKeyAuth.UNKNOWN);
 
     const pkb_bytes = bundle.serialise();
-    const pkb_copy = Proteus.keys.PreKeyBundle.deserialise(pkb_bytes);
+    const pkb_copy = PreKeyBundle.deserialise(pkb_bytes);
 
-    expect(pkb_copy.verify()).toBe(Proteus.keys.PreKeyAuth.UNKNOWN);
+    expect(pkb_copy.verify()).toBe(PreKeyAuth.UNKNOWN);
     expect(pkb_copy.version).toBe(bundle.version);
     expect(pkb_copy.prekey_id).toBe(bundle.prekey_id);
     expect(pkb_copy.public_key.fingerprint()).toBe(bundle.public_key.fingerprint());
@@ -56,14 +56,14 @@ describe('PreKeyBundle', () => {
   });
 
   it('serialises and deserialises a signed bundle', async () => {
-    const [id_pair, prekey] = await Promise.all([Proteus.keys.IdentityKeyPair.new(), Proteus.keys.PreKey.new(1)]);
-    const bundle = Proteus.keys.PreKeyBundle.signed(id_pair, prekey);
-    expect(bundle.verify()).toBe(Proteus.keys.PreKeyAuth.VALID);
+    const [id_pair, prekey] = await Promise.all([IdentityKeyPair.new(), PreKey.new(1)]);
+    const bundle = PreKeyBundle.signed(id_pair, prekey);
+    expect(bundle.verify()).toBe(PreKeyAuth.VALID);
 
     const pkb_bytes = bundle.serialise();
-    const pkb_copy = Proteus.keys.PreKeyBundle.deserialise(pkb_bytes);
+    const pkb_copy = PreKeyBundle.deserialise(pkb_bytes);
 
-    expect(pkb_copy.verify()).toBe(Proteus.keys.PreKeyAuth.VALID);
+    expect(pkb_copy.verify()).toBe(PreKeyAuth.VALID);
 
     expect(pkb_copy.version).toBe(bundle.version);
     expect(pkb_copy.prekey_id).toBe(bundle.prekey_id);
@@ -77,11 +77,11 @@ describe('PreKeyBundle', () => {
     const pre_key_id = 72;
 
     const [identity_key_pair, pre_key] = await Promise.all([
-      Proteus.keys.IdentityKeyPair.new(),
-      Proteus.keys.PreKey.new(pre_key_id),
+      IdentityKeyPair.new(),
+      PreKey.new(pre_key_id),
     ]);
     const public_identity_key = identity_key_pair.public_key;
-    const pre_key_bundle = new Proteus.keys.PreKeyBundle(public_identity_key, pre_key);
+    const pre_key_bundle = new PreKeyBundle(public_identity_key, pre_key);
     const serialised_pre_key_bundle_json = pre_key_bundle.serialised_json();
 
     expect(serialised_pre_key_bundle_json.id).toBe(pre_key_id);
@@ -91,7 +91,7 @@ describe('PreKeyBundle', () => {
       sodium.base64_variants.ORIGINAL,
     );
     const serialised_array_buffer = serialised_array_buffer_view.buffer;
-    const deserialised_pre_key_bundle = Proteus.keys.PreKeyBundle.deserialise(serialised_array_buffer);
+    const deserialised_pre_key_bundle = PreKeyBundle.deserialise(serialised_array_buffer);
 
     expect(deserialised_pre_key_bundle.public_key).toEqual(pre_key_bundle.public_key);
   });

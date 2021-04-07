@@ -17,14 +17,14 @@
  *
  */
 
-import * as Proteus from '../../';
+import { WASMUtil } from "../util";
 
 describe('WASMUtil', () => {
   describe('isUsingWASM', () => {
     it('reports if the target environment supports WebAssembly', async () => {
       // To test the other way round, we would need to start Node.js
       // with the flag `--noexpose_wasm`.
-      const isUsingWASM = await Proteus.util.WASMUtil.isUsingWASM();
+      const isUsingWASM = await WASMUtil.isUsingWASM();
       expect(isUsingWASM).toBe(true);
     });
   });

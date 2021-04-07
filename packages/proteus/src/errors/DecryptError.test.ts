@@ -17,17 +17,17 @@
  *
  */
 
-import * as Proteus from '../../';
+import { DecryptError } from "../errors";
 
 describe('DecryptError', () => {
   describe('constructor', () => {
     it('constructs a default error code', () => {
       const correctErrorCode = 2;
 
-      let error = new Proteus.errors.DecryptError.InvalidMessage();
+      let error = new DecryptError.InvalidMessage();
       expect(error.code).toBe(correctErrorCode);
 
-      error = new Proteus.errors.DecryptError.InvalidMessage('Custom Text');
+      error = new DecryptError.InvalidMessage('Custom Text');
       expect(error.code).toBe(correctErrorCode);
     });
   });
@@ -37,19 +37,19 @@ describe('DecryptError', () => {
     const errorMessage = 'The received message was too big.';
 
     it('uses the generic error class as namespace', () => {
-      const error = new Proteus.errors.DecryptError.InvalidMessage(errorMessage, errorCode);
+      const error = new DecryptError.InvalidMessage(errorMessage, errorCode);
       expect(error.code).toBe(errorCode);
       expect(error.message).toBe(errorMessage);
     });
 
     it('assures that specializations are the same type as generics', () => {
-      const error = new Proteus.errors.DecryptError.InvalidMessage(errorMessage, errorCode);
-      expect(error instanceof Proteus.errors.DecryptError).toBe(true);
-      expect(error instanceof Proteus.errors.DecryptError.InvalidMessage).toBe(true);
+      const error = new DecryptError.InvalidMessage(errorMessage, errorCode);
+      expect(error instanceof DecryptError).toBe(true);
+      expect(error instanceof DecryptError.InvalidMessage).toBe(true);
     });
 
     it('is possible to create an error from a generic class', () => {
-      const error = new Proteus.errors.DecryptError();
+      const error = new DecryptError();
       expect(error.message).toBeDefined();
     });
   });

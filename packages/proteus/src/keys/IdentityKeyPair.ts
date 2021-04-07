@@ -35,7 +35,7 @@ export class IdentityKeyPair {
   }
 
   static async new(): Promise<IdentityKeyPair> {
-    const keyPair = await KeyPair.new();
+    const keyPair = KeyPair.new();
     return new IdentityKeyPair(new IdentityKey(keyPair.public_key), keyPair.secret_key, 1);
   }
 

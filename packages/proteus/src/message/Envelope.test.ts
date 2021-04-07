@@ -18,55 +18,57 @@
  */
 
 import {DecodeError} from '@wireapp/cbor';
-import * as Proteus from '../../';
+import { MacKey } from '../derived';
+import { IdentityKey, KeyPair, PublicKey } from '../keys';
+import {CipherMessage, Envelope, PreKeyMessage, SessionTag } from '../message';
 
 describe('Envelope', () => {
-  const mac_key = new Proteus.derived.MacKey(new Uint8Array(32).fill(1));
+  const mac_key = new MacKey(new Uint8Array(32).fill(1));
 
-  const session_tag = new Proteus.message.SessionTag();
+  const session_tag = new SessionTag();
 
-  let identityKey: Proteus.keys.IdentityKey;
-  let baseKey: Proteus.keys.PublicKey;
-  let ratchetKey: Proteus.keys.PublicKey;
+  let identityKey: IdentityKey;
+  let baseKey: PublicKey;
+  let ratchetKey: PublicKey;
 
   beforeAll(async () => {
-    identityKey = new Proteus.keys.IdentityKey((await Proteus.keys.KeyPair.new()).public_key);
-    baseKey = (await Proteus.keys.KeyPair.new()).public_key;
-    ratchetKey = (await Proteus.keys.KeyPair.new()).public_key;
+    identityKey = new IdentityKey((KeyPair.new()).public_key);
+    baseKey = (KeyPair.new()).public_key;
+    ratchetKey = (KeyPair.new()).public_key;
   });
 
   it('encapsulates a CipherMessage', () => {
-    const message = new Proteus.message.CipherMessage(session_tag, 42, 3, ratchetKey, new Uint8Array([1, 2, 3, 4, 5]));
-    const envelope = new Proteus.message.Envelope(mac_key, message);
+    const message = new CipherMessage(session_tag, 42, 3, ratchetKey, new Uint8Array([1, 2, 3, 4, 5]));
+    const envelope = new Envelope(mac_key, message);
 
     expect(envelope.verify(mac_key)).toBe(true);
   });
 
   it('encapsulates a PreKeyMessage', () => {
-    const msg = new Proteus.message.PreKeyMessage(
+    const msg = new PreKeyMessage(
       42,
       baseKey,
       identityKey,
-      new Proteus.message.CipherMessage(session_tag, 42, 43, ratchetKey, new Uint8Array([1, 2, 3, 4])),
+      new CipherMessage(session_tag, 42, 43, ratchetKey, new Uint8Array([1, 2, 3, 4])),
     );
 
-    const envelope = new Proteus.message.Envelope(mac_key, msg);
+    const envelope = new Envelope(mac_key, msg);
     expect(envelope.verify(mac_key)).toBe(true);
   });
 
   it('encodes to and decode from CBOR', () => {
-    const msg = new Proteus.message.PreKeyMessage(
+    const msg = new PreKeyMessage(
       42,
       baseKey,
       identityKey,
-      new Proteus.message.CipherMessage(session_tag, 42, 43, ratchetKey, new Uint8Array([1, 2, 3, 4])),
+      new CipherMessage(session_tag, 42, 43, ratchetKey, new Uint8Array([1, 2, 3, 4])),
     );
 
-    const envelope = new Proteus.message.Envelope(mac_key, msg);
+    const envelope = new Envelope(mac_key, msg);
     expect(envelope.verify(mac_key)).toBe(true);
 
     const envelopeSerialised = envelope.serialise();
-    const envelopeCopy = Proteus.message.Envelope.deserialise(envelopeSerialised);
+    const envelopeCopy = Envelope.deserialise(envelopeSerialised);
 
     expect(envelopeCopy.verify(mac_key)).toBe(true);
   });
@@ -74,7 +76,7 @@ describe('Envelope', () => {
   it('fails when passing invalid input', () => {
     const empty_buffer = new ArrayBuffer(0);
     try {
-      Proteus.message.Envelope.deserialise(empty_buffer);
+      Envelope.deserialise(empty_buffer);
     } catch (error) {
       expect(error instanceof DecodeError).toBe(true);
     }

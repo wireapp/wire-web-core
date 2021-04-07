@@ -32,12 +32,12 @@ class SimplePreKeyStore implements PreKeyStore {
     });
   }
 
-  async load_prekey(preKeyId: number): Promise<PreKey | undefined> {
+  async load_prekey(preKeyId: number): Promise<PreKey> {
     const ab = this.prekeys.get(preKeyId);
     if (ab) {
       return PreKey.deserialise(ab);
     }
-    return undefined;
+    throw new Error(`PreKey ID "${preKeyId}" not found.`);
   }
 
   async delete_prekey(prekeyId: number): Promise<number> {
