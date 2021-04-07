@@ -166,9 +166,7 @@ export class Session {
       this.session_tag_name = sessionTagName;
     }
 
-    const obj_size = (obj: IntermediateSessionState) => Object.keys(obj).length;
-
-    if (obj_size(this.session_states) < Session.MAX_SESSION_STATES) {
+    if (Object.keys(this.session_states).length < Session.MAX_SESSION_STATES) {
       return;
     }
 
