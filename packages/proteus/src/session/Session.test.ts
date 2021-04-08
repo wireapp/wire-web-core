@@ -22,6 +22,7 @@ import {PreKey, IdentityKeyPair, PreKeyBundle} from '../keys';
 import {CipherMessage, Envelope} from '../message';
 import {PreKeyStore, Session} from '../session';
 import {DecryptError, ProteusError} from '../errors';
+import {init} from '@wireapp/proteus';
 
 class SimplePreKeyStore implements PreKeyStore {
   readonly prekeys: Map<number, ArrayBuffer> = new Map();
@@ -67,7 +68,7 @@ const assert_init_from_message = async (
 };
 
 beforeAll(async () => {
-  await sodium.ready;
+  await init();
 });
 
 describe('Session', () => {

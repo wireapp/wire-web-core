@@ -17,9 +17,14 @@
  *
  */
 
+import * as sodium from 'libsodium-wrappers-sumo';
 export * as derived from './derived/';
 export * as errors from './errors/';
 export * as keys from './keys/';
 export * as message from './message/';
 export * as session from './session/';
 export * as util from './util/';
+
+export function init(): Promise<void> {
+  return sodium.ready;
+}

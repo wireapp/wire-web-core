@@ -19,9 +19,10 @@
 
 import * as sodium from 'libsodium-wrappers-sumo';
 import {KeyDerivationUtil} from '../util';
+import {init} from '@wireapp/proteus';
 
 beforeAll(async () => {
-  await sodium.ready;
+  await init();
 });
 
 describe('HMAC RFC 5869 Test Vectors', () => {

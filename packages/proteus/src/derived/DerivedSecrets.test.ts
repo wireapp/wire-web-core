@@ -21,9 +21,10 @@
 
 import * as sodium from 'libsodium-wrappers-sumo';
 import {DerivedSecrets} from '../derived';
+import {init} from '@wireapp/proteus';
 
 beforeAll(async () => {
-  await sodium.ready;
+  await init();
 });
 
 describe('Key Derivation Function (KDF)', () => {

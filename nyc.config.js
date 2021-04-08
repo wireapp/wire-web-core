@@ -1,7 +1,7 @@
 module.exports = {
   all: true,
   'check-coverage': true,
-  exclude: ['**/*.d.ts', '**/*.test*.ts', '**/index.ts'],
+  exclude: ['**/*.d.ts', '**/*.test*.ts', '**/index.ts', '**/start*.ts'],
   extension: ['.ts'],
   include: ['src/**/*.ts'],
   lines: 0,

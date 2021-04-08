@@ -1,10 +1,10 @@
-import * as sodium from 'libsodium-wrappers-sumo';
 import {IdentityKeyPair, PreKey, PreKeyBundle} from '../keys';
 import {performance, PerformanceObserver} from 'perf_hooks';
 import {Session} from '../session';
+import {init} from '@wireapp/proteus';
 
 async function main() {
-  await sodium.ready;
+  await init();
 
   const amountOfUsers = 500;
   const clientsPerUser = 8;
