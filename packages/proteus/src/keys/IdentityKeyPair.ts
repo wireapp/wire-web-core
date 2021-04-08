@@ -18,7 +18,6 @@
  */
 
 import {Decoder, Encoder} from '@wireapp/cbor';
-
 import {IdentityKey, KeyPair, SecretKey} from './';
 import {DecodeError} from '../errors';
 

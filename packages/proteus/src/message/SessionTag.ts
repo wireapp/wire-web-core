@@ -19,7 +19,7 @@
 
 import {Decoder, Encoder} from '@wireapp/cbor';
 import * as sodium from 'libsodium-wrappers-sumo';
-import {DecodeError} from '../errors/DecodeError';
+import {DecodeError} from '../errors/';
 import {RandomUtil} from '../util/';
 
 export class SessionTag {

@@ -18,8 +18,7 @@
  */
 
 import {Decoder, Encoder} from '@wireapp/cbor';
-
-import {KeyPair} from '../keys/KeyPair';
+import {KeyPair} from '../keys/';
 import {ChainKey} from './ChainKey';
 import {DecodeError} from '../errors';
 
