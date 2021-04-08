@@ -50,9 +50,9 @@ async function main() {
   performance.measure(`Initializing "${sessions.length}" sessions`, 'sessionsStart', 'sessionsStop');
 
   performance.mark('encryptStart');
-  const encryptions = await Promise.all(sessions.map(session => session.encrypt('Hello, World!')));
+  const envelopes = sessions.map(session => session.encrypt('Hello, World!'));
   performance.mark('encryptStop');
-  performance.measure(`Encrypting "${encryptions.length}" texts`, 'encryptStart', 'encryptStop');
+  performance.measure(`Encrypting "${envelopes.length}" texts`, 'encryptStart', 'encryptStop');
 }
 
 main().catch(console.error);

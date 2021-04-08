@@ -16,14 +16,10 @@ yarn add @wireapp/proteus
 
 ### Usage
 
-#### Node.js
-
-- [demo.js](./src/demo/demo.js)
-
-#### TypeScript
-
 ```typescript
 import Proteus from '@wireapp/proteus';
 
-const identity: Proteus.keys.IdentityKeyPair = await Proteus.keys.IdentityKeyPair.new();
+await Proteus.init();
+
+const identity: Proteus.keys.IdentityKeyPair = Proteus.keys.IdentityKeyPair.new();
 ```

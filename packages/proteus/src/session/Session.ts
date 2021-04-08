@@ -100,7 +100,7 @@ export class Session {
       const session = new Session(ourIdentity, preKeyMessage.identity_key, preKeyMessage.message.session_tag);
 
       const state = await session._new_state(prekey_store, preKeyMessage);
-      const plain = await state.decrypt(envelope, preKeyMessage.message);
+      const plain = state.decrypt(envelope, preKeyMessage.message);
       session._insert_session_state(preKeyMessage.message.session_tag, state);
 
       if (preKeyMessage.prekey_id < PreKey.MAX_PREKEY_ID) {
@@ -194,7 +194,7 @@ export class Session {
   /**
    * @param plaintext The plaintext which needs to be encrypted
    */
-  async encrypt(plaintext: string | Uint8Array): Promise<Envelope> {
+  encrypt(plaintext: string | Uint8Array): Envelope {
     const session_state = this.session_states[this.session_tag_name];
 
     if (!session_state) {
@@ -240,12 +240,12 @@ export class Session {
     prekey_store: PreKeyStore,
   ): Promise<Uint8Array> {
     try {
-      const plaintext = await this._decrypt_cipher_message(envelope, msg.message);
+      const plaintext = this._decrypt_cipher_message(envelope, msg.message);
       return plaintext;
     } catch (error) {
       if (error instanceof DecryptError.InvalidSignature || error instanceof DecryptError.InvalidMessage) {
         const state = await this._new_state(prekey_store, msg);
-        const plaintext = await state.decrypt(envelope, msg.message);
+        const plaintext = state.decrypt(envelope, msg.message);
 
         if (msg.prekey_id !== PreKey.MAX_PREKEY_ID) {
           const prekey = await prekey_store.load_prekey(msg.prekey_id);
@@ -262,7 +262,7 @@ export class Session {
     }
   }
 
-  private async _decrypt_cipher_message(envelope: Envelope, msg: CipherMessage): Promise<Uint8Array> {
+  private _decrypt_cipher_message(envelope: Envelope, msg: CipherMessage): Uint8Array {
     const state = this.session_states[msg.session_tag.toString()];
     if (!state) {
       throw new DecryptError.InvalidMessage(
@@ -276,7 +276,7 @@ export class Session {
     // mutating in-place can lead to undefined behavior and undefined state in edge cases
     const sessionState = SessionState.deserialise(state.state.serialise());
 
-    const plaintext = await sessionState.decrypt(envelope, msg);
+    const plaintext = sessionState.decrypt(envelope, msg);
 
     this.pending_prekey = null;
 

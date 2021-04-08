@@ -87,7 +87,7 @@ export class SessionState {
     return new SessionState(rootkey, sendChain, [], 0);
   }
 
-  async ratchet(ratchetKey: PublicKey): Promise<void> {
+  ratchet(ratchetKey: PublicKey): void {
     const newRatchet = KeyPair.new();
 
     const [receiveRootKey, receiveChainKey] = this.root_key.dh_ratchet(this.send_chain.ratchet_key, ratchetKey);
@@ -143,11 +143,11 @@ export class SessionState {
     return envelope;
   }
 
-  async decrypt(envelope: Envelope, msg: CipherMessage): Promise<Uint8Array> {
+  decrypt(envelope: Envelope, msg: CipherMessage): Uint8Array {
     let idx = this.recv_chains.findIndex(chain => chain.ratchet_key.fingerprint() === msg.ratchet_key.fingerprint());
 
     if (idx === -1) {
-      await this.ratchet(msg.ratchet_key);
+      this.ratchet(msg.ratchet_key);
       idx = 0;
     }
 
