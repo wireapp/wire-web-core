@@ -19,7 +19,7 @@
 
 import {Decoder, Encoder} from '@wireapp/cbor';
 import {ArrayUtil, MemoryUtil} from '../util/';
-import {DerivedSecrets} from '../derived/DerivedSecrets';
+import {DerivedSecrets} from '../derived/';
 import {IdentityKey, IdentityKeyPair, KeyPair, PreKeyBundle, PublicKey} from '../keys/';
 import {CipherMessage, Envelope, Message, PreKeyMessage, SessionTag} from '../message/';
 import {ChainKey, RecvChain, RootKey, SendChain, Session} from './';

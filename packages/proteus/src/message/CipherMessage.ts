@@ -18,9 +18,8 @@
  */
 
 import {Decoder, Encoder} from '@wireapp/cbor';
-import {PublicKey} from '../keys/PublicKey';
-import {SessionTag} from './SessionTag';
-import {Message} from './Message';
+import {PublicKey} from '../keys/';
+import {Message, SessionTag} from './';
 import {DecodeError, InputError} from '../errors';
 
 export class CipherMessage extends Message {
