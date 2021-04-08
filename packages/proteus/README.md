@@ -21,5 +21,5 @@ import Proteus from '@wireapp/proteus';
 
 await Proteus.init();
 
-const identity: Proteus.keys.IdentityKeyPair = Proteus.keys.IdentityKeyPair.new();
+const yourIdentity = Proteus.keys.IdentityKeyPair.new();
 ```
