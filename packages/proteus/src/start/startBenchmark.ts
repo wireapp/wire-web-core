@@ -21,6 +21,34 @@ import {performance, PerformanceObserver} from 'perf_hooks';
 import {IdentityKeyPair, PreKey, PreKeyBundle} from '../keys';
 import {Session} from '../session';
 import {init} from '@wireapp/proteus';
+import * as os from 'os';
+import * as path from 'path';
+import {Worker} from 'worker_threads';
+
+function chunkArray<T>(array: T[], size: number): T[][] {
+  return Array.from({length: Math.ceil(array.length / size)}, (_, index) =>
+    array.slice(index * size, index * size + size),
+  );
+}
+
+function createThreadedSessions(ownIdentity: IdentityKeyPair, preKeyBundles: PreKeyBundle[]): Promise<Session[]> {
+  return new Promise((resolve, reject) => {
+    const worker = new Worker(path.resolve('src', 'worker.js'), {
+      workerData: {
+        ownIdentity,
+        preKeyBundles,
+        workerPath: path.resolve(__dirname, 'InitSessionWorker.ts'),
+      },
+    });
+    worker.on('message', resolve);
+    worker.on('error', reject);
+    worker.on('exit', code => {
+      if (code !== 0) {
+        reject(new Error(`Worker stopped with exit code "${code}".`));
+      }
+    });
+  });
+}
 
 async function main() {
   await init();
@@ -44,8 +72,18 @@ async function main() {
   performance.measure(`Generating "${preKeyBundles.length}" pre-key bundles`, 'bundlesStart', 'bundlesStop');
 
   const ownIdentity = IdentityKeyPair.new();
+  const amountOfThreads = os.cpus().length;
+  const bundlesPerThread = preKeyBundles.length / amountOfThreads;
+  const preKeyBundleChunks = chunkArray<PreKeyBundle>(preKeyBundles, bundlesPerThread);
+  console.info(`Your machine has "${amountOfThreads}" threads.`);
+  console.info(
+    `Splitting "${preKeyBundles.length}" pre-key bundles into "${preKeyBundleChunks.length}" chunks with "${bundlesPerThread}" bundles each...`,
+  );
+
   performance.mark('sessionsStart');
-  const sessions = preKeyBundles.map(pkb => Session.init_from_prekey(ownIdentity, pkb));
+  const sessionsFromThreads = preKeyBundleChunks.map(sessions => createThreadedSessions(ownIdentity, sessions));
+  const sessionChunks = await Promise.all(sessionsFromThreads);
+  const sessions = ([] as Session[]).concat(...sessionChunks);
   performance.mark('sessionsStop');
   performance.measure(`Initializing "${sessions.length}" sessions`, 'sessionsStart', 'sessionsStop');
 
