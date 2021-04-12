@@ -119,9 +119,9 @@ export class Decoder {
     throw new DecodeError(DecodeError.UNEXPECTED_TYPE);
   }
 
-  private _bytes(minor: number, max_len: number): ArrayBuffer {
+  private _bytes(minor: number, maxLength: number): ArrayBuffer {
     const len = this._read_length(minor);
-    if (len > max_len) {
+    if (len > maxLength) {
       throw new DecodeError(DecodeError.TOO_LONG);
     }
 

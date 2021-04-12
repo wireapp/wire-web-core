@@ -20,7 +20,7 @@
 import * as CBOR from '../';
 
 describe('CBOR.Encoder', () => {
-  const to_hex = (bytes: Uint8Array): string => {
+  const toHex = (bytes: Uint8Array): string => {
     let str = '';
 
     for (const byte of Array.from(bytes)) {
@@ -47,13 +47,13 @@ describe('CBOR.Encoder', () => {
   const encoded = (expected: string, closure: (encoder: CBOR.Encoder) => void) => {
     const encoder = new CBOR.Encoder();
     closure(encoder);
-    return to_hex(new Uint8Array(encoder.get_buffer())) === expected;
+    return toHex(new Uint8Array(encoder.get_buffer())) === expected;
   };
 
   const assertBeginning = (expected: string, closure: (encoder: CBOR.Encoder) => void) => {
     const encoder = new CBOR.Encoder();
     closure(encoder);
-    const hexValue = to_hex(new Uint8Array(encoder.get_buffer()));
+    const hexValue = toHex(new Uint8Array(encoder.get_buffer()));
     return hexValue.startsWith(expected);
   };
 

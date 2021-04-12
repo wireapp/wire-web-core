@@ -32,15 +32,15 @@ export class Encoder {
     return this.buffer.slice(0, this.view.byteOffset);
   }
 
-  private _new_buffer_length(need_nbytes: number): number {
-    return ~~Math.max(this.buffer.byteLength * 1.5, this.buffer.byteLength + need_nbytes);
+  private _new_buffer_length(needNbytes: number): number {
+    return ~~Math.max(this.buffer.byteLength * 1.5, this.buffer.byteLength + needNbytes);
   }
 
-  private _grow_buffer(need_nbytes: number): void {
-    const new_len = this._new_buffer_length(need_nbytes);
-    const new_buf = new ArrayBuffer(new_len);
-    new Uint8Array(new_buf).set(new Uint8Array(this.buffer));
-    this.buffer = new_buf;
+  private _grow_buffer(needNbytes: number): void {
+    const newLength = this._new_buffer_length(needNbytes);
+    const newBuffer = new ArrayBuffer(newLength);
+    new Uint8Array(newBuffer).set(new Uint8Array(this.buffer));
+    this.buffer = newBuffer;
     this.view = new DataView(this.buffer, this.view.byteOffset);
   }
 

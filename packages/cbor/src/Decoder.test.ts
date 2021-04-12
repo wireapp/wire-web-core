@@ -20,10 +20,10 @@
 import * as CBOR from '../';
 
 describe('CBOR.Decoder', () => {
-  const is_hex = (str: string): boolean => typeof str === 'string' && /^[0-9a-f]+$/i.test(str) && str.length % 2 === 0;
+  const isHex = (str: string): boolean => typeof str === 'string' && /^[0-9a-f]+$/i.test(str) && str.length % 2 === 0;
 
-  const from_hex = (str: string): Uint8Array => {
-    if (!is_hex(str)) {
+  const fromHex = (str: string): Uint8Array => {
+    if (!isHex(str)) {
       throw new TypeError("The provided string doesn't look like hex data");
     }
 
@@ -38,7 +38,7 @@ describe('CBOR.Decoder', () => {
     return result;
   };
 
-  const decoder = (hex_str: string): CBOR.Decoder => new CBOR.Decoder(from_hex(hex_str).buffer);
+  const decoder = (hexString: string): CBOR.Decoder => new CBOR.Decoder(fromHex(hexString).buffer);
 
   it('decodes unsigned integers', () => {
     expect(0).toBe(decoder('00').u8());
