@@ -22,5 +22,5 @@
     "start:benchmark": "ts-node ./src/start/startBenchmark.ts",
     "test": "nyc --nycrc-path=../../nyc.config.js jasmine --config=jasmine.json"
   },
-  "version": "9.9.5"
+  "version": "9.9.8"
 }
