@@ -35,12 +35,15 @@ function createThreadedSessions(ownIdentity: IdentityKeyPair, preKeyBundles: Pre
   return new Promise((resolve, reject) => {
     const worker = new Worker(path.resolve('src', 'worker.js'), {
       workerData: {
-        ownIdentity,
-        preKeyBundles,
+        ownIdentity: ownIdentity.serialise(),
+        preKeyBundles: preKeyBundles.map(pkb => pkb.serialise()),
         workerPath: path.resolve(__dirname, 'InitSessionWorker.ts'),
       },
     });
-    worker.on('message', resolve);
+    worker.on('message', (sessions: ArrayBuffer[]) => {
+      const deserializedSessions = sessions.map(session => Session.deserialise(ownIdentity, session));
+      resolve(deserializedSessions);
+    });
     worker.on('error', reject);
     worker.on('exit', code => {
       if (code !== 0) {

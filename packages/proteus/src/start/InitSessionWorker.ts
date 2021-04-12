@@ -7,11 +7,12 @@ async function createSession({
   ownIdentity,
   preKeyBundles,
 }: {
-  ownIdentity: IdentityKeyPair;
-  preKeyBundles: PreKeyBundle[];
-}): Promise<Session[]> {
+  ownIdentity: ArrayBuffer;
+  preKeyBundles: ArrayBuffer[];
+}): Promise<ArrayBuffer[]> {
   await init();
-  return preKeyBundles.map(pkb => Session.init_from_prekey(ownIdentity, pkb));
+  const alice = IdentityKeyPair.deserialise(ownIdentity);
+  return preKeyBundles.map(pkb => Session.init_from_prekey(alice, PreKeyBundle.deserialise(pkb)).serialise());
 }
 
 void (async () => {
