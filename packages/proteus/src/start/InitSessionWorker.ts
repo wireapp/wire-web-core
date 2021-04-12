@@ -23,14 +23,13 @@ import {IdentityKeyPair, PreKeyBundle} from '../keys';
 import {init} from '../';
 
 interface SessionCreationOptions {
-  ownIdentity: ArrayBuffer;
-  preKeyBundles: ArrayBuffer[];
+  ownIdentity: IdentityKeyPair;
+  preKeyBundles: PreKeyBundle[];
 }
 
 async function createSession({ownIdentity, preKeyBundles}: SessionCreationOptions): Promise<ArrayBuffer[]> {
   await init();
-  const alice = IdentityKeyPair.deserialise(ownIdentity);
-  return preKeyBundles.map(pkb => Session.init_from_prekey(alice, PreKeyBundle.deserialise(pkb)).serialise());
+  return preKeyBundles.map(pkb => Session.init_from_prekey(ownIdentity, pkb).serialise());
 }
 
 void createSession(workerData).then(session => parentPort?.postMessage(session));

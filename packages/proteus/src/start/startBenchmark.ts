@@ -35,8 +35,8 @@ function createThreadedSessions(ownIdentity: IdentityKeyPair, preKeyBundles: Pre
   return new Promise((resolve, reject) => {
     const worker = new Worker(path.resolve('src', 'worker.js'), {
       workerData: {
-        ownIdentity: ownIdentity.serialise(),
-        preKeyBundles: preKeyBundles.map(pkb => pkb.serialise()),
+        ownIdentity,
+        preKeyBundles,
         workerPath: path.resolve(__dirname, 'InitSessionWorker.ts'),
       },
     });

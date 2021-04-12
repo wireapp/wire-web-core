@@ -20,7 +20,7 @@
 import {Decoder, Encoder} from '@wireapp/cbor';
 import {ArrayUtil, MemoryUtil} from '../util/';
 import {DerivedSecrets} from '../derived/';
-import {IdentityKey, IdentityKeyPair, KeyPair, PreKeyBundle, PublicKey} from '../keys/';
+import {IdentityKey, IdentityKeyPair, KeyPair, PreKeyBundle, PublicKey, SecretKey} from '../keys/';
 import {CipherMessage, Envelope, Message, PreKeyMessage, SessionTag} from '../message/';
 import {ChainKey, RecvChain, RootKey, SendChain, Session} from './';
 import {DecryptError, DecodeError} from '../errors';
@@ -45,9 +45,9 @@ export class SessionState {
     bobPreKeyBundle: PreKeyBundle,
   ): SessionState {
     const masterKey = ArrayUtil.concatenate_array_buffers([
-      aliceIdentityPair.secret_key.shared_secret(bobPreKeyBundle.public_key),
-      aliceBase.secret_key.shared_secret(bobPreKeyBundle.identity_key.public_key),
-      aliceBase.secret_key.shared_secret(bobPreKeyBundle.public_key),
+      SecretKey.shared_secret(bobPreKeyBundle.public_key, aliceIdentityPair.secret_key.sec_curve),
+      SecretKey.shared_secret(bobPreKeyBundle.identity_key.public_key, aliceBase.secret_key.sec_curve),
+      SecretKey.shared_secret(bobPreKeyBundle.public_key, aliceBase.secret_key.sec_curve),
     ]);
 
     const derivedSecrets = DerivedSecrets.kdf_without_salt(masterKey, 'handshake');
@@ -72,9 +72,9 @@ export class SessionState {
     aliceBase: PublicKey,
   ): SessionState {
     const masterKey = ArrayUtil.concatenate_array_buffers([
-      bobPrekey.secret_key.shared_secret(aliceIdent.public_key),
-      bobIdent.secret_key.shared_secret(aliceBase),
-      bobPrekey.secret_key.shared_secret(aliceBase),
+      SecretKey.shared_secret(aliceIdent.public_key, bobPrekey.secret_key.sec_curve),
+      SecretKey.shared_secret(aliceBase, bobIdent.secret_key.sec_curve),
+      SecretKey.shared_secret(aliceBase, bobPrekey.secret_key.sec_curve),
     ]);
 
     const derivedSecrets = DerivedSecrets.kdf_without_salt(masterKey, 'handshake');

@@ -22,6 +22,7 @@ import {ChainKey} from './ChainKey';
 import {CipherKey, DerivedSecrets} from '../derived/';
 import {DecodeError, InputError} from '../errors';
 import type {PublicKey, KeyPair} from '../keys/';
+import {SecretKey} from '../keys/';
 
 export class RootKey {
   readonly key: CipherKey;
@@ -43,7 +44,7 @@ export class RootKey {
    * @param theirs Their public key
    */
   dh_ratchet(ours: KeyPair, theirs: PublicKey): [RootKey, ChainKey] {
-    const secret = ours.secret_key.shared_secret(theirs);
+    const secret = SecretKey.shared_secret(theirs, ours.secret_key.sec_curve);
     const derivedSecrets = DerivedSecrets.kdf(secret, this.key.key, 'dh_ratchet');
 
     return [RootKey.from_cipher_key(derivedSecrets.cipher_key), ChainKey.from_mac_key(derivedSecrets.mac_key, 0)];
