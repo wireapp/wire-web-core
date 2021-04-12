@@ -50,13 +50,30 @@ export class IdentityKeyPair {
   }
 
   encode(encoder: Encoder): Encoder {
+    // Prepare KeyPair with three elements
     encoder.object(IdentityKeyPair.propertiesLength);
+
+    // Add version at position 0
     encoder.u8(0);
     encoder.u8(this.version);
+
+    // Add SecretKey at position 1
     encoder.u8(1);
-    this.secret_key.encode(encoder);
+    encoder.object(1);
+    encoder.u8(0);
+    encoder.bytes(this.secret_key.sec_edward);
+
+    // Add IdentityKey at position 2
     encoder.u8(2);
-    return this.public_key.encode(encoder);
+    encoder.object(1);
+
+    // Add PublicKey at position 0 of IdentityKey
+    encoder.u8(0);
+    encoder.object(1);
+    encoder.u8(0);
+    encoder.bytes(this.public_key.public_key.pub_edward);
+
+    return encoder;
   }
 
   static decode(decoder: Decoder): IdentityKeyPair {
