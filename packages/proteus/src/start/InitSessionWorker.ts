@@ -20,20 +20,17 @@
 import {parentPort, workerData} from 'worker_threads';
 import {Session} from '../session';
 import {IdentityKeyPair, PreKeyBundle} from '../keys';
-import {init} from '../index';
+import {init as initProteus} from '../';
 
-async function createSession({
-  ownIdentity,
-  preKeyBundles,
-}: {
+interface SessionCreationOptions {
   ownIdentity: ArrayBuffer;
   preKeyBundles: ArrayBuffer[];
-}): Promise<ArrayBuffer[]> {
-  await init();
+}
+
+async function createSession({ownIdentity, preKeyBundles}: SessionCreationOptions): Promise<ArrayBuffer[]> {
+  await initProteus();
   const alice = IdentityKeyPair.deserialise(ownIdentity);
   return preKeyBundles.map(pkb => Session.init_from_prekey(alice, PreKeyBundle.deserialise(pkb)).serialise());
 }
 
-void (async () => {
-  parentPort?.postMessage(await createSession(workerData));
-})();
+void createSession(workerData).then(session => parentPort?.postMessage(session));

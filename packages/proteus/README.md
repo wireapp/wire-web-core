@@ -17,7 +17,7 @@ yarn add @wireapp/proteus
 ### Usage
 
 ```typescript
-import Proteus from '@wireapp/proteus';
+import * as Proteus from '@wireapp/proteus';
 
 await Proteus.init();
 
