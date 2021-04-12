@@ -18,10 +18,10 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import {init as proteusInit} from '@wireapp/proteus';
+import {init} from '@wireapp/proteus';
 
 export const isUsingWASM = async () => {
-  await proteusInit();
+  await init();
   const rawLibsodium = (sodium as any).libsodium;
   return Boolean(rawLibsodium.usesWasm) || Boolean(rawLibsodium.useBackupModule);
 };
