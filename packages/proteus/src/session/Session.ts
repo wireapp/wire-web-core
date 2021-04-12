@@ -131,7 +131,7 @@ export class Session {
       const pre_key = await preKeyStore.load_prekey(preKeyMessage.prekey_id);
       return SessionState.init_as_bob(
         this.local_identity,
-        pre_key.key_pair,
+        pre_key!.key_pair,
         preKeyMessage.identity_key,
         preKeyMessage.base_key,
       );
