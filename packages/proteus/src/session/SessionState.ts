@@ -118,19 +118,20 @@ export class SessionState {
    * @param tag Session tag
    * @param plaintext The plaintext to encrypt
    */
-  encrypt(
+  static encrypt(
+    sessionState: SessionState,
     identityKey: IdentityKey,
     pending: [number, PublicKey] | null,
     tag: SessionTag,
     plaintext: string | Uint8Array,
   ): Envelope {
-    const msgkeys = this.send_chain.chain_key.message_keys();
+    const msgkeys = ChainKey.message_keys(sessionState.send_chain.chain_key);
 
     let message: Message | CipherMessage = new CipherMessage(
       tag,
-      this.send_chain.chain_key.idx,
-      this.prev_counter,
-      this.send_chain.ratchet_key.public_key,
+      sessionState.send_chain.chain_key.idx,
+      sessionState.prev_counter,
+      sessionState.send_chain.ratchet_key.public_key,
       msgkeys.encrypt(plaintext),
     );
 
@@ -139,7 +140,7 @@ export class SessionState {
     }
 
     const envelope = new Envelope(msgkeys.mac_key, message);
-    this.send_chain.chain_key = this.send_chain.chain_key.next();
+    sessionState.send_chain.chain_key = ChainKey.next(sessionState.send_chain.chain_key);
     return envelope;
   }
 
@@ -156,7 +157,7 @@ export class SessionState {
     if (msg.counter < receiveChain.chain_key.idx) {
       return receiveChain.try_message_keys(envelope, msg);
     } else if (msg.counter == receiveChain.chain_key.idx) {
-      const mks = receiveChain.chain_key.message_keys();
+      const mks = ChainKey.message_keys(receiveChain.chain_key);
 
       if (!envelope.verify(mks.mac_key)) {
         throw new DecryptError.InvalidSignature(
@@ -166,7 +167,7 @@ export class SessionState {
       }
 
       const plain = mks.decrypt(msg.cipher_text);
-      receiveChain.chain_key = receiveChain.chain_key.next();
+      receiveChain.chain_key = ChainKey.next(receiveChain.chain_key);
       return plain;
     }
     const [chainKey, messageKey, messageKeys] = receiveChain.stage_message_keys(msg);
@@ -180,7 +181,7 @@ export class SessionState {
 
     const plain = messageKey.decrypt(msg.cipher_text);
 
-    receiveChain.chain_key = chainKey.next();
+    receiveChain.chain_key = ChainKey.next(chainKey);
     receiveChain.commit_message_keys(messageKeys);
 
     return plain;

@@ -36,16 +36,16 @@ export class ChainKey {
     return new ChainKey(key, counter);
   }
 
-  next(): ChainKey {
-    const key = new MacKey(this.key.sign('1'));
-    const index = this.idx + 1;
+  static next(chainKey: ChainKey): ChainKey {
+    const key = new MacKey(MacKey.sign(chainKey.key, '1'));
+    const index = chainKey.idx + 1;
     return new ChainKey(key, index);
   }
 
-  message_keys(): MessageKeys {
-    const base = this.key.sign('0');
+  static message_keys(chainKey: ChainKey): MessageKeys {
+    const base = MacKey.sign(chainKey.key, '0');
     const derivedSecrets = DerivedSecrets.kdf_without_salt(base, 'hash_ratchet');
-    return new MessageKeys(derivedSecrets.cipher_key, derivedSecrets.mac_key, this.idx);
+    return new MessageKeys(derivedSecrets.cipher_key, derivedSecrets.mac_key, chainKey.idx);
   }
 
   static encode(encoder: Encoder, chainKey: ChainKey): Encoder {

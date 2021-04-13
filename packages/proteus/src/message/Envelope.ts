@@ -31,7 +31,7 @@ export class Envelope {
   constructor(macKey: MacKey, message: Message, version: number = 1) {
     const serializedMessage = new Uint8Array(message.serialise());
     this.version = version;
-    this.mac = macKey.sign(serializedMessage);
+    this.mac = MacKey.sign(macKey, serializedMessage);
     this.message = message;
     this._message_enc = serializedMessage;
   }

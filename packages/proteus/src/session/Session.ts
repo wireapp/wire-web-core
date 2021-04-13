@@ -194,20 +194,21 @@ export class Session {
   /**
    * @param plaintext The plaintext which needs to be encrypted
    */
-  encrypt(plaintext: string | Uint8Array): Envelope {
-    const session_state = this.session_states[this.session_tag_name];
+  static encrypt(session: Session, plaintext: string | Uint8Array): Envelope {
+    const session_state = session.session_states[session.session_tag_name];
 
     if (!session_state) {
       throw new ProteusError(
-        `Could not find session for tag '${(this.session_tag || '').toString()}'.`,
+        `Could not find session for tag '${(session.session_tag || '').toString()}'.`,
         ProteusError.CODE.CASE_102,
       );
     }
 
-    return session_state.state.encrypt(
-      this.local_identity.public_key,
-      this.pending_prekey,
-      this.session_tag,
+    return SessionState.encrypt(
+      session_state.state,
+      session.local_identity.public_key,
+      session.pending_prekey,
+      session.session_tag,
       plaintext,
     );
   }
