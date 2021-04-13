@@ -38,16 +38,16 @@ export class PreKeyMessage extends Message {
     this.message = message;
   }
 
-  encode(encoder: Encoder): Encoder {
+  static encode(encoder: Encoder, preKeyMessage: PreKeyMessage): Encoder {
     encoder.object(PreKeyMessage.propertiesLength);
     encoder.u8(0);
-    encoder.u16(this.prekey_id);
+    encoder.u16(preKeyMessage.prekey_id);
     encoder.u8(1);
-    this.base_key.encode(encoder);
+    PublicKey.encode(encoder, preKeyMessage.base_key);
     encoder.u8(2);
-    this.identity_key.encode(encoder);
+    IdentityKey.encode(encoder, preKeyMessage.identity_key);
     encoder.u8(3);
-    return this.message.encode(encoder);
+    return CipherMessage.encode(encoder, preKeyMessage.message);
   }
 
   static decode(decoder: Decoder): PreKeyMessage {

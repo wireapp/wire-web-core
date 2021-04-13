@@ -57,7 +57,7 @@ export class PreKey {
 
   serialise(): ArrayBuffer {
     const encoder = new Encoder();
-    this.encode(encoder);
+    PreKey.encode(encoder, this);
     return encoder.get_buffer();
   }
 
@@ -65,14 +65,14 @@ export class PreKey {
     return PreKey.decode(new Decoder(buf));
   }
 
-  encode(encoder: Encoder): Encoder {
+  static encode(encoder: Encoder, preKey: PreKey): Encoder {
     encoder.object(PreKey.propertiesLength);
     encoder.u8(0);
-    encoder.u8(this.version);
+    encoder.u8(preKey.version);
     encoder.u8(1);
-    encoder.u16(this.key_id);
+    encoder.u16(preKey.key_id);
     encoder.u8(2);
-    return this.key_pair.encode(encoder);
+    return KeyPair.encode(encoder, preKey.key_pair);
   }
 
   static decode(decoder: Decoder): PreKey {

@@ -40,7 +40,7 @@ export class IdentityKeyPair {
 
   serialise(): ArrayBuffer {
     const encoder = new Encoder();
-    this.encode(encoder);
+    IdentityKeyPair.encode(encoder, this);
     return encoder.get_buffer();
   }
 
@@ -49,19 +49,19 @@ export class IdentityKeyPair {
     return IdentityKeyPair.decode(decoder);
   }
 
-  encode(encoder: Encoder): Encoder {
+  static encode(encoder: Encoder, identityKeyPair: IdentityKeyPair): Encoder {
     // Prepare KeyPair with three elements
     encoder.object(IdentityKeyPair.propertiesLength);
 
     // Add version at position 0
     encoder.u8(0);
-    encoder.u8(this.version);
+    encoder.u8(identityKeyPair.version);
 
     // Add SecretKey at position 1
     encoder.u8(1);
     encoder.object(1);
     encoder.u8(0);
-    encoder.bytes(this.secret_key.sec_edward);
+    encoder.bytes(identityKeyPair.secret_key.sec_edward);
 
     // Add IdentityKey at position 2
     encoder.u8(2);
@@ -71,7 +71,7 @@ export class IdentityKeyPair {
     encoder.u8(0);
     encoder.object(1);
     encoder.u8(0);
-    encoder.bytes(this.public_key.public_key.pub_edward);
+    encoder.bytes(identityKeyPair.public_key.public_key.pub_edward);
 
     return encoder;
   }

@@ -46,10 +46,10 @@ export class MacKey {
     return sodium.crypto_auth_hmacsha256_verify(signature, msg, this.key);
   }
 
-  encode(encoder: Encoder): Encoder {
+  static encode(encoder: Encoder, macKey: MacKey): Encoder {
     encoder.object(MacKey.propertiesLength);
     encoder.u8(0);
-    return encoder.bytes(this.key);
+    return encoder.bytes(macKey.key);
   }
 
   static decode(decoder: Decoder): MacKey {

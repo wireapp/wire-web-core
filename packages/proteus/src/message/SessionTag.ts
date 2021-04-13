@@ -34,8 +34,8 @@ export class SessionTag {
     return sodium.to_hex(this.tag);
   }
 
-  encode(encoder: Encoder): Encoder {
-    return encoder.bytes(this.tag);
+  static encode(encoder: Encoder, sessionTag: SessionTag): Encoder {
+    return encoder.bytes(sessionTag.tag);
   }
 
   static decode(decoder: Decoder): SessionTag {
