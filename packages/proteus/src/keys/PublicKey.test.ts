@@ -18,6 +18,7 @@
  */
 
 import {KeyPair} from './KeyPair';
+import {SecretKey} from './SecretKey';
 
 describe('Public Key', () => {
   it('rejects shared secrets at the point of infinity', async () => {
@@ -26,14 +27,14 @@ describe('Public Key', () => {
       const alice_keypair = KeyPair.new();
       const bob_keypair = KeyPair.new();
 
-      const alice_sk = alice_keypair.secret_key.shared_secret(bob_keypair.public_key);
-      const bob_sk = bob_keypair.secret_key.shared_secret(alice_keypair.public_key);
+      const alice_sk = SecretKey.shared_secret(bob_keypair.public_key, alice_keypair.secret_key);
+      const bob_sk = SecretKey.shared_secret(alice_keypair.public_key, bob_keypair.secret_key);
 
       expect(alice_sk).toEqual(bob_sk);
 
       (bob_keypair.public_key as any).pub_curve = emptyCurve;
 
-      alice_keypair.secret_key.shared_secret(bob_keypair.public_key);
+      SecretKey.shared_secret(bob_keypair.public_key, alice_keypair.secret_key);
 
       fail();
     } catch (error) {
