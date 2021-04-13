@@ -25,6 +25,7 @@ import {init} from '../';
 interface SessionCreationOptions {
   ownIdentity: IdentityKeyPair;
   preKeyBundles: PreKeyBundle[];
+  workerPath: string;
 }
 
 async function createSession({ownIdentity, preKeyBundles}: SessionCreationOptions): Promise<ArrayBuffer[]> {

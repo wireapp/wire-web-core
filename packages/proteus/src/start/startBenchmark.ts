@@ -18,12 +18,12 @@
  */
 
 import {performance, PerformanceObserver} from 'perf_hooks';
-import {IdentityKeyPair, PreKey, PreKeyBundle} from '../keys';
-import {Session} from '../session';
 import {init} from '@wireapp/proteus';
 import * as os from 'os';
 import * as path from 'path';
 import {Worker} from 'worker_threads';
+import {IdentityKeyPair, PreKey, PreKeyBundle} from '../keys';
+import {Session} from '../session';
 
 const useThreading = process.argv.includes('--parallel');
 
@@ -35,7 +35,7 @@ function chunkArray<T>(array: T[], size: number): T[][] {
 
 function createThreadedSessions(ownIdentity: IdentityKeyPair, preKeyBundles: PreKeyBundle[]): Promise<Session[]> {
   return new Promise((resolve, reject) => {
-    const worker = new Worker(path.resolve('src', 'worker.js'), {
+    const worker = new Worker(path.resolve('src/worker.js'), {
       workerData: {
         ownIdentity,
         preKeyBundles,
@@ -49,7 +49,7 @@ function createThreadedSessions(ownIdentity: IdentityKeyPair, preKeyBundles: Pre
     worker.on('error', reject);
     worker.on('exit', code => {
       if (code !== 0) {
-        reject(new Error(`Worker stopped with exit code "${code}".`));
+        reject(new Error(`Worker exited with code "${code}".`));
       }
     });
   });

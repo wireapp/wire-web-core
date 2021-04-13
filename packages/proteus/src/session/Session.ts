@@ -292,7 +292,7 @@ export class Session {
 
   static deserialise(local_identity: IdentityKeyPair, buf: ArrayBuffer): Session {
     const decoder = new Decoder(buf);
-    return this.decode(local_identity, decoder);
+    return Session.decode(local_identity, decoder);
   }
 
   static encode(encoder: Encoder, session: Session): void {
