@@ -25,6 +25,8 @@ import * as os from 'os';
 import * as path from 'path';
 import {Worker} from 'worker_threads';
 
+const useThreading = process.argv.includes('--parallel');
+
 function chunkArray<T>(array: T[], size: number): T[][] {
   return Array.from({length: Math.ceil(array.length / size)}, (_, index) =>
     array.slice(index * size, index * size + size),
@@ -79,14 +81,22 @@ async function main() {
   const bundlesPerThread = preKeyBundles.length / amountOfThreads;
   const preKeyBundleChunks = chunkArray<PreKeyBundle>(preKeyBundles, bundlesPerThread);
   console.info(`Your machine has "${amountOfThreads}" threads.`);
-  console.info(
-    `Splitting "${preKeyBundles.length}" pre-key bundles into "${preKeyBundleChunks.length}" chunks with "${bundlesPerThread}" bundles each...`,
-  );
 
   performance.mark('sessionsStart');
-  const sessionsFromThreads = preKeyBundleChunks.map(sessions => createThreadedSessions(ownIdentity, sessions));
-  const sessionChunks = await Promise.all(sessionsFromThreads);
-  const sessions = ([] as Session[]).concat(...sessionChunks);
+
+  let sessions: Session[] = [];
+
+  if (useThreading) {
+    console.info(
+      `Splitting "${preKeyBundles.length}" pre-key bundles into "${preKeyBundleChunks.length}" chunks with "${bundlesPerThread}" bundles each...`,
+    );
+    const sessionsFromThreads = preKeyBundleChunks.map(sessions => createThreadedSessions(ownIdentity, sessions));
+    const sessionChunks = await Promise.all(sessionsFromThreads);
+    sessions = sessions.concat(...sessionChunks);
+  } else {
+    sessions = preKeyBundles.map(pkb => Session.init_from_prekey(ownIdentity, pkb));
+  }
+
   performance.mark('sessionsStop');
   performance.measure(`Initializing "${sessions.length}" sessions`, 'sessionsStart', 'sessionsStop');
 
