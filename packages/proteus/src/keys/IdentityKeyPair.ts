@@ -27,15 +27,11 @@ export class IdentityKeyPair {
   readonly version: number;
   private static readonly propertiesLength = 3;
 
-  constructor(public_key: IdentityKey, secret_key: SecretKey, version: number = -1) {
-    this.public_key = public_key;
-    this.secret_key = secret_key;
+  constructor(publicKey?: IdentityKey, secretKey?: SecretKey, version: number = 1) {
+    const keyPair = new KeyPair();
+    this.public_key = publicKey || new IdentityKey(keyPair.public_key);
+    this.secret_key = secretKey || keyPair.secret_key;
     this.version = version;
-  }
-
-  static new(): IdentityKeyPair {
-    const keyPair = KeyPair.new();
-    return new IdentityKeyPair(new IdentityKey(keyPair.public_key), keyPair.secret_key, 1);
   }
 
   serialise(): ArrayBuffer {

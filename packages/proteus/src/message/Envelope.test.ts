@@ -32,9 +32,9 @@ describe('Envelope', () => {
   let ratchetKey: PublicKey;
 
   beforeAll(async () => {
-    identityKey = new IdentityKey(KeyPair.new().public_key);
-    baseKey = KeyPair.new().public_key;
-    ratchetKey = KeyPair.new().public_key;
+    identityKey = new IdentityKey(new KeyPair().public_key);
+    baseKey = new KeyPair().public_key;
+    ratchetKey = new KeyPair().public_key;
   });
 
   it('encapsulates a CipherMessage', () => {

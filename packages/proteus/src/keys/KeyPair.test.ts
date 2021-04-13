@@ -21,7 +21,7 @@ import {KeyPair, SecretKey} from '../keys';
 
 describe('KeyPair', () => {
   it('signs a message and verifies the signature', async () => {
-    const keyPair = KeyPair.new();
+    const keyPair = new KeyPair();
     const message = 'what do ya want for nothing?';
     const signature = keyPair.secret_key.sign(message);
     const badSignature = new Uint8Array(signature);
@@ -35,7 +35,7 @@ describe('KeyPair', () => {
   });
 
   it('computes a Diffie-Hellman shared secret', async () => {
-    const [keypair_a, keypair_b] = await Promise.all([KeyPair.new(), KeyPair.new()]);
+    const [keypair_a, keypair_b] = await Promise.all([new KeyPair(), new KeyPair()]);
     const shared_a = SecretKey.shared_secret(keypair_b.public_key, keypair_a.secret_key);
     const shared_b = SecretKey.shared_secret(keypair_a.public_key, keypair_b.secret_key);
     expect(shared_a).toEqual(shared_b);

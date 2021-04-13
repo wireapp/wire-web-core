@@ -28,14 +28,18 @@ export class KeyPair {
   readonly secret_key: SecretKey;
   private static readonly propertiesLength = 2;
 
-  constructor(publicKey: PublicKey, secretKey: SecretKey) {
-    this.public_key = publicKey;
-    this.secret_key = secretKey;
-  }
+  constructor();
+  constructor(publicKey: PublicKey, secretKey: SecretKey);
+  constructor(publicKey?: PublicKey, secretKey?: SecretKey) {
+    if (publicKey && secretKey) {
+      this.public_key = publicKey;
+      this.secret_key = secretKey;
+    } else {
+      const ed25519KeyPair = sodium.crypto_sign_keypair();
 
-  static new(): KeyPair {
-    const ed25519KeyPair = sodium.crypto_sign_keypair();
-    return new KeyPair(KeyPair.construct_public_key(ed25519KeyPair), KeyPair.construct_private_key(ed25519KeyPair));
+      this.public_key = KeyPair.construct_public_key(ed25519KeyPair);
+      this.secret_key = KeyPair.construct_private_key(ed25519KeyPair);
+    }
   }
 
   /**

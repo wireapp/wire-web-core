@@ -69,7 +69,7 @@ export class Session {
    * @param remote_pkbundle Bob's Pre-Key Bundle
    */
   static init_from_prekey(local_identity: IdentityKeyPair, remote_pkbundle: PreKeyBundle): Session {
-    const alice_base = KeyPair.new();
+    const alice_base = new KeyPair();
 
     const state = SessionState.init_as_alice(local_identity, alice_base, remote_pkbundle);
 

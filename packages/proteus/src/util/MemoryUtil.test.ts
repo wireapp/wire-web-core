@@ -48,7 +48,7 @@ describe('MemoryUtil', () => {
     });
 
     it('deeply zeroizes a KeyPair', async () => {
-      const keyPair = KeyPair.new();
+      const keyPair = new KeyPair();
 
       MemoryUtil.zeroize(keyPair);
       keyPair.secret_key.sec_edward.every(value => expect(value).toBe(0));
@@ -56,7 +56,7 @@ describe('MemoryUtil', () => {
     });
 
     it('deeply zeroizes a PreKey', async () => {
-      const prekey = PreKey.new(0);
+      const prekey = new PreKey(0);
 
       MemoryUtil.zeroize(prekey);
       prekey.key_pair.secret_key.sec_edward.every(value => expect(value).toBe(0));

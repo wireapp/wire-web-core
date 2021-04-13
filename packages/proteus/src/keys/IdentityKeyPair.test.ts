@@ -27,7 +27,7 @@ beforeAll(async () => {
 
 describe('IdentityKeyPair', () => {
   it('serialises and deserialises', () => {
-    const ikp = IdentityKeyPair.new();
+    const ikp = new IdentityKeyPair();
     const ikp_bytes = ikp.serialise();
     const ikp_deser = IdentityKeyPair.deserialise(ikp_bytes);
 

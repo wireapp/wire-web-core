@@ -77,8 +77,8 @@ describe('Session', () => {
       const preKeys = PreKey.generate_prekeys(0, 10);
       const bobStore = new SimplePreKeyStore('bobStore', preKeys);
 
-      const alice = IdentityKeyPair.new();
-      const bob = IdentityKeyPair.new();
+      const alice = new IdentityKeyPair();
+      const bob = new IdentityKeyPair();
       const bobPreKey = await bobStore.load_prekey(0);
       const bobPreKeyBundle = new PreKeyBundle(bob.public_key, bobPreKey!);
       const aliceToBob = Session.init_from_prekey(alice, bobPreKeyBundle);
@@ -98,7 +98,7 @@ describe('Session', () => {
 
   describe('Serialisation', () => {
     it('can be serialised and deserialized to/from CBOR', async () => {
-      const [alice_ident, bob_ident] = [IdentityKeyPair.new(), IdentityKeyPair.new()];
+      const [alice_ident, bob_ident] = [new IdentityKeyPair(), new IdentityKeyPair()];
       const bob_store = new SimplePreKeyStore('bobStore', PreKey.generate_prekeys(0, 10));
 
       const bob_prekey = await bob_store.load_prekey(0);
@@ -112,10 +112,10 @@ describe('Session', () => {
     });
 
     it('encrypts and decrypts messages', async () => {
-      const alice_ident = IdentityKeyPair.new();
+      const alice_ident = new IdentityKeyPair();
       const alice_store = new SimplePreKeyStore('alice_store', PreKey.generate_prekeys(0, 10));
 
-      const bob_ident = IdentityKeyPair.new();
+      const bob_ident = new IdentityKeyPair();
       const bob_store = new SimplePreKeyStore('bob_store', PreKey.generate_prekeys(0, 10));
 
       const bob_prekey = await bob_store.load_prekey(0);
@@ -178,10 +178,10 @@ describe('Session', () => {
     });
 
     it('limits the number of receive chains', async () => {
-      const alice_ident = IdentityKeyPair.new();
+      const alice_ident = new IdentityKeyPair();
       const alice_store = new SimplePreKeyStore('alice_store', PreKey.generate_prekeys(0, 10));
 
-      const bob_ident = IdentityKeyPair.new();
+      const bob_ident = new IdentityKeyPair();
       const bob_store = new SimplePreKeyStore('bob_store', PreKey.generate_prekeys(0, 10));
 
       const bob_prekey = await bob_store.load_prekey(0);
@@ -215,10 +215,10 @@ describe('Session', () => {
     });
 
     it('handles a counter mismatch', async () => {
-      const alice_ident = IdentityKeyPair.new();
+      const alice_ident = new IdentityKeyPair();
       const alice_store = new SimplePreKeyStore('alice_store', PreKey.generate_prekeys(0, 10));
 
-      const bob_ident = IdentityKeyPair.new();
+      const bob_ident = new IdentityKeyPair();
       const bob_store = new SimplePreKeyStore('bob_store', PreKey.generate_prekeys(0, 10));
 
       const bob_prekey = await bob_store.load_prekey(0);
@@ -266,10 +266,10 @@ describe('Session', () => {
     });
 
     it('handles multiple prekey messages', async () => {
-      const alice_ident = IdentityKeyPair.new();
+      const alice_ident = new IdentityKeyPair();
       const alice_store = new SimplePreKeyStore('alice_store', PreKey.generate_prekeys(0, 10));
 
-      const bob_ident = IdentityKeyPair.new();
+      const bob_ident = new IdentityKeyPair();
       const bob_store = new SimplePreKeyStore('bob_store', PreKey.generate_prekeys(0, 10));
 
       const bob_prekey = await bob_store.load_prekey(0);
@@ -296,10 +296,10 @@ describe('Session', () => {
     });
 
     it('handles simultaneous prekey messages', async () => {
-      const alice_ident = IdentityKeyPair.new();
+      const alice_ident = new IdentityKeyPair();
       const alice_store = new SimplePreKeyStore('alice_store', PreKey.generate_prekeys(0, 10));
 
-      const bob_ident = IdentityKeyPair.new();
+      const bob_ident = new IdentityKeyPair();
       const bob_store = new SimplePreKeyStore('bob_store', PreKey.generate_prekeys(0, 10));
 
       const bob_prekey = await bob_store.load_prekey(0);
@@ -337,10 +337,10 @@ describe('Session', () => {
     });
 
     it('handles simultaneous repeated messages', async () => {
-      const alice_ident = IdentityKeyPair.new();
+      const alice_ident = new IdentityKeyPair();
       const alice_store = new SimplePreKeyStore('alice_store', PreKey.generate_prekeys(0, 10));
 
-      const bob_ident = IdentityKeyPair.new();
+      const bob_ident = new IdentityKeyPair();
       const bob_store = new SimplePreKeyStore('bob_store', PreKey.generate_prekeys(0, 10));
 
       const bob_prekey = await bob_store.load_prekey(0);
@@ -416,9 +416,9 @@ describe('Session', () => {
     });
 
     it('cannot retry init from message with the same message', async () => {
-      const alice_ident = IdentityKeyPair.new();
+      const alice_ident = new IdentityKeyPair();
 
-      const bob_ident = IdentityKeyPair.new();
+      const bob_ident = new IdentityKeyPair();
       const bob_store = new SimplePreKeyStore('bob_store', PreKey.generate_prekeys(0, 10));
 
       const bob_prekey = await bob_store.load_prekey(0);
@@ -441,10 +441,10 @@ describe('Session', () => {
     });
 
     it('skips message keys', async () => {
-      const alice_ident = IdentityKeyPair.new();
+      const alice_ident = new IdentityKeyPair();
       const alice_store = new SimplePreKeyStore('alice_store', PreKey.generate_prekeys(0, 10));
 
-      const bob_ident = IdentityKeyPair.new();
+      const bob_ident = new IdentityKeyPair();
       const bob_store = new SimplePreKeyStore('bob_store', PreKey.generate_prekeys(0, 10));
 
       const bob_prekey = await bob_store.load_prekey(0);
@@ -539,9 +539,9 @@ describe('Session', () => {
     });
 
     it('replaces prekeys', async () => {
-      const alice_ident = IdentityKeyPair.new();
+      const alice_ident = new IdentityKeyPair();
 
-      const bob_ident = IdentityKeyPair.new();
+      const bob_ident = new IdentityKeyPair();
       const bob_store1 = new SimplePreKeyStore('bob_store1', PreKey.generate_prekeys(0, 10));
       const bob_store2 = new SimplePreKeyStore('bob_store2', PreKey.generate_prekeys(0, 10));
 
@@ -578,9 +578,9 @@ describe('Session', () => {
 
   describe('Process', () => {
     it('works until the max counter gap', async () => {
-      const alice_ident = IdentityKeyPair.new();
+      const alice_ident = new IdentityKeyPair();
 
-      const bob_ident = IdentityKeyPair.new();
+      const bob_ident = new IdentityKeyPair();
 
       const pre_keys = [PreKey.last_resort()];
       const bob_store = new SimplePreKeyStore('bob_store', pre_keys);
@@ -611,11 +611,11 @@ describe('Session', () => {
 
     it('allows Alice to send a message to Bob on which Bob replies', async () => {
       // Alice's identity setup
-      const alice_ident = IdentityKeyPair.new();
+      const alice_ident = new IdentityKeyPair();
       const alice_store = new SimplePreKeyStore('alice_store', PreKey.generate_prekeys(0, 10));
 
       // Bob's identity setup
-      const bob_ident = IdentityKeyPair.new();
+      const bob_ident = new IdentityKeyPair();
       const bob_store = new SimplePreKeyStore('bob_store', PreKey.generate_prekeys(0, 10));
 
       // Alice creates a session with Bob's pre-key bundle
@@ -641,9 +641,9 @@ describe('Session', () => {
 
     it('pathological case', async () => {
       const numberOfParticipants = 32;
-      const alice_ident = IdentityKeyPair.new();
+      const alice_ident = new IdentityKeyPair();
 
-      const bob_ident = IdentityKeyPair.new();
+      const bob_ident = new IdentityKeyPair();
 
       const preKeys = PreKey.generate_prekeys(0, numberOfParticipants);
       const bob_store = new SimplePreKeyStore('bobStore', preKeys);
