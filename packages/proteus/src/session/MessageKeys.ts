@@ -47,14 +47,14 @@ export class MessageKeys {
     return this.cipher_key.decrypt(ciphertext, this._counter_as_nonce());
   }
 
-  encode(encoder: Encoder): Encoder {
+  static encode(encoder: Encoder, messageKeys: MessageKeys): Encoder {
     encoder.object(MessageKeys.propertiesLength);
     encoder.u8(0);
-    this.cipher_key.encode(encoder);
+    CipherKey.encode(encoder, messageKeys.cipher_key);
     encoder.u8(1);
-    this.mac_key.encode(encoder);
+    MacKey.encode(encoder, messageKeys.mac_key);
     encoder.u8(2);
-    return encoder.u32(this.counter);
+    return encoder.u32(messageKeys.counter);
   }
 
   static decode(decoder: Decoder): MessageKeys {

@@ -32,12 +32,12 @@ export class SendChain {
     this.ratchet_key = keypair;
   }
 
-  encode(encoder: Encoder): Encoder {
+  static encode(encoder: Encoder, sendChain: SendChain): Encoder {
     encoder.object(SendChain.propertiesLength);
     encoder.u8(0);
-    this.chain_key.encode(encoder);
+    ChainKey.encode(encoder, sendChain.chain_key);
     encoder.u8(1);
-    return this.ratchet_key.encode(encoder);
+    return KeyPair.encode(encoder, sendChain.ratchet_key);
   }
 
   static decode(decoder: Decoder): SendChain {

@@ -109,16 +109,15 @@ export class RecvChain {
     }
   }
 
-  encode(encoder: Encoder): Encoder[] {
+  static encode(encoder: Encoder, recvChain: RecvChain): Encoder[] {
     encoder.object(RecvChain.propertiesLength);
     encoder.u8(0);
-    this.chain_key.encode(encoder);
+    ChainKey.encode(encoder, recvChain.chain_key);
     encoder.u8(1);
-    this.ratchet_key.encode(encoder);
-
+    PublicKey.encode(encoder, recvChain.ratchet_key);
     encoder.u8(2);
-    encoder.array(this.message_keys.length);
-    return this.message_keys.map(key => key.encode(encoder));
+    encoder.array(recvChain.message_keys.length);
+    return recvChain.message_keys.map(key => MessageKeys.encode(encoder, key));
   }
 
   static decode(decoder: Decoder): RecvChain {

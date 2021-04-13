@@ -46,18 +46,18 @@ export class CipherMessage extends Message {
     this.cipher_text = cipherText;
   }
 
-  encode(encoder: Encoder): Encoder {
+  static encode(encoder: Encoder, cipherMessage: CipherMessage): Encoder {
     encoder.object(CipherMessage.propertiesLength);
     encoder.u8(0);
-    this.session_tag.encode(encoder);
+    SessionTag.encode(encoder, cipherMessage.session_tag);
     encoder.u8(1);
-    encoder.u32(this.counter);
+    encoder.u32(cipherMessage.counter);
     encoder.u8(2);
-    encoder.u32(this.prev_counter);
+    encoder.u32(cipherMessage.prev_counter);
     encoder.u8(3);
-    this.ratchet_key.encode(encoder);
+    PublicKey.encode(encoder, cipherMessage.ratchet_key);
     encoder.u8(4);
-    return encoder.bytes(this.cipher_text);
+    return encoder.bytes(cipherMessage.cipher_text);
   }
 
   static decode(decoder: Decoder): CipherMessage {

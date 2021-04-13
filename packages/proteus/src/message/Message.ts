@@ -27,13 +27,13 @@ export class Message {
     const encoder = new Encoder();
     if (this instanceof CipherMessage) {
       encoder.u8(1);
+      CipherMessage.encode(encoder, this);
     } else if (this instanceof PreKeyMessage) {
       encoder.u8(2);
+      PreKeyMessage.encode(encoder, this);
     } else {
       throw new TypeError('Unexpected message type');
     }
-
-    this.encode(encoder);
     return encoder.get_buffer();
   }
 

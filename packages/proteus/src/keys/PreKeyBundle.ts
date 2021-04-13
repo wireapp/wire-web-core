@@ -86,7 +86,7 @@ export class PreKeyBundle {
 
   serialise(): ArrayBuffer {
     const encoder = new Encoder();
-    this.encode(encoder);
+    PreKeyBundle.encode(encoder, this);
     return encoder.get_buffer();
   }
 
@@ -101,20 +101,20 @@ export class PreKeyBundle {
     return PreKeyBundle.decode(new Decoder(buf));
   }
 
-  encode(encoder: Encoder): Encoder {
+  static encode(encoder: Encoder, preKeyBundle: PreKeyBundle): Encoder {
     encoder.object(PreKeyBundle.propertiesLength);
     encoder.u8(0);
-    encoder.u8(this.version);
+    encoder.u8(preKeyBundle.version);
     encoder.u8(1);
-    encoder.u16(this.prekey_id);
+    encoder.u16(preKeyBundle.prekey_id);
     encoder.u8(2);
-    this.public_key.encode(encoder);
+    PublicKey.encode(encoder, preKeyBundle.public_key);
     encoder.u8(3);
-    this.identity_key.encode(encoder);
+    IdentityKey.encode(encoder, preKeyBundle.identity_key);
 
     encoder.u8(4);
 
-    return this.signature ? encoder.bytes(this.signature) : encoder.null();
+    return preKeyBundle.signature ? encoder.bytes(preKeyBundle.signature) : encoder.null();
   }
 
   static decode(decoder: Decoder): PreKeyBundle {
