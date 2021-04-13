@@ -29,7 +29,7 @@ describe('PreKey', () => {
   describe('Generation', () => {
     it('generates a PreKey', () => {
       const key_id = 0;
-      const preKey = PreKey.new(key_id);
+      const preKey = new PreKey(key_id);
       expect(preKey.key_id).toBe(key_id);
     });
 
@@ -79,7 +79,7 @@ describe('PreKey', () => {
 
   describe('Serialisation', () => {
     it('serialises and deserialises correctly', async () => {
-      const pk = PreKey.new(0);
+      const pk = new PreKey(0);
       const pk_bytes = pk.serialise();
       const pk_copy = PreKey.deserialise(pk_bytes);
 

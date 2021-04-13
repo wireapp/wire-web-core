@@ -63,7 +63,7 @@ async function main() {
   const amountOfRemoteIdentities = amountOfUsers * clientsPerUser;
 
   function generatePreKeyBundle(): PreKeyBundle {
-    const identity = IdentityKeyPair.new();
+    const identity = new IdentityKeyPair();
     const preKey = PreKey.last_resort();
     return new PreKeyBundle(identity.public_key, preKey);
   }
@@ -76,7 +76,7 @@ async function main() {
   performance.mark('bundlesStop');
   performance.measure(`Generating "${preKeyBundles.length}" pre-key bundles`, 'bundlesStart', 'bundlesStop');
 
-  const ownIdentity = IdentityKeyPair.new();
+  const ownIdentity = new IdentityKeyPair();
   const amountOfThreads = os.cpus().length;
   const bundlesPerThread = preKeyBundles.length / amountOfThreads;
   const preKeyBundleChunks = chunkArray<PreKeyBundle>(preKeyBundles, bundlesPerThread);

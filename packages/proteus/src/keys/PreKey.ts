@@ -32,19 +32,14 @@ export class PreKey {
   readonly version: number;
   private static readonly propertiesLength = 3;
 
-  constructor(keyPair: KeyPair, keyId: number = -1, version: number = -1) {
+  constructor(keyId: number = -1, keyPair: KeyPair = new KeyPair(), version: number = 1) {
     this.key_id = keyId;
     this.key_pair = keyPair;
     this.version = version;
   }
 
-  static new(preKeyId: number): PreKey {
-    const keyPair = KeyPair.new();
-    return new PreKey(keyPair, preKeyId, 1);
-  }
-
   static last_resort(): PreKey {
-    return PreKey.new(PreKey.MAX_PREKEY_ID);
+    return new PreKey(PreKey.MAX_PREKEY_ID);
   }
 
   static generate_prekeys(start: number, size: number): PreKey[] {
@@ -52,7 +47,7 @@ export class PreKey {
       return [];
     }
 
-    return Array.from({length: size}).map((_, index) => PreKey.new((start + index) % PreKey.MAX_PREKEY_ID));
+    return Array.from({length: size}).map((_, index) => new PreKey((start + index) % PreKey.MAX_PREKEY_ID));
   }
 
   serialise(): ArrayBuffer {
@@ -87,7 +82,7 @@ export class PreKey {
       decoder.u8();
       const keyPair = KeyPair.decode(decoder);
 
-      return new PreKey(keyPair, keyId, version);
+      return new PreKey(keyId, keyPair, version);
     }
 
     throw new DecodeError(`Unexpected number of properties: "${propertiesLength}"`);
