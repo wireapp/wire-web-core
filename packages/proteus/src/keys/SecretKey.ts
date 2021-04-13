@@ -48,8 +48,8 @@ export class SecretKey {
    * @param publicKey Another user's public key
    * @returns Array buffer view of the computed shared secret
    */
-  static shared_secret(publicKey: PublicKey, sec_curve: Uint8Array): Uint8Array {
-    const sharedSecret = sodium.crypto_scalarmult(sec_curve, publicKey.pub_curve);
+  static shared_secret(publicKey: PublicKey, secretKey: SecretKey): Uint8Array {
+    const sharedSecret = sodium.crypto_scalarmult(secretKey.sec_curve, publicKey.pub_curve);
 
     ArrayUtil.assert_is_not_zeros(sharedSecret);
 

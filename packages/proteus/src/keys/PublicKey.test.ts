@@ -27,14 +27,14 @@ describe('Public Key', () => {
       const alice_keypair = KeyPair.new();
       const bob_keypair = KeyPair.new();
 
-      const alice_sk = SecretKey.shared_secret(bob_keypair.public_key, alice_keypair.secret_key.sec_curve);
-      const bob_sk = SecretKey.shared_secret(alice_keypair.public_key, bob_keypair.secret_key.sec_curve);
+      const alice_sk = SecretKey.shared_secret(bob_keypair.public_key, alice_keypair.secret_key);
+      const bob_sk = SecretKey.shared_secret(alice_keypair.public_key, bob_keypair.secret_key);
 
       expect(alice_sk).toEqual(bob_sk);
 
       (bob_keypair.public_key as any).pub_curve = emptyCurve;
 
-      SecretKey.shared_secret(bob_keypair.public_key, alice_keypair.secret_key.sec_curve);
+      SecretKey.shared_secret(bob_keypair.public_key, alice_keypair.secret_key);
 
       fail();
     } catch (error) {

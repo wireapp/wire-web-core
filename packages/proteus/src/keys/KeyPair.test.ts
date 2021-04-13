@@ -36,8 +36,8 @@ describe('KeyPair', () => {
 
   it('computes a Diffie-Hellman shared secret', async () => {
     const [keypair_a, keypair_b] = await Promise.all([KeyPair.new(), KeyPair.new()]);
-    const shared_a = SecretKey.shared_secret(keypair_b.public_key, keypair_a.secret_key.sec_curve);
-    const shared_b = SecretKey.shared_secret(keypair_a.public_key, keypair_b.secret_key.sec_curve);
+    const shared_a = SecretKey.shared_secret(keypair_b.public_key, keypair_a.secret_key);
+    const shared_b = SecretKey.shared_secret(keypair_a.public_key, keypair_b.secret_key);
     expect(shared_a).toEqual(shared_b);
   });
 });

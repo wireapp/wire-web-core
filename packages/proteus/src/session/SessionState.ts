@@ -45,9 +45,9 @@ export class SessionState {
     bobPreKeyBundle: PreKeyBundle,
   ): SessionState {
     const masterKey = ArrayUtil.concatenate_array_buffers([
-      SecretKey.shared_secret(bobPreKeyBundle.public_key, aliceIdentityPair.secret_key.sec_curve),
-      SecretKey.shared_secret(bobPreKeyBundle.identity_key.public_key, aliceBase.secret_key.sec_curve),
-      SecretKey.shared_secret(bobPreKeyBundle.public_key, aliceBase.secret_key.sec_curve),
+      SecretKey.shared_secret(bobPreKeyBundle.public_key, aliceIdentityPair.secret_key),
+      SecretKey.shared_secret(bobPreKeyBundle.identity_key.public_key, aliceBase.secret_key),
+      SecretKey.shared_secret(bobPreKeyBundle.public_key, aliceBase.secret_key),
     ]);
 
     const derivedSecrets = DerivedSecrets.kdf_without_salt(masterKey, 'handshake');
@@ -72,9 +72,9 @@ export class SessionState {
     aliceBase: PublicKey,
   ): SessionState {
     const masterKey = ArrayUtil.concatenate_array_buffers([
-      SecretKey.shared_secret(aliceIdent.public_key, bobPrekey.secret_key.sec_curve),
-      SecretKey.shared_secret(aliceBase, bobIdent.secret_key.sec_curve),
-      SecretKey.shared_secret(aliceBase, bobPrekey.secret_key.sec_curve),
+      SecretKey.shared_secret(aliceIdent.public_key, bobPrekey.secret_key),
+      SecretKey.shared_secret(aliceBase, bobIdent.secret_key),
+      SecretKey.shared_secret(aliceBase, bobPrekey.secret_key),
     ]);
 
     const derivedSecrets = DerivedSecrets.kdf_without_salt(masterKey, 'handshake');
