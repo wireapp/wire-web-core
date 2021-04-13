@@ -120,7 +120,7 @@ export class SessionState {
    */
   encrypt(
     identityKey: IdentityKey,
-    pending: (number | PublicKey)[] | null,
+    pending: [number, PublicKey] | null,
     tag: SessionTag,
     plaintext: string | Uint8Array,
   ): Envelope {
@@ -135,7 +135,7 @@ export class SessionState {
     );
 
     if (pending) {
-      message = new PreKeyMessage(pending[0] as number, pending[1] as PublicKey, identityKey, message as CipherMessage);
+      message = new PreKeyMessage(pending[0], pending[1], identityKey, message as CipherMessage);
     }
 
     const envelope = new Envelope(msgkeys.mac_key, message);
