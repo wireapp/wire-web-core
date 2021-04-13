@@ -47,10 +47,10 @@ export class CipherKey {
     return this.encrypt(ciphertext, nonce);
   }
 
-  encode(encoder: Encoder): Encoder {
+  static encode(encoder: Encoder, cipherKey: CipherKey): Encoder {
     encoder.object(CipherKey.propertiesLength);
     encoder.u8(0);
-    return encoder.bytes(this.key);
+    return encoder.bytes(cipherKey.key);
   }
 
   static decode(decoder: Decoder): CipherKey {

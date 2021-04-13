@@ -39,10 +39,10 @@ export class IdentityKey {
     return this.public_key.fingerprint();
   }
 
-  encode(encoder: Encoder): Encoder {
+  static encode(encoder: Encoder, identityKey: IdentityKey): Encoder {
     encoder.object(IdentityKey.propertiesLength);
     encoder.u8(0);
-    return this.public_key.encode(encoder);
+    return PublicKey.encode(encoder, identityKey.public_key);
   }
 
   static decode(decoder: Decoder): IdentityKey {

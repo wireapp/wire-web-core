@@ -44,7 +44,7 @@ export class Envelope {
   /** @returns The serialized message envelope */
   serialise(): ArrayBuffer {
     const encoder = new Encoder();
-    this.encode(encoder);
+    Envelope.encode(encoder, this);
     return encoder.get_buffer();
   }
 
@@ -53,18 +53,18 @@ export class Envelope {
     return Envelope.decode(decoder);
   }
 
-  encode(encoder: Encoder): Encoder {
+  static encode(encoder: Encoder, envelope: Envelope): Encoder {
     encoder.object(3);
     encoder.u8(0);
-    encoder.u8(this.version);
+    encoder.u8(envelope.version);
 
     encoder.u8(1);
     encoder.object(1);
     encoder.u8(0);
-    encoder.bytes(this.mac);
+    encoder.bytes(envelope.mac);
 
     encoder.u8(2);
-    return encoder.bytes(this._message_enc);
+    return encoder.bytes(envelope._message_enc);
   }
 
   static decode(decoder: Decoder): Envelope {

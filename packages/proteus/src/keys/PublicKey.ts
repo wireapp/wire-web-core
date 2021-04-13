@@ -46,10 +46,10 @@ export class PublicKey {
     return sodium.to_hex(this.pub_edward);
   }
 
-  encode(encoder: Encoder): Encoder {
+  static encode(encoder: Encoder, publicKey: PublicKey): Encoder {
     encoder.object(PublicKey.propertiesLength);
     encoder.u8(0);
-    return encoder.bytes(this.pub_edward);
+    return encoder.bytes(publicKey.pub_edward);
   }
 
   static decode(decoder: Decoder): PublicKey {

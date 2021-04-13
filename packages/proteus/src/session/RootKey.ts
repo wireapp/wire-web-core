@@ -50,10 +50,10 @@ export class RootKey {
     return [RootKey.from_cipher_key(derivedSecrets.cipher_key), ChainKey.from_mac_key(derivedSecrets.mac_key, 0)];
   }
 
-  encode(encoder: Encoder): Encoder {
+  static encode(encoder: Encoder, rootKey: RootKey): Encoder {
     encoder.object(RootKey.propertiesLength);
     encoder.u8(0);
-    return this.key.encode(encoder);
+    return CipherKey.encode(encoder, rootKey.key);
   }
 
   static decode(decoder: Decoder): RootKey {

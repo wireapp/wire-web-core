@@ -286,7 +286,7 @@ export class Session {
 
   serialise(): ArrayBuffer {
     const encoder = new Encoder();
-    this.encode(encoder);
+    Session.encode(encoder, this);
     return encoder.get_buffer();
   }
 
@@ -295,36 +295,36 @@ export class Session {
     return this.decode(local_identity, decoder);
   }
 
-  encode(encoder: Encoder): void {
+  static encode(encoder: Encoder, session: Session): void {
     encoder.object(6);
     encoder.u8(0);
-    encoder.u8(this.version);
+    encoder.u8(session.version);
     encoder.u8(1);
-    this.session_tag.encode(encoder);
+    SessionTag.encode(encoder, session.session_tag);
     encoder.u8(2);
-    this.local_identity.public_key.encode(encoder);
+    IdentityKey.encode(encoder, session.local_identity.public_key);
     encoder.u8(3);
-    this.remote_identity.encode(encoder);
+    IdentityKey.encode(encoder, session.remote_identity);
 
     encoder.u8(4);
-    if (this.pending_prekey) {
+    if (session.pending_prekey) {
       encoder.object(2);
       encoder.u8(0);
-      encoder.u16(this.pending_prekey[0] as number);
+      encoder.u16(session.pending_prekey[0]);
       encoder.u8(1);
-      (this.pending_prekey[1] as PublicKey).encode(encoder);
+      PublicKey.encode(encoder, session.pending_prekey[1]);
     } else {
       encoder.null();
     }
 
     encoder.u8(5);
-    const sessionStatesIndices = Object.keys(this.session_states);
+    const sessionStatesIndices = Object.keys(session.session_states);
     encoder.object(sessionStatesIndices.length);
 
     for (const sessionStatesIndex of sessionStatesIndices) {
-      const state = this.session_states[sessionStatesIndex];
-      state.tag.encode(encoder);
-      state.state.encode(encoder);
+      const state = session.session_states[sessionStatesIndex];
+      SessionTag.encode(encoder, state.tag);
+      SessionState.encode(encoder, state.state);
     }
   }
 

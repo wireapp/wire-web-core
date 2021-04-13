@@ -56,10 +56,10 @@ export class SecretKey {
     return sharedSecret;
   }
 
-  encode(encoder: Encoder): Encoder {
+  static encode(encoder: Encoder, secretKey: SecretKey): Encoder {
     encoder.object(SecretKey.propertiesLength);
     encoder.u8(0);
-    return encoder.bytes(this.sec_edward);
+    return encoder.bytes(secretKey.sec_edward);
   }
 
   static decode(decoder: Decoder): SecretKey {

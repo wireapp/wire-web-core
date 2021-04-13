@@ -69,14 +69,14 @@ export class KeyPair {
     }
   }
 
-  encode(encoder: Encoder): Encoder {
+  static encode(encoder: Encoder, keyPair: KeyPair): Encoder {
     encoder.object(KeyPair.propertiesLength);
 
     encoder.u8(0);
-    this.secret_key.encode(encoder);
+    SecretKey.encode(encoder, keyPair.secret_key);
 
     encoder.u8(1);
-    this.public_key.encode(encoder);
+    PublicKey.encode(encoder, keyPair.public_key);
 
     return encoder;
   }

@@ -48,12 +48,12 @@ export class ChainKey {
     return new MessageKeys(derivedSecrets.cipher_key, derivedSecrets.mac_key, this.idx);
   }
 
-  encode(encoder: Encoder): Encoder {
+  static encode(encoder: Encoder, chainKey: ChainKey): Encoder {
     encoder.object(ChainKey.propertiesLength);
     encoder.u8(0);
-    this.key.encode(encoder);
+    MacKey.encode(encoder, chainKey.key);
     encoder.u8(1);
-    return encoder.u32(this.idx);
+    return encoder.u32(chainKey.idx);
   }
 
   static decode(decoder: Decoder): ChainKey {

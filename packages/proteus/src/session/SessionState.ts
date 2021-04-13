@@ -188,7 +188,7 @@ export class SessionState {
 
   serialise(): ArrayBuffer {
     const encoder = new Encoder();
-    this.encode(encoder);
+    SessionState.encode(encoder, this);
     return encoder.get_buffer();
   }
 
@@ -196,17 +196,17 @@ export class SessionState {
     return SessionState.decode(new Decoder(buf));
   }
 
-  encode(encoder: Encoder): Encoder {
+  static encode(encoder: Encoder, sessionState: SessionState): Encoder {
     encoder.object(SessionState.propertiesLength);
     encoder.u8(0);
-    encoder.array(this.recv_chains.length);
-    this.recv_chains.map(rch => rch.encode(encoder));
+    encoder.array(sessionState.recv_chains.length);
+    sessionState.recv_chains.map(rch => RecvChain.encode(encoder, rch));
     encoder.u8(1);
-    this.send_chain.encode(encoder);
+    SendChain.encode(encoder, sessionState.send_chain);
     encoder.u8(2);
-    this.root_key.encode(encoder);
+    RootKey.encode(encoder, sessionState.root_key);
     encoder.u8(3);
-    return encoder.u32(this.prev_counter);
+    return encoder.u32(sessionState.prev_counter);
   }
 
   static decode(decoder: Decoder): SessionState {
