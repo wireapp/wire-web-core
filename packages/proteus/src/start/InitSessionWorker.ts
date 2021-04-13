@@ -28,9 +28,9 @@ interface SessionCreationOptions {
   workerPath: string;
 }
 
-async function createSession({ownIdentity, preKeyBundles}: SessionCreationOptions): Promise<ArrayBuffer[]> {
+async function createSession({ownIdentity, preKeyBundles}: SessionCreationOptions): Promise<Session[]> {
   await init();
-  return preKeyBundles.map(pkb => Session.init_from_prekey(ownIdentity, pkb).serialise());
+  return preKeyBundles.map(pkb => Session.init_from_prekey(ownIdentity, pkb));
 }
 
 void createSession(workerData).then(session => parentPort?.postMessage(session));

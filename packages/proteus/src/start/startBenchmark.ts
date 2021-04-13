@@ -42,9 +42,9 @@ function createThreadedSessions(ownIdentity: IdentityKeyPair, preKeyBundles: Pre
         workerPath: path.resolve(__dirname, 'InitSessionWorker.ts'),
       },
     });
-    worker.on('message', (sessions: ArrayBuffer[]) => {
-      const deserializedSessions = sessions.map(session => Session.deserialise(ownIdentity, session));
-      resolve(deserializedSessions);
+    worker.on('message', (sessions: Session[]) => {
+      // const deserializedSessions = sessions.map(session => Session.deserialise(ownIdentity, session));
+      resolve(sessions);
     });
     worker.on('error', reject);
     worker.on('exit', code => {
@@ -58,7 +58,7 @@ function createThreadedSessions(ownIdentity: IdentityKeyPair, preKeyBundles: Pre
 async function main() {
   await init();
 
-  const amountOfUsers = 500;
+  const amountOfUsers = 1;
   const clientsPerUser = 8;
   const amountOfRemoteIdentities = amountOfUsers * clientsPerUser;
 
@@ -101,7 +101,7 @@ async function main() {
   performance.measure(`Initializing "${sessions.length}" sessions`, 'sessionsStart', 'sessionsStop');
 
   performance.mark('encryptStart');
-  const envelopes = sessions.map(session => session.encrypt('Hello, World!'));
+  const envelopes = sessions.map(session => Session.encrypt(session, 'Hello, World!'));
   performance.mark('encryptStop');
   performance.measure(`Encrypting "${envelopes.length}" texts`, 'encryptStart', 'encryptStop');
 }

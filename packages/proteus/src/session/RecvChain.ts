@@ -77,11 +77,11 @@ export class RecvChain {
     let chainKey = this.chain_key;
 
     for (let index = 0; index <= num - 1; index++) {
-      messageKeys.push(chainKey.message_keys());
-      chainKey = chainKey.next();
+      messageKeys.push(ChainKey.message_keys(chainKey));
+      chainKey = ChainKey.next(chainKey);
     }
 
-    const messageKey = chainKey.message_keys();
+    const messageKey = ChainKey.message_keys(chainKey);
     return [chainKey, messageKey, messageKeys];
   }
 

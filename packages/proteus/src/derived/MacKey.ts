@@ -33,8 +33,8 @@ export class MacKey {
   }
 
   /** Hash-based message authentication code */
-  sign(msg: string | Uint8Array): Uint8Array {
-    return sodium.crypto_auth_hmacsha256(msg, this.key);
+  static sign(macKey: MacKey, msg: string | Uint8Array): Uint8Array {
+    return sodium.crypto_auth_hmacsha256(msg, macKey.key);
   }
 
   /**
