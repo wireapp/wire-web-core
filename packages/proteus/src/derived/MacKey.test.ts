@@ -34,7 +34,7 @@ describe('Mac Key', () => {
     const mac_key = new MacKey(typed_key_material);
     const message = sodium.from_string('hello');
 
-    const authentication_code = mac_key.sign(message);
+    const authentication_code = MacKey.sign(mac_key, message);
 
     // prettier-ignore
     const expected = new Uint8Array([67, 82, 178, 110, 51, 254, 13, 118, 154, 137, 34, 166, 186, 41, 0, 65, 9, 240, 22, 136, 226, 106, 204, 158, 108, 179, 71, 229, 165, 175, 196, 218]);
@@ -63,7 +63,7 @@ describe('Mac Key', () => {
 
     const mac_key = new MacKey(key);
 
-    const signature = mac_key.sign(msg);
+    const signature = MacKey.sign(mac_key, msg);
 
     expect(mac_key.verify(signature, msg)).toBe(true);
   });
@@ -71,7 +71,7 @@ describe('Mac Key', () => {
   it('verifies calculated data', async () => {
     const mac_key = new MacKey(new Uint8Array(32).fill(1));
     const msg = sodium.from_string('This is my great message in Proteus!');
-    const signature = mac_key.sign(msg);
+    const signature = MacKey.sign(mac_key, msg);
 
     expect(mac_key.verify(signature, msg)).toBe(true);
   });

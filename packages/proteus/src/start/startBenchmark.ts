@@ -42,10 +42,7 @@ function createThreadedSessions(ownIdentity: IdentityKeyPair, preKeyBundles: Pre
         workerPath: path.resolve(__dirname, 'InitSessionWorker.ts'),
       },
     });
-    worker.on('message', (sessions: Session[]) => {
-      // const deserializedSessions = sessions.map(session => Session.deserialise(ownIdentity, session));
-      resolve(sessions);
-    });
+    worker.on('message', resolve);
     worker.on('error', reject);
     worker.on('exit', code => {
       if (code !== 0) {
@@ -58,7 +55,7 @@ function createThreadedSessions(ownIdentity: IdentityKeyPair, preKeyBundles: Pre
 async function main() {
   await init();
 
-  const amountOfUsers = 1;
+  const amountOfUsers = 500;
   const clientsPerUser = 8;
   const amountOfRemoteIdentities = amountOfUsers * clientsPerUser;
 
