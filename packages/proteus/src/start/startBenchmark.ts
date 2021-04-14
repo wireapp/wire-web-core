@@ -21,11 +21,32 @@ import {performance, PerformanceObserver} from 'perf_hooks';
 import {init} from '@wireapp/proteus';
 import * as os from 'os';
 import * as path from 'path';
-import {Worker} from 'worker_threads';
+import {Worker, MessageChannel} from 'worker_threads';
 import {IdentityKeyPair, PreKey, PreKeyBundle} from '../keys';
 import {Session} from '../session';
 
 const useThreading = process.argv.includes('--parallel');
+
+function spawnWorker(callback: (value: Session[]) => any) {
+  const {port1, port2} = new MessageChannel();
+
+  const worker = new Worker(path.resolve('src/worker.js'), {
+    workerData: {
+      workerPath: path.resolve(__dirname, 'InitSessionWorker.ts'),
+    },
+  });
+
+  port1.on('message', callback);
+
+  return worker;
+
+  return {
+    toWorker: (data: {ownIdentity: IdentityKeyPair; preKeyBundles: PreKeyBundle[]}) => {
+      worker.postMessage({port: port2, value: data});
+    },
+    worker,
+  };
+}
 
 function chunkArray<T>(array: T[], size: number): T[][] {
   return Array.from({length: Math.ceil(array.length / size)}, (_, index) =>
@@ -84,6 +105,11 @@ async function main() {
   let sessions: Session[] = [];
 
   if (useThreading) {
+    performance.mark('workerPoolStart');
+    const workers = Array.from({length: amountOfThreads}).map(() => spawnWorker(() => {}));
+    performance.mark('workerPoolStop');
+    performance.measure(`Creating "${workers.length}" worker threads`, 'workerPoolStart', 'workerPoolStop');
+
     console.info(
       `Splitting "${preKeyBundles.length}" pre-key bundles into "${preKeyBundleChunks.length}" chunks with "${bundlesPerThread}" bundles each...`,
     );
