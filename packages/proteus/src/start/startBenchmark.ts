@@ -29,6 +29,7 @@ import type {SessionCreationOptions} from './InitSessionWorker';
 const useThreading = process.argv.includes('--parallel');
 
 function spawnWorker(): {
+  closeConnection: () => void;
   initSessions: (data: SessionCreationOptions) => Promise<Session[]>;
 } {
   const {port1, port2} = new MessageChannel();
@@ -40,6 +41,10 @@ function spawnWorker(): {
   });
 
   return {
+    closeConnection: () => {
+      port1.close();
+      port2.close();
+    },
     initSessions: (data: SessionCreationOptions): Promise<Session[]> => {
       return new Promise((resolve, reject) => {
         worker.postMessage({port: port2, value: data}, [port2]);
@@ -104,6 +109,7 @@ async function main() {
         preKeyBundles,
       });
       sessions.push(...sessionChunks);
+      workers[i].closeConnection();
     }
   } else {
     sessions = preKeyBundles.map(pkb => Session.init_from_prekey(ownIdentity, pkb));

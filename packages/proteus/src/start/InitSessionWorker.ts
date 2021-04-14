@@ -36,4 +36,5 @@ parentPort?.on('message', async (message: {port: MessagePort; value: SessionCrea
   const {ownIdentity, preKeyBundles} = message.value;
   const sessions = await createSessions(ownIdentity, preKeyBundles);
   message.port.postMessage(sessions);
+  message.port.close();
 });
