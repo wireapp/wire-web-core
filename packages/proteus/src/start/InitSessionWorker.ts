@@ -17,15 +17,14 @@
  *
  */
 
-import {parentPort} from 'worker_threads';
+import {parentPort, MessagePort} from 'worker_threads';
 import {Session} from '../session';
 import {IdentityKeyPair, PreKeyBundle} from '../keys';
 import {init} from '../';
 
-interface SessionCreationOptions {
+export interface SessionCreationOptions {
   ownIdentity: IdentityKeyPair;
   preKeyBundles: PreKeyBundle[];
-  workerPath: string;
 }
 
 async function createSessions(ownIdentity: IdentityKeyPair, preKeyBundles: PreKeyBundle[]): Promise<Session[]> {
@@ -33,7 +32,8 @@ async function createSessions(ownIdentity: IdentityKeyPair, preKeyBundles: PreKe
   return preKeyBundles.map(pkb => Session.init_from_prekey(ownIdentity, pkb));
 }
 
-parentPort?.on('message', async ({ownIdentity, preKeyBundles}: SessionCreationOptions) => {
+parentPort?.on('message', async (message: {port: MessagePort; value: SessionCreationOptions}) => {
+  const {ownIdentity, preKeyBundles} = message.value;
   const sessions = await createSessions(ownIdentity, preKeyBundles);
-  parentPort?.postMessage(sessions);
+  message.port.postMessage(sessions);
 });
