@@ -32,7 +32,7 @@ function spawnWorker(): {
   closeConnection: () => void;
   initSessions: (data: SessionCreationOptions) => Promise<Session[]>;
 } {
-  const {port1, port2} = new MessageChannel();
+  const {port1: fromWorker, port2: toWorker} = new MessageChannel();
 
   const worker = new Worker(path.resolve('src/worker.js'), {
     workerData: {
@@ -42,14 +42,14 @@ function spawnWorker(): {
 
   return {
     closeConnection: () => {
-      port1.close();
-      port2.close();
+      fromWorker.close();
+      toWorker.close();
     },
     initSessions: (data: SessionCreationOptions): Promise<Session[]> => {
       return new Promise((resolve, reject) => {
-        worker.postMessage({port: port2, value: data}, [port2]);
-        port1.on('message', resolve);
-        port1.on('messageerror', reject);
+        worker.postMessage({port: toWorker, value: data}, [toWorker]);
+        fromWorker.on('message', resolve);
+        fromWorker.on('messageerror', reject);
       });
     },
   };
