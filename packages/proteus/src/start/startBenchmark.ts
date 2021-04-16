@@ -21,35 +21,44 @@ import {performance, PerformanceObserver} from 'perf_hooks';
 import {init} from '@wireapp/proteus';
 import * as os from 'os';
 import * as path from 'path';
-import {Worker} from 'worker_threads';
+import {Worker, MessageChannel} from 'worker_threads';
 import {IdentityKeyPair, PreKey, PreKeyBundle} from '../keys';
 import {Session} from '../session';
+import type {SessionCreationOptions} from './InitSessionWorker';
 
 const useThreading = process.argv.includes('--parallel');
+
+function spawnWorker(): {
+  closeConnection: () => void;
+  initSessions: (data: SessionCreationOptions) => Promise<Session[]>;
+} {
+  const {port1: fromWorker, port2: toWorker} = new MessageChannel();
+
+  const worker = new Worker(path.resolve('src/worker.js'), {
+    workerData: {
+      workerPath: path.resolve(__dirname, 'InitSessionWorker.ts'),
+    },
+  });
+
+  return {
+    closeConnection: () => {
+      fromWorker.close();
+      toWorker.close();
+    },
+    initSessions: (data: SessionCreationOptions): Promise<Session[]> => {
+      return new Promise((resolve, reject) => {
+        worker.postMessage({port: toWorker, value: data}, [toWorker]);
+        fromWorker.on('message', resolve);
+        fromWorker.on('messageerror', reject);
+      });
+    },
+  };
+}
 
 function chunkArray<T>(array: T[], size: number): T[][] {
   return Array.from({length: Math.ceil(array.length / size)}, (_, index) =>
     array.slice(index * size, index * size + size),
   );
-}
-
-function createThreadedSessions(ownIdentity: IdentityKeyPair, preKeyBundles: PreKeyBundle[]): Promise<Session[]> {
-  return new Promise((resolve, reject) => {
-    const worker = new Worker(path.resolve('src/worker.js'), {
-      workerData: {
-        ownIdentity,
-        preKeyBundles,
-        workerPath: path.resolve(__dirname, 'InitSessionWorker.ts'),
-      },
-    });
-    worker.on('message', resolve);
-    worker.on('error', reject);
-    worker.on('exit', code => {
-      if (code !== 0) {
-        reject(new Error(`Worker exited with code "${code}".`));
-      }
-    });
-  });
 }
 
 async function main() {
@@ -84,12 +93,24 @@ async function main() {
   let sessions: Session[] = [];
 
   if (useThreading) {
+    performance.mark('workerPoolStart');
+    const workers = Array.from({length: amountOfThreads}, () => spawnWorker());
+    performance.mark('workerPoolStop');
+    performance.measure(`Creating "${workers.length}" worker threads`, 'workerPoolStart', 'workerPoolStop');
+
     console.info(
       `Splitting "${preKeyBundles.length}" pre-key bundles into "${preKeyBundleChunks.length}" chunks with "${bundlesPerThread}" bundles each...`,
     );
-    const sessionsFromThreads = preKeyBundleChunks.map(sessions => createThreadedSessions(ownIdentity, sessions));
-    const sessionChunks = await Promise.all(sessionsFromThreads);
-    sessions = sessions.concat(...sessionChunks);
+
+    for (let i = 0; i < preKeyBundleChunks.length; i++) {
+      const preKeyBundles = preKeyBundleChunks[i];
+      const sessionChunks = await workers[i].initSessions({
+        ownIdentity,
+        preKeyBundles,
+      });
+      sessions.push(...sessionChunks);
+      workers[i].closeConnection();
+    }
   } else {
     sessions = preKeyBundles.map(pkb => Session.init_from_prekey(ownIdentity, pkb));
   }
