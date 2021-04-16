@@ -94,7 +94,7 @@ async function main() {
 
   if (useThreading) {
     performance.mark('workerPoolStart');
-    const workers = Array.from({length: amountOfThreads}).map(() => spawnWorker());
+    const workers = Array.from({length: amountOfThreads}, () => spawnWorker());
     performance.mark('workerPoolStop');
     performance.measure(`Creating "${workers.length}" worker threads`, 'workerPoolStart', 'workerPoolStop');
 
