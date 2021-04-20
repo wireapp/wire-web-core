@@ -84,8 +84,8 @@ describe('Cryptobox', () => {
     });
 
     it("throws an error when receiving a PreKey message that was encoded with a PreKey which does not exist anymore on the receiver's side", async () => {
-      const cryptobox = await import('../test/fixtures/qa-break-session/cryptobox.json');
-      const event = await import('../test/fixtures/qa-break-session/event.json');
+      const cryptobox = require('../test/fixtures/qa-break-session/cryptobox.json');
+      const event = require('../test/fixtures/qa-break-session/event.json');
       const sessionId = `${event.from}@${event.data.sender}`;
 
       const amountOfAlicePreKeys = Object.keys(cryptobox.prekeys).length;
