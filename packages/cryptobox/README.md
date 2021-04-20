@@ -15,9 +15,3 @@ Cryptobox provides a high-level API with persistent storage for the [Proteus](ht
 ```
 yarn add @wireapp/cryptobox
 ```
-
-### Usage
-
-#### Node.js
-
-- [demo.js](./src/demo/demo.js)

@@ -56,7 +56,7 @@ describe('CryptoboxSession', () => {
     await proteusInit();
   });
 
-  describe('"fingerprints"', () => {
+  describe('fingerprints"', () => {
     it('returns the local & remote fingerpint', async () => {
       const sessionWithBob = await setupAliceToBob(1, ProteusKeys.PreKey.MAX_PREKEY_ID);
       expect(alice.identity).toBeDefined();
@@ -66,7 +66,7 @@ describe('CryptoboxSession', () => {
     });
   });
 
-  describe('"encryption & decryption"', () => {
+  describe('encryption & decryption"', () => {
     const plaintext = 'Hello Bob, I am Alice.';
 
     it('encrypts a message from Alice which can be decrypted by Bob', async () => {
@@ -109,7 +109,7 @@ describe('CryptoboxSession', () => {
     });
   });
 
-  describe('"Session reset"', () => {
+  describe('Session reset"', () => {
     it('throws an error when a session is broken', async () => {
       const aliceEngine = new MemoryEngine();
       await aliceEngine.init('store-alice');

@@ -48,7 +48,7 @@ describe('cryptobox.store.CryptoboxCRUDStore', () => {
 
   afterEach(() => fs.remove(TEMP_DIRECTORY));
 
-  describe('"delete_all"', () => {
+  describe('delete_all"', () => {
     it('deletes everything from the storage', async () => {
       const alicePreKeys = ProteusKeys.PreKey.generate_prekeys(0, 10);
 
@@ -69,7 +69,7 @@ describe('cryptobox.store.CryptoboxCRUDStore', () => {
     });
   });
 
-  describe('"delete_prekey"', () => {
+  describe('delete_prekey"', () => {
     it('deletes a PreKey', async () => {
       const preKeyId = 0;
       const preKey = new ProteusKeys.PreKey(preKeyId);
@@ -81,7 +81,7 @@ describe('cryptobox.store.CryptoboxCRUDStore', () => {
     });
   });
 
-  describe('"load_prekey"', () => {
+  describe('load_prekey"', () => {
     it('saves and loads a single PreKey', async () => {
       const preKeyId = 0;
       const preKey = new ProteusKeys.PreKey(preKeyId);
@@ -94,7 +94,7 @@ describe('cryptobox.store.CryptoboxCRUDStore', () => {
     });
   });
 
-  describe('"load_prekeys"', () => {
+  describe('load_prekeys"', () => {
     it('loads multiple PreKeys', async () => {
       await Promise.all([
         fileStore.save_prekey(new ProteusKeys.PreKey(1)),
@@ -106,7 +106,7 @@ describe('cryptobox.store.CryptoboxCRUDStore', () => {
     });
   });
 
-  describe('"save_identity"', () => {
+  describe('save_identity"', () => {
     it('saves the local identity', async () => {
       const ikp = new ProteusKeys.IdentityKeyPair();
       const identity = await fileStore.save_identity(ikp);
@@ -114,7 +114,7 @@ describe('cryptobox.store.CryptoboxCRUDStore', () => {
     });
   });
 
-  describe('"save_prekeys"', () => {
+  describe('save_prekeys"', () => {
     it('saves multiple PreKeys', async () => {
       const preKeys = [new ProteusKeys.PreKey(0), new ProteusKeys.PreKey(ProteusKeys.PreKey.MAX_PREKEY_ID)];
 
@@ -123,7 +123,7 @@ describe('cryptobox.store.CryptoboxCRUDStore', () => {
     });
   });
 
-  describe('"update_session"', () => {
+  describe('update_session"', () => {
     it('updates an already persisted session', async () => {
       const aliceIdentity = new ProteusKeys.IdentityKeyPair();
       const bobIdentity = new ProteusKeys.IdentityKeyPair();
@@ -146,7 +146,7 @@ describe('cryptobox.store.CryptoboxCRUDStore', () => {
     });
   });
 
-  describe('"session_from_prekey"', () => {
+  describe('session_from_prekey"', () => {
     it('saves and caches a valid session from a serialized PreKey bundle', async () => {
       const alice = new Cryptobox(engine, 1);
       const sessionId = 'session_with_bob';

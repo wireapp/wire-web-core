@@ -35,7 +35,7 @@ describe('Cryptobox', () => {
     await proteusInit();
   });
 
-  describe('"encrypt / decrypt"', () => {
+  describe('encrypt / decrypt"', () => {
     it('encrypts messages for multiple clients and decrypts', async () => {
       const alice = await createCryptobox('alice');
       const text = 'Hello, World!';
@@ -104,7 +104,7 @@ describe('Cryptobox', () => {
     });
   });
 
-  describe('"serialize / deserialize"', () => {
+  describe('serialize / deserialize"', () => {
     it('can be used to export and import Cryptobox instances', async () => {
       // Test serialization
       const amountOfAlicePreKeys = 15;

@@ -63,7 +63,7 @@ describe('cryptobox.store.IndexedDB', () => {
     return new CryptoboxStore.CryptoboxCRUDStore(engine);
   }
 
-  describe('"create_session"', () => {
+  describe('create_session"', () => {
     it('saves a session with meta data', async () => {
       const store = await createStore();
 
@@ -86,7 +86,7 @@ describe('cryptobox.store.IndexedDB', () => {
     });
   });
 
-  describe('"update_session"', () => {
+  describe('update_session"', () => {
     it('updates an already persisted session', async () => {
       const store = await createStore();
 
@@ -112,7 +112,7 @@ describe('cryptobox.store.IndexedDB', () => {
     });
   });
 
-  describe('"session_from_prekey"', () => {
+  describe('session_from_prekey"', () => {
     it('saves and caches a valid session from a serialized PreKey bundle', async () => {
       const store = await createStore();
 
@@ -160,7 +160,7 @@ describe('cryptobox.store.IndexedDB', () => {
     });
   });
 
-  describe('"refill_prekeys"', () => {
+  describe('refill_prekeys"', () => {
     it('publishes refilled PreKeys when a Cryptobox is loaded', async () => {
       const aliceStore = await createStore();
       const alice = new Cryptobox(aliceStore['engine'], 2);

@@ -47,7 +47,7 @@ describe('cryptobox.Cryptobox', () => {
     await engine.init('cache');
   });
 
-  describe('"decrypt"', () => {
+  describe('decrypt"', () => {
     it("doesn't decrypt empty ArrayBuffers", async () => {
       const box = new Cryptobox(engine);
       const sessionId = 'sessionWithBob';
@@ -87,7 +87,7 @@ describe('cryptobox.Cryptobox', () => {
     });
   });
 
-  describe('"create"', () => {
+  describe('create"', () => {
     it('initializes a Cryptobox with a new identity and the last resort PreKey and saves these', async () => {
       const box = new Cryptobox(engine);
 
@@ -118,7 +118,7 @@ describe('cryptobox.Cryptobox', () => {
     });
   });
 
-  describe('"load"', () => {
+  describe('load"', () => {
     it('initializes a Cryptobox with an existing identity and the last resort PreKey', async () => {
       let box = new Cryptobox(engine, 4);
       let initialFingerPrint = undefined;
@@ -182,7 +182,7 @@ describe('cryptobox.Cryptobox', () => {
   });
 
   describe('PreKeys', () => {
-    describe('"serialize_prekey"', () => {
+    describe('serialize_prekey"', () => {
       it('generates a JSON format', async () => {
         const box = new Cryptobox(engine, 10);
         box.identity = new ProteusKeys.IdentityKeyPair();
@@ -215,7 +215,7 @@ describe('cryptobox.Cryptobox', () => {
       await box['session_save'](cryptoBoxSession);
     });
 
-    describe('"session_from_prekey"', () => {
+    describe('session_from_prekey"', () => {
       it('creates a session from a valid PreKey format', async () => {
         const remotePreKey = {
           id: 65535,
@@ -246,7 +246,7 @@ describe('cryptobox.Cryptobox', () => {
       });
     });
 
-    describe('"session_load"', () => {
+    describe('session_load"', () => {
       it('loads a session from the cache', async () => {
         spyOn<any>(box, 'load_session_from_cache').and.callThrough();
         spyOn(box['store'], 'read_session').and.callThrough();
@@ -258,7 +258,7 @@ describe('cryptobox.Cryptobox', () => {
       });
     });
 
-    describe('"encrypt"', () => {
+    describe('encrypt"', () => {
       it('saves the session after successful encryption', async () => {
         spyOn(box['store'], 'update_session').and.callThrough();
         const encryptedBuffer = await box.encrypt(sessionIdUnique, 'Hello World.');
