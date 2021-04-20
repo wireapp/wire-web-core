@@ -27,7 +27,6 @@
     "build": "tsc -p tsconfig.build.json",
     "clean": "rimraf \"src/**/!(*worker).{js,js.map,d.ts}\" .nyc_output coverage",
     "dist": "yarn clean && yarn build",
-    "start:benchmark": "ts-node ./src/start/startBenchmark.ts",
     "test": "cross-env NODE_DEBUG=@wireapp/cryptobox* nyc --nycrc-path=../../nyc.config.js jasmine --config=jasmine.json",
     "test:types": "tsc --noEmit"
   },
