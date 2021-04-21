@@ -1,6 +1,6 @@
 /*
  * Wire
- * Copyright (C) 2018 Wire Swiss GmbH
+ * Copyright (C) 2021 Wire Swiss GmbH
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,29 @@
  *
  */
 
-// traverse all test files for webpack dependency resolution
-const testsContext = (require as any).context('./', true, /test\.(browser|common)\.js$/);
-testsContext.keys().forEach(testsContext);
+import {Configuration} from 'webpack';
+
+const config: Configuration = {
+  externals: {
+    'fs-extra': '{}',
+  },
+  mode: 'production',
+  module: {
+    rules: [
+      {
+        exclude: /(node_modules)/,
+        loader: 'babel-loader',
+        test: /\.[tj]sx?$/,
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    fallback: {
+      crypto: false,
+      path: false,
+    },
+  },
+};
+
+export default config;
