@@ -16,6 +16,7 @@
  * along with this program. If not, see http://www.gnu.org/licenses/.
  *
  */
+
 import type {Config} from 'karma';
 import webpackConfig from './webpack.config';
 import {ConfigOptions} from 'karma';
