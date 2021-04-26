@@ -18,8 +18,10 @@
  */
 
 import {Decoder, Encoder} from '@wireapp/cbor';
-import {IdentityKey, PublicKey} from '../keys/';
-import {DecodeError, InputError} from '../errors/';
+import { DecodeError } from '../errors/DecodeError';
+import { InputError } from '../errors/InputError';
+import { IdentityKey } from '../keys/IdentityKey';
+import { PublicKey } from '../keys/PublicKey';
 import {CipherMessage} from './CipherMessage';
 import {Message} from './Message';
 
@@ -48,6 +50,13 @@ export class PreKeyMessage extends Message {
     IdentityKey.encode(encoder, preKeyMessage.identity_key);
     encoder.u8(3);
     return CipherMessage.encode(encoder, preKeyMessage.message);
+  }
+
+  serialise(): ArrayBuffer {
+    const encoder = new Encoder();
+    encoder.u8(2);
+    PreKeyMessage.encode(encoder, this);
+    return encoder.get_buffer();
   }
 
   static decode(decoder: Decoder): PreKeyMessage {

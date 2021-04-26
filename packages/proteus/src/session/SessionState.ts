@@ -18,14 +18,29 @@
  */
 
 import {Decoder, Encoder} from '@wireapp/cbor';
-import {ArrayUtil, MemoryUtil} from '../util/';
-import {DerivedSecrets} from '../derived/';
-import {IdentityKey, IdentityKeyPair, KeyPair, PreKeyBundle, PublicKey, SecretKey} from '../keys/';
-import {CipherMessage, Envelope, Message, PreKeyMessage, SessionTag} from '../message/';
-import {ChainKey, RecvChain, RootKey, SendChain, Session} from './';
-import {DecryptError, DecodeError} from '../errors';
+import { IdentityKeyPair } from '../keys/IdentityKeyPair';
+import { PreKeyBundle } from '../keys/PreKeyBundle';
+import { KeyPair } from '../keys/KeyPair';
+import { RecvChain } from './RecvChain';
+import { RootKey } from './RootKey';
+import { SendChain } from './SendChain';
+import { concatenate_array_buffers } from '../util/ArrayUtil';
+import { SecretKey } from '../keys/SecretKey';
+import { PublicKey } from '../keys/PublicKey';
+import { DerivedSecrets } from '../derived/DerivedSecrets';
+import { ChainKey } from './ChainKey';
+import { zeroize } from '../util/MemoryUtil';
+import { IdentityKey } from '../keys/IdentityKey';
+import { SessionTag } from '../message/SessionTag';
+import { Envelope } from '../message/Envelope';
+import { CipherMessage } from '../message/CipherMessage';
+import { PreKeyMessage } from '../message/PreKeyMessage';
+import { DecryptError } from '../errors/DecryptError';
+import { DecodeError } from '../errors/DecodeError';
 
 export class SessionState {
+  static MAX_RECV_CHAINS = 5;
+
   prev_counter: number;
   recv_chains: RecvChain[];
   root_key: RootKey;
@@ -44,14 +59,14 @@ export class SessionState {
     aliceBase: IdentityKeyPair | KeyPair,
     bobPreKeyBundle: PreKeyBundle,
   ): SessionState {
-    const masterKey = ArrayUtil.concatenate_array_buffers([
+    const masterKey = concatenate_array_buffers([
       SecretKey.shared_secret(bobPreKeyBundle.public_key, aliceIdentityPair.secret_key),
       SecretKey.shared_secret(bobPreKeyBundle.identity_key.public_key, aliceBase.secret_key),
       SecretKey.shared_secret(bobPreKeyBundle.public_key, aliceBase.secret_key),
     ]);
 
     const derivedSecrets = DerivedSecrets.kdf_without_salt(masterKey, 'handshake');
-    MemoryUtil.zeroize(masterKey);
+    zeroize(masterKey);
 
     const rootkey = RootKey.from_cipher_key(derivedSecrets.cipher_key);
     const chainkey = ChainKey.from_mac_key(derivedSecrets.mac_key, 0);
@@ -71,14 +86,14 @@ export class SessionState {
     aliceIdent: IdentityKey,
     aliceBase: PublicKey,
   ): SessionState {
-    const masterKey = ArrayUtil.concatenate_array_buffers([
+    const masterKey = concatenate_array_buffers([
       SecretKey.shared_secret(aliceIdent.public_key, bobPrekey.secret_key),
       SecretKey.shared_secret(aliceBase, bobIdent.secret_key),
       SecretKey.shared_secret(aliceBase, bobPrekey.secret_key),
     ]);
 
     const derivedSecrets = DerivedSecrets.kdf_without_salt(masterKey, 'handshake');
-    MemoryUtil.zeroize(masterKey);
+    zeroize(masterKey);
 
     const rootkey = RootKey.from_cipher_key(derivedSecrets.cipher_key);
     const chainkey = ChainKey.from_mac_key(derivedSecrets.mac_key, 0);
@@ -103,12 +118,12 @@ export class SessionState {
 
     this.recv_chains.unshift(receiveChain);
 
-    if (this.recv_chains.length > Session.MAX_RECV_CHAINS) {
-      for (let index = Session.MAX_RECV_CHAINS; index < this.recv_chains.length; index++) {
-        MemoryUtil.zeroize(this.recv_chains[index]);
+    if (this.recv_chains.length > SessionState.MAX_RECV_CHAINS) {
+      for (let index = SessionState.MAX_RECV_CHAINS; index < this.recv_chains.length; index++) {
+        zeroize(this.recv_chains[index]);
       }
 
-      this.recv_chains = this.recv_chains.slice(0, Session.MAX_RECV_CHAINS);
+      this.recv_chains = this.recv_chains.slice(0, SessionState.MAX_RECV_CHAINS);
     }
   }
 
@@ -127,7 +142,7 @@ export class SessionState {
   ): Envelope {
     const msgkeys = ChainKey.message_keys(sessionState.send_chain.chain_key);
 
-    let message: Message | CipherMessage = new CipherMessage(
+    let message: PreKeyMessage | CipherMessage = new CipherMessage(
       tag,
       sessionState.send_chain.chain_key.idx,
       sessionState.prev_counter,
@@ -136,7 +151,7 @@ export class SessionState {
     );
 
     if (pending) {
-      message = new PreKeyMessage(pending[0], pending[1], identityKey, message as CipherMessage);
+      message = new PreKeyMessage(pending[0], pending[1], identityKey, message);
     }
 
     const envelope = new Envelope(msgkeys.mac_key, message);

@@ -20,11 +20,11 @@
 /* eslint-disable no-magic-numbers */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import {DerivedSecrets} from '../derived';
-import {init} from '@wireapp/proteus';
+import {initProteus} from "../initProteus";
+import { DerivedSecrets } from './DerivedSecrets';
 
 beforeAll(async () => {
-  await init();
+  await initProteus();
 });
 
 describe('Key Derivation Function (KDF)', () => {

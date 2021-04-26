@@ -18,11 +18,11 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import {KeyDerivationUtil} from '../util';
-import {init} from '@wireapp/proteus';
+import {initProteus} from "../initProteus";
+import {hkdf} from "./KeyDerivationUtil";
 
 beforeAll(async () => {
-  await init();
+  await initProteus();
 });
 
 describe('HMAC RFC 5869 Test Vectors', () => {
@@ -40,7 +40,7 @@ describe('HMAC RFC 5869 Test Vectors', () => {
     const info = sodium.from_hex(vector.info);
     const length = vector.length;
 
-    const hkdfResult = KeyDerivationUtil.hkdf(salt, input, info, length);
+    const hkdfResult = hkdf(salt, input, info, length);
     const hexResult = sodium.to_hex(hkdfResult);
 
     expect(hexResult).toBe(vector.okm);
@@ -65,7 +65,7 @@ describe('HMAC RFC 5869 Test Vectors', () => {
     const info = sodium.from_hex(vector.info);
     const length = vector.length;
 
-    const hkdfResult = KeyDerivationUtil.hkdf(salt, input, info, length);
+    const hkdfResult = hkdf(salt, input, info, length);
     const hexResult = sodium.to_hex(hkdfResult);
 
     expect(hexResult).toBe(vector.okm);
@@ -86,7 +86,7 @@ describe('HMAC RFC 5869 Test Vectors', () => {
     const info = new Uint8Array(0);
     const length = vector.length;
 
-    const hkdfResult = KeyDerivationUtil.hkdf(salt, input, info, length);
+    const hkdfResult = hkdf(salt, input, info, length);
     const hexResult = sodium.to_hex(hkdfResult);
 
     expect(hexResult).toBe(vector.okm);
@@ -110,7 +110,7 @@ describe('HMAC Real World Scenarios', () => {
     const info = sodium.from_hex(vector.info);
     const length = vector.length;
 
-    const hkdfResult = KeyDerivationUtil.hkdf(salt, input, info, length);
+    const hkdfResult = hkdf(salt, input, info, length);
     const hexResult = sodium.to_hex(hkdfResult);
 
     expect(hexResult).toBe(vector.okm);

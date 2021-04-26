@@ -24,12 +24,10 @@ import type {CRUDEngine} from '@wireapp/store-engine';
 import {Decoder, Encoder} from 'bazinga64';
 import {EventEmitter} from 'events';
 import * as logdown from 'logdown';
-
 import {CryptoboxSession} from './CryptoboxSession';
 import {CryptoboxError, DecryptionError, InvalidPreKeyFormatError} from './error/';
 import type {SerializedCryptobox} from './SerializedCryptobox';
-import {CryptoboxCRUDStore} from './store/';
-
+import { CryptoboxCRUDStore } from './store/CryptoboxCRUDStore';
 const DEFAULT_CAPACITY = 1000;
 const {version}: {version: string} = require('../package.json');
 

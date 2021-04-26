@@ -17,8 +17,10 @@
  *
  */
 
-import {KeyDerivationUtil, MemoryUtil} from '../util/';
-import {CipherKey, MacKey} from './';
+import { hkdf } from "../util/KeyDerivationUtil";
+import { zeroize } from "../util/MemoryUtil";
+import { CipherKey } from "./CipherKey";
+import { MacKey } from "./MacKey";
 
 export class DerivedSecrets {
   readonly cipher_key: CipherKey;
@@ -32,12 +34,12 @@ export class DerivedSecrets {
   static kdf(input: Uint8Array | ArrayBuffer[], salt: Uint8Array, info: string): DerivedSecrets {
     const byteLength = 64;
 
-    const outputKeyMaterial = KeyDerivationUtil.hkdf(salt, input, info, byteLength);
+    const outputKeyMaterial = hkdf(salt, input, info, byteLength);
 
     const cipherKey = new Uint8Array(outputKeyMaterial.buffer.slice(0, 32));
     const macKey = new Uint8Array(outputKeyMaterial.buffer.slice(32, 64));
 
-    MemoryUtil.zeroize(outputKeyMaterial);
+    zeroize(outputKeyMaterial);
 
     return new DerivedSecrets(new CipherKey(cipherKey), new MacKey(macKey));
   }

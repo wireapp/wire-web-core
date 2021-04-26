@@ -19,7 +19,7 @@
 
 import * as sodium from 'libsodium-wrappers-sumo';
 import {Decoder, Encoder} from '@wireapp/cbor';
-import {DecodeError} from '../errors';
+import { DecodeError } from '../errors/DecodeError';
 
 export class CipherKey {
   readonly key: Uint8Array;

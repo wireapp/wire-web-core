@@ -18,6 +18,7 @@
  */
 
 import {Configuration} from 'webpack';
+import * as CircularDependencyPlugin from "circular-dependency-plugin";
 
 const config: Configuration = {
   externals: {
@@ -43,6 +44,13 @@ const config: Configuration = {
   optimization: {
     minimize: false
   },
+  plugins: [
+    new CircularDependencyPlugin({
+      failOnError: false,
+      allowAsyncCycles: false,
+      cwd: process.cwd(),
+    }) as any
+  ],
   stats: {
     errorDetails: true
   }

@@ -20,11 +20,11 @@
 /* eslint-disable no-magic-numbers */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import {MacKey} from '../derived';
-import {init} from '@wireapp/proteus';
+import {initProteus} from "../initProteus";
+import { MacKey } from './MacKey';
 
 beforeAll(async () => {
-  await init();
+  await initProteus();
 });
 
 describe('Mac Key', () => {

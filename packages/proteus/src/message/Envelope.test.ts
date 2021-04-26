@@ -18,9 +18,14 @@
  */
 
 import {DecodeError} from '@wireapp/cbor';
-import {MacKey} from '../derived';
-import {IdentityKey, KeyPair, PublicKey} from '../keys';
-import {CipherMessage, Envelope, PreKeyMessage, SessionTag} from '../message';
+import { MacKey } from '../derived/MacKey';
+import { PublicKey } from '../keys/PublicKey';
+import { IdentityKey } from '../keys/IdentityKey';
+import { KeyPair } from '../keys/KeyPair';
+import { SessionTag } from './SessionTag';
+import { CipherMessage } from './CipherMessage';
+import { Envelope } from './Envelope';
+import { PreKeyMessage } from './PreKeyMessage';
 
 describe('Envelope', () => {
   const mac_key = new MacKey(new Uint8Array(32).fill(1));

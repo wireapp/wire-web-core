@@ -17,8 +17,9 @@
  *
  */
 
-import {KeyPair, PreKey} from '../keys';
-import {MemoryUtil} from '../util';
+import { KeyPair } from "../keys/KeyPair";
+import { PreKey } from "../keys/PreKey";
+import { zeroize } from "./MemoryUtil";
 
 describe('MemoryUtil', () => {
   describe('zeroize', () => {
@@ -31,7 +32,7 @@ describe('MemoryUtil', () => {
 
       new Uint8Array(randomBuffer).fill(Math.random() * randomMax + randomMin);
 
-      MemoryUtil.zeroize(randomBuffer);
+      zeroize(randomBuffer);
       new Uint8Array(randomBuffer).every(value => expect(value).toBe(0));
     });
 
@@ -43,14 +44,14 @@ describe('MemoryUtil', () => {
       const randomArray = Uint8Array.from({length: arrayLength}, () => Math.random() * randomMax + randomMin);
 
       expect(randomArray.length).toBe(arrayLength);
-      MemoryUtil.zeroize(randomArray);
+      zeroize(randomArray);
       randomArray.every(value => expect(value).toBe(0));
     });
 
     it('deeply zeroizes a KeyPair', async () => {
       const keyPair = new KeyPair();
 
-      MemoryUtil.zeroize(keyPair);
+      zeroize(keyPair);
       keyPair.secret_key.sec_edward.every(value => expect(value).toBe(0));
       keyPair.secret_key.sec_curve.every(value => expect(value).toBe(0));
     });
@@ -58,7 +59,7 @@ describe('MemoryUtil', () => {
     it('deeply zeroizes a PreKey', async () => {
       const prekey = new PreKey(0);
 
-      MemoryUtil.zeroize(prekey);
+      zeroize(prekey);
       prekey.key_pair.secret_key.sec_edward.every(value => expect(value).toBe(0));
       prekey.key_pair.secret_key.sec_curve.every(value => expect(value).toBe(0));
     });

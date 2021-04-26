@@ -18,9 +18,10 @@
  */
 
 import {parentPort, MessagePort} from 'worker_threads';
-import {Session} from '../session';
-import {IdentityKeyPair, PreKeyBundle} from '../keys';
-import {init} from '../';
+import { IdentityKeyPair } from '../keys/IdentityKeyPair';
+import { PreKeyBundle } from '../keys/PreKeyBundle';
+import { Session } from '../session/Session';
+import {initProteus} from "../initProteus";
 
 export interface SessionCreationOptions {
   ownIdentity: IdentityKeyPair;
@@ -28,7 +29,7 @@ export interface SessionCreationOptions {
 }
 
 async function createSessions(ownIdentity: IdentityKeyPair, preKeyBundles: PreKeyBundle[]): Promise<Session[]> {
-  await init();
+  await initProteus();
   return preKeyBundles.map(pkb => Session.init_from_prekey(ownIdentity, pkb));
 }
 

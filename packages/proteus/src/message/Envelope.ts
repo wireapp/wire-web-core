@@ -18,9 +18,11 @@
  */
 
 import {Decoder, Encoder} from '@wireapp/cbor';
-import {MacKey} from '../derived/';
+import { MacKey } from '../derived/MacKey';
+import { DecodeError } from '../errors/DecodeError';
+import { CipherMessage } from './CipherMessage';
 import {Message} from './Message';
-import {DecodeError} from '../errors';
+import { PreKeyMessage } from './PreKeyMessage';
 
 export class Envelope {
   readonly _message_enc: Uint8Array;
@@ -82,7 +84,7 @@ export class Envelope {
       decoder.u8();
       const encodedMessage = new Uint8Array(decoder.bytes());
 
-      const message = Message.deserialise(encodedMessage.buffer);
+      const message = Envelope.deserialiseMessage(encodedMessage.buffer);
 
       const envelope = new Envelope(new MacKey(mac), message, version);
       envelope.mac = mac;
@@ -90,5 +92,18 @@ export class Envelope {
     }
 
     throw new DecodeError(`Unexpected number of properties: "${propertiesLength}"`);
+  }
+
+  static deserialiseMessage<T extends CipherMessage | PreKeyMessage>(buf: ArrayBuffer): T {
+    const decoder = new Decoder(buf);
+
+    switch (decoder.u8()) {
+      case 1:
+        return CipherMessage.decode(decoder) as T;
+      case 2:
+        return PreKeyMessage.decode(decoder) as T;
+      default:
+        throw new DecodeError.InvalidType('Unrecognised message type', DecodeError.CODE.CASE_302);
+    }
   }
 }

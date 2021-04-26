@@ -18,8 +18,8 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import {CipherKey} from '../derived';
-import {init} from '@wireapp/proteus';
+import {initProteus} from "../initProteus";
+import { CipherKey } from './CipherKey';
 
 interface Vector {
   key: string;
@@ -28,7 +28,7 @@ interface Vector {
 }
 
 beforeAll(async () => {
-  await init();
+  await initProteus();
 });
 
 describe('CipherKey sanity checks (IETF ChaCha20 test vectors)', () => {

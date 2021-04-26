@@ -20,12 +20,16 @@
 /* eslint-disable no-magic-numbers */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import {IdentityKey, PublicKey} from '../keys';
-import {CipherMessage, Message, PreKeyMessage, SessionTag} from '../message';
-import {init} from '@wireapp/proteus';
+import {initProteus} from "../initProteus";
+import {IdentityKey} from '../keys/IdentityKey';
+import {PublicKey} from '../keys/PublicKey';
+import {CipherMessage} from './CipherMessage';
+import {PreKeyMessage} from './PreKeyMessage';
+import {SessionTag} from './SessionTag';
+import {Envelope} from "./Envelope";
 
 beforeAll(async () => {
-  await init();
+  await initProteus();
 });
 
 describe('Message', () => {
@@ -61,7 +65,7 @@ describe('Message', () => {
     const bytes = new Uint8Array(msg.serialise());
     expect(expected).toBe(sodium.to_hex(bytes).toLowerCase());
 
-    const deserialised = Message.deserialise<CipherMessage>(bytes.buffer);
+    const deserialised = Envelope.deserialiseMessage<CipherMessage>(bytes.buffer);
     expect(deserialised.constructor).toBe(CipherMessage);
     expect(deserialised.ratchet_key.fingerprint()).toBe(ratchetKey.fingerprint());
   });
@@ -82,7 +86,7 @@ describe('Message', () => {
     const bytes = new Uint8Array(preKeyMessage.serialise());
     expect(expected).toBe(sodium.to_hex(bytes).toLowerCase());
 
-    const deserialised = Message.deserialise<PreKeyMessage>(bytes.buffer);
+    const deserialised = Envelope.deserialiseMessage<PreKeyMessage>(bytes.buffer);
     expect(deserialised.constructor).toBe(PreKeyMessage);
 
     expect(deserialised.base_key.fingerprint()).toBe(baseKey.fingerprint());

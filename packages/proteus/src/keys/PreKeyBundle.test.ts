@@ -18,11 +18,14 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import {IdentityKeyPair, PreKey, PreKeyAuth, PreKeyBundle} from '../keys';
-import {init} from '@wireapp/proteus';
+import {initProteus} from "../initProteus";
+import { IdentityKeyPair } from './IdentityKeyPair';
+import { PreKey } from './PreKey';
+import { PreKeyAuth } from './PreKeyAuth';
+import { PreKeyBundle } from './PreKeyBundle';
 
 beforeAll(async () => {
-  await init();
+  await initProteus();
 });
 
 describe('PreKeyBundle', () => {

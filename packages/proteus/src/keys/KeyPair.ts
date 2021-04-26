@@ -19,8 +19,10 @@
 
 import {Decoder, Encoder} from '@wireapp/cbor';
 import * as sodium from 'libsodium-wrappers-sumo';
-import {DecodeError, InputError} from '../errors';
-import {PublicKey, SecretKey} from './';
+import { DecodeError } from '../errors/DecodeError';
+import { InputError } from '../errors/InputError';
+import { PublicKey } from './PublicKey';
+import { SecretKey } from './SecretKey';
 
 /** Construct an ephemeral key pair. */
 export class KeyPair {

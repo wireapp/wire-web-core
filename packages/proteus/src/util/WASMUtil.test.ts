@@ -17,15 +17,14 @@
  *
  */
 
-import {WASMUtil} from '../util';
+import {isUsingWASM} from "./WASMUtil";
 
 describe('WASMUtil', () => {
   describe('isUsingWASM', () => {
     it('reports if the target environment supports WebAssembly', async () => {
       // To test the other way round, we would need to start Node.js
       // with the flag `--noexpose_wasm`.
-      const isUsingWASM = await WASMUtil.isUsingWASM();
-      expect(isUsingWASM).toBe(true);
+      expect(await isUsingWASM()).toBe(true);
     });
   });
 });

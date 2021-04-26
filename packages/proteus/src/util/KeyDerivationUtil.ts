@@ -18,8 +18,8 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-
-import {ArrayUtil, MemoryUtil} from '../util/';
+import {zeroize} from "./MemoryUtil";
+import {concatenate_array_buffers} from "./ArrayUtil";
 
 /**
  * HMAC-based Key Derivation Function
@@ -68,9 +68,9 @@ export function hkdf(
     let result = new Uint8Array(0);
 
     for (let index = 0; index <= numBlocks - 1; index++) {
-      const buf = ArrayUtil.concatenate_array_buffers([hmac, receivedInfo, new Uint8Array([index + 1])]);
+      const buf = concatenate_array_buffers([hmac, receivedInfo, new Uint8Array([index + 1])]);
       hmac = sodium.crypto_auth_hmacsha256(buf, tag);
-      result = ArrayUtil.concatenate_array_buffers([result, hmac]);
+      result = concatenate_array_buffers([result, hmac]);
     }
 
     return new Uint8Array(result.buffer.slice(0, receivedLength));
@@ -78,8 +78,8 @@ export function hkdf(
 
   const key = extract(salt, input);
 
-  MemoryUtil.zeroize(input);
-  MemoryUtil.zeroize(salt);
+  zeroize(input);
+  zeroize(salt);
 
   return expand(key, info, length);
 }
