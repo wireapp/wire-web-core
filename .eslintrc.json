@@ -18,7 +18,7 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "plugins": ["jasmine", "header"],
+  "plugins": ["jasmine"],
   "rules": {
     "id-length": "off",
     "no-dupe-class-members": "off",
