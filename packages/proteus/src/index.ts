@@ -24,7 +24,7 @@ export * as message from './message/';
 export * as session from './session/';
 export * as util from './util/';
 
-import {initProteus} from "./initProteus";
+import {initProteus} from './initProteus';
 
 export function init(): Promise<void> {
   return initProteus();

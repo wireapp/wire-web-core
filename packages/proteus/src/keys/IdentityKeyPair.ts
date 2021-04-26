@@ -18,10 +18,10 @@
  */
 
 import {Decoder, Encoder} from '@wireapp/cbor';
-import { DecodeError } from '../errors/DecodeError';
-import { IdentityKey } from './IdentityKey';
-import { KeyPair } from './KeyPair';
-import { SecretKey } from './SecretKey';
+import {DecodeError} from '../errors/DecodeError';
+import {IdentityKey} from './IdentityKey';
+import {KeyPair} from './KeyPair';
+import {SecretKey} from './SecretKey';
 
 export class IdentityKeyPair {
   readonly public_key: IdentityKey;

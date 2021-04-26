@@ -18,11 +18,11 @@
  */
 
 import {Decoder, Encoder} from '@wireapp/cbor';
-import { MacKey } from '../derived/MacKey';
-import { DecodeError } from '../errors/DecodeError';
-import { CipherMessage } from './CipherMessage';
+import {MacKey} from '../derived/MacKey';
+import {DecodeError} from '../errors/DecodeError';
+import {CipherMessage} from './CipherMessage';
 import {Message} from './Message';
-import { PreKeyMessage } from './PreKeyMessage';
+import {PreKeyMessage} from './PreKeyMessage';
 
 export class Envelope {
   readonly _message_enc: Uint8Array;

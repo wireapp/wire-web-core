@@ -20,13 +20,13 @@
 /* eslint-disable no-magic-numbers */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import {initProteus} from "../initProteus";
+import {initProteus} from '../initProteus';
 import {IdentityKey} from '../keys/IdentityKey';
 import {PublicKey} from '../keys/PublicKey';
 import {CipherMessage} from './CipherMessage';
 import {PreKeyMessage} from './PreKeyMessage';
 import {SessionTag} from './SessionTag';
-import {Envelope} from "./Envelope";
+import {Envelope} from './Envelope';
 
 beforeAll(async () => {
   await initProteus();

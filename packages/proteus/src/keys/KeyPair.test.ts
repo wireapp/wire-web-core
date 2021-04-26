@@ -17,8 +17,8 @@
  *
  */
 
-import { KeyPair } from "./KeyPair";
-import { SecretKey } from "./SecretKey";
+import {KeyPair} from './KeyPair';
+import {SecretKey} from './SecretKey';
 
 describe('KeyPair', () => {
   it('signs a message and verifies the signature', async () => {

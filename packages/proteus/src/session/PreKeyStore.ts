@@ -17,7 +17,7 @@
  *
  */
 
-import { PreKey } from "../keys/PreKey";
+import {PreKey} from '../keys/PreKey';
 
 export abstract class PreKeyStore {
   abstract load_prekey(prekeyId: number): Promise<PreKey | undefined>;

@@ -22,11 +22,11 @@ import * as os from 'os';
 import * as path from 'path';
 import {Worker, MessageChannel} from 'worker_threads';
 import type {SessionCreationOptions} from './InitSessionWorker';
-import { Session } from '../session/Session';
-import { PreKeyBundle } from '../keys/PreKeyBundle';
-import { IdentityKeyPair } from '../keys/IdentityKeyPair';
-import { PreKey } from '../keys/PreKey';
-import {initProteus} from "../initProteus";
+import {Session} from '../session/Session';
+import {PreKeyBundle} from '../keys/PreKeyBundle';
+import {IdentityKeyPair} from '../keys/IdentityKeyPair';
+import {PreKey} from '../keys/PreKey';
+import {initProteus} from '../initProteus';
 
 const useThreading = process.argv.includes('--parallel');
 

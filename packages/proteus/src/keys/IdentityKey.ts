@@ -18,7 +18,7 @@
  */
 
 import {Decoder, Encoder} from '@wireapp/cbor';
-import { DecodeError } from '../errors/DecodeError';
+import {DecodeError} from '../errors/DecodeError';
 import {PublicKey} from './PublicKey';
 
 /**

@@ -18,8 +18,8 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import {zeroize} from "./MemoryUtil";
-import {concatenate_array_buffers} from "./ArrayUtil";
+import {zeroize} from './MemoryUtil';
+import {concatenate_array_buffers} from './ArrayUtil';
 
 /**
  * HMAC-based Key Derivation Function

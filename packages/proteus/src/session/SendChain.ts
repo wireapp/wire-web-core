@@ -18,9 +18,9 @@
  */
 
 import {Decoder, Encoder} from '@wireapp/cbor';
-import { DecodeError } from '../errors/DecodeError';
-import { KeyPair } from '../keys/KeyPair';
-import { ChainKey } from './ChainKey';
+import {DecodeError} from '../errors/DecodeError';
+import {KeyPair} from '../keys/KeyPair';
+import {ChainKey} from './ChainKey';
 
 export class SendChain {
   chain_key: ChainKey;

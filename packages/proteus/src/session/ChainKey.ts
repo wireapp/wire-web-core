@@ -18,9 +18,9 @@
  */
 
 import {Decoder, Encoder} from '@wireapp/cbor';
-import { DerivedSecrets } from '../derived/DerivedSecrets';
-import { MacKey } from '../derived/MacKey';
-import { DecodeError } from '../errors/DecodeError';
+import {DerivedSecrets} from '../derived/DerivedSecrets';
+import {MacKey} from '../derived/MacKey';
+import {DecodeError} from '../errors/DecodeError';
 import {MessageKeys} from './MessageKeys';
 
 export class ChainKey {
@@ -72,4 +72,3 @@ export class ChainKey {
     throw new DecodeError(`Unexpected number of properties: "${propertiesLength}"`);
   }
 }
-

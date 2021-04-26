@@ -18,10 +18,10 @@
  */
 
 import {parentPort, MessagePort} from 'worker_threads';
-import { IdentityKeyPair } from '../keys/IdentityKeyPair';
-import { PreKeyBundle } from '../keys/PreKeyBundle';
-import { Session } from '../session/Session';
-import {initProteus} from "../initProteus";
+import {IdentityKeyPair} from '../keys/IdentityKeyPair';
+import {PreKeyBundle} from '../keys/PreKeyBundle';
+import {Session} from '../session/Session';
+import {initProteus} from '../initProteus';
 
 export interface SessionCreationOptions {
   ownIdentity: IdentityKeyPair;

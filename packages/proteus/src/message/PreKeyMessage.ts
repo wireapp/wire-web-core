@@ -18,10 +18,10 @@
  */
 
 import {Decoder, Encoder} from '@wireapp/cbor';
-import { DecodeError } from '../errors/DecodeError';
-import { InputError } from '../errors/InputError';
-import { IdentityKey } from '../keys/IdentityKey';
-import { PublicKey } from '../keys/PublicKey';
+import {DecodeError} from '../errors/DecodeError';
+import {InputError} from '../errors/InputError';
+import {IdentityKey} from '../keys/IdentityKey';
+import {PublicKey} from '../keys/PublicKey';
 import {CipherMessage} from './CipherMessage';
 import {Message} from './Message';
 

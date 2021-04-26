@@ -20,8 +20,8 @@
 /* eslint-disable no-magic-numbers */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import {initProteus} from "../initProteus";
-import { MacKey } from './MacKey';
+import {initProteus} from '../initProteus';
+import {MacKey} from './MacKey';
 
 beforeAll(async () => {
   await initProteus();

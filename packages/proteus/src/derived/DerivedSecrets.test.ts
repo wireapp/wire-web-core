@@ -20,8 +20,8 @@
 /* eslint-disable no-magic-numbers */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import {initProteus} from "../initProteus";
-import { DerivedSecrets } from './DerivedSecrets';
+import {initProteus} from '../initProteus';
+import {DerivedSecrets} from './DerivedSecrets';
 
 beforeAll(async () => {
   await initProteus();

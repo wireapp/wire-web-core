@@ -17,7 +17,7 @@
  *
  */
 
-import {isUsingWASM} from "./WASMUtil";
+import {isUsingWASM} from './WASMUtil';
 
 describe('WASMUtil', () => {
   describe('isUsingWASM', () => {

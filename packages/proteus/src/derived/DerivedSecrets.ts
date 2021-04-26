@@ -17,10 +17,10 @@
  *
  */
 
-import { hkdf } from "../util/KeyDerivationUtil";
-import { zeroize } from "../util/MemoryUtil";
-import { CipherKey } from "./CipherKey";
-import { MacKey } from "./MacKey";
+import {hkdf} from '../util/KeyDerivationUtil';
+import {zeroize} from '../util/MemoryUtil';
+import {CipherKey} from './CipherKey';
+import {MacKey} from './MacKey';
 
 export class DerivedSecrets {
   readonly cipher_key: CipherKey;

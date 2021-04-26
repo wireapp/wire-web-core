@@ -24,8 +24,8 @@ import {KeyPair} from '../keys/KeyPair';
 import {PublicKey} from '../keys/PublicKey';
 import {SecretKey} from '../keys/SecretKey';
 import {ChainKey} from './ChainKey';
-import {InputError} from "../errors/InputError";
-import { DecodeError } from '../errors/DecodeError';
+import {InputError} from '../errors/InputError';
+import {DecodeError} from '../errors/DecodeError';
 
 export class RootKey {
   readonly key: CipherKey;

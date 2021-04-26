@@ -18,25 +18,25 @@
  */
 
 import {Decoder, Encoder} from '@wireapp/cbor';
-import { IdentityKeyPair } from '../keys/IdentityKeyPair';
-import { PreKeyBundle } from '../keys/PreKeyBundle';
-import { KeyPair } from '../keys/KeyPair';
-import { RecvChain } from './RecvChain';
-import { RootKey } from './RootKey';
-import { SendChain } from './SendChain';
-import { concatenate_array_buffers } from '../util/ArrayUtil';
-import { SecretKey } from '../keys/SecretKey';
-import { PublicKey } from '../keys/PublicKey';
-import { DerivedSecrets } from '../derived/DerivedSecrets';
-import { ChainKey } from './ChainKey';
-import { zeroize } from '../util/MemoryUtil';
-import { IdentityKey } from '../keys/IdentityKey';
-import { SessionTag } from '../message/SessionTag';
-import { Envelope } from '../message/Envelope';
-import { CipherMessage } from '../message/CipherMessage';
-import { PreKeyMessage } from '../message/PreKeyMessage';
-import { DecryptError } from '../errors/DecryptError';
-import { DecodeError } from '../errors/DecodeError';
+import {IdentityKeyPair} from '../keys/IdentityKeyPair';
+import {PreKeyBundle} from '../keys/PreKeyBundle';
+import {KeyPair} from '../keys/KeyPair';
+import {RecvChain} from './RecvChain';
+import {RootKey} from './RootKey';
+import {SendChain} from './SendChain';
+import {concatenate_array_buffers} from '../util/ArrayUtil';
+import {SecretKey} from '../keys/SecretKey';
+import {PublicKey} from '../keys/PublicKey';
+import {DerivedSecrets} from '../derived/DerivedSecrets';
+import {ChainKey} from './ChainKey';
+import {zeroize} from '../util/MemoryUtil';
+import {IdentityKey} from '../keys/IdentityKey';
+import {SessionTag} from '../message/SessionTag';
+import {Envelope} from '../message/Envelope';
+import {CipherMessage} from '../message/CipherMessage';
+import {PreKeyMessage} from '../message/PreKeyMessage';
+import {DecryptError} from '../errors/DecryptError';
+import {DecodeError} from '../errors/DecodeError';
 
 export class SessionState {
   static MAX_RECV_CHAINS = 5;

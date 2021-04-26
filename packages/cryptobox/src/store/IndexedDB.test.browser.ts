@@ -19,14 +19,14 @@
 
 /* eslint no-magic-numbers: "off" */
 
-import {IndexedDBEngine} from "@wireapp/store-engine-dexie";
+import {IndexedDBEngine} from '@wireapp/store-engine-dexie';
 import * as UUID from 'uuidjs';
 import {Cryptobox, store as CryptoboxStore} from '../';
 import type {Dexie} from 'dexie';
-import {CryptoboxCRUDStore} from "./CryptoboxCRUDStore";
+import {CryptoboxCRUDStore} from './CryptoboxCRUDStore';
 import {keys as ProteusKeys, session as ProteusSession} from '@wireapp/proteus';
-import {SerialisedRecord} from "./SerialisedRecord";
-import { LRUCache } from "@wireapp/lru-cache";
+import {SerialisedRecord} from './SerialisedRecord';
+import {LRUCache} from '@wireapp/lru-cache';
 
 describe('cryptobox.store.IndexedDB', () => {
   let dexieInstances: Dexie[] = [];

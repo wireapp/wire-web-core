@@ -18,7 +18,7 @@
  */
 
 import {Configuration} from 'webpack';
-import * as CircularDependencyPlugin from "circular-dependency-plugin";
+import * as CircularDependencyPlugin from 'circular-dependency-plugin';
 
 const config: Configuration = {
   externals: {
@@ -34,6 +34,16 @@ const config: Configuration = {
       },
     ],
   },
+  optimization: {
+    minimize: false,
+  },
+  plugins: [
+    new CircularDependencyPlugin({
+      allowAsyncCycles: false,
+      cwd: process.cwd(),
+      failOnError: false,
+    }) as any,
+  ],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     fallback: {
@@ -41,19 +51,9 @@ const config: Configuration = {
       path: false,
     },
   },
-  optimization: {
-    minimize: false
-  },
-  plugins: [
-    new CircularDependencyPlugin({
-      failOnError: false,
-      allowAsyncCycles: false,
-      cwd: process.cwd(),
-    }) as any
-  ],
   stats: {
-    errorDetails: true
-  }
+    errorDetails: true,
+  },
 };
 
 export default config;

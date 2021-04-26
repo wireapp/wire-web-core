@@ -18,7 +18,7 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import {initProteus} from "../initProteus";
+import {initProteus} from '../initProteus';
 
 export const isUsingWASM = async () => {
   await initProteus();

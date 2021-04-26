@@ -27,7 +27,7 @@ import * as logdown from 'logdown';
 import {CryptoboxSession} from './CryptoboxSession';
 import {CryptoboxError, DecryptionError, InvalidPreKeyFormatError} from './error/';
 import type {SerializedCryptobox} from './SerializedCryptobox';
-import { CryptoboxCRUDStore } from './store/CryptoboxCRUDStore';
+import {CryptoboxCRUDStore} from './store/CryptoboxCRUDStore';
 const DEFAULT_CAPACITY = 1000;
 const {version}: {version: string} = require('../package.json');
 

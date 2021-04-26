@@ -17,7 +17,7 @@
  *
  */
 
-import {assert_is_not_zeros, concatenate_array_buffers } from "./ArrayUtil";
+import {assert_is_not_zeros, concatenate_array_buffers} from './ArrayUtil';
 
 /* eslint-disable no-magic-numbers */
 

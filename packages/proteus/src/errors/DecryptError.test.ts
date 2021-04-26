@@ -17,7 +17,7 @@
  *
  */
 
-import { DecryptError } from "./DecryptError";
+import {DecryptError} from './DecryptError';
 
 describe('DecryptError', () => {
   describe('constructor', () => {

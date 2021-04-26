@@ -18,8 +18,8 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import {initProteus} from "../initProteus";
-import {hkdf} from "./KeyDerivationUtil";
+import {initProteus} from '../initProteus';
+import {hkdf} from './KeyDerivationUtil';
 
 beforeAll(async () => {
   await initProteus();

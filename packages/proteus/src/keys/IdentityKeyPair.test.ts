@@ -18,8 +18,8 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import {initProteus} from "../initProteus";
-import { IdentityKeyPair } from './IdentityKeyPair';
+import {initProteus} from '../initProteus';
+import {IdentityKeyPair} from './IdentityKeyPair';
 
 beforeAll(async () => {
   await initProteus();

@@ -18,8 +18,8 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import {initProteus} from "../initProteus";
-import { CipherKey } from './CipherKey';
+import {initProteus} from '../initProteus';
+import {CipherKey} from './CipherKey';
 
 interface Vector {
   key: string;
