@@ -23,7 +23,7 @@ const config: Configuration = {
   externals: {
     'fs-extra': '{}',
   },
-  mode: 'production',
+  mode: 'development',
   module: {
     rules: [
       {
@@ -39,6 +39,9 @@ const config: Configuration = {
       crypto: false,
       path: false,
     },
+  },
+  optimization: {
+    minimize: false
   },
   stats: {
     errorDetails: true
