@@ -18,25 +18,5 @@
  */
 
 export abstract class Message {
-  constructor() {}
-
   abstract serialise(): ArrayBuffer;
-
-  // static deserialise<T extends CipherMessage | PreKeyMessage>(buf: ArrayBuffer): T {
-  //   const decoder = new Decoder(buf);
-  //
-  //   switch (decoder.u8()) {
-  //     case 1:
-  //       return CipherMessage.decode(decoder) as T;
-  //     case 2:
-  //       return PreKeyMessage.decode(decoder) as T;
-  //     default:
-  //       throw new DecodeError.InvalidType('Unrecognised message type', DecodeError.CODE.CASE_302);
-  //   }
-  // }
 }
-
-// these import statements have to come after the Message definition because otherwise
-// it creates a circular dependency with the message subtypes
-// import {CipherMessage} from './CipherMessage';
-// import {PreKeyMessage} from './PreKeyMessage';
