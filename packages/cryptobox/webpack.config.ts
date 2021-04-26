@@ -40,6 +40,9 @@ const config: Configuration = {
       path: false,
     },
   },
+  stats: {
+    errorDetails: true
+  }
 };
 
 export default config;
