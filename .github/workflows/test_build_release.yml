@@ -43,7 +43,9 @@ jobs:
           echo -e "GITHUB_CONTEXT = ${GITHUB_CONTEXT}"
 
       - name: Skip CI
-        if: contains(env.TITLE || env.COMMIT_MESSAGE, '[skip ci]') || contains(env.TITLE || env.COMMIT_MESSAGE, '[ci skip]')
+        if: |
+          contains(env.TITLE || env.COMMIT_MESSAGE, '[skip ci]') ||
+          contains(env.TITLE || env.COMMIT_MESSAGE, '[ci skip]')
         uses: andymckay/cancel-action@0.2
 
       - name: Cancel Previous Runs
@@ -68,31 +70,38 @@ jobs:
       - name: Test
         run: yarn test:all
 
-      # - name: Set release environment variables
-      #   if: env.BRANCH_NAME == 'main'
-      #   run: |
-      #     echo "HAS_UPDATES=$(yarn lerna updated > /dev/null 2>&1; echo "${?}")" >> $GITHUB_ENV
-      #     echo -e "HAS_UPDATES = ${HAS_UPDATES}"
-      #     echo "//registry.npmjs.org/:_authToken=${{secrets.WEBTEAM_NPM_TOKEN}}" >> "${HOME}/.npmrc"
-      #     git config --global user.email webapp+travis@wire.com
-      #     git config --global user.name "Wire Travis CI"
+      - name: Set release environment variables
+        if: env.BRANCH_NAME == 'main'
+        run: |
+          HAS_UPDATES="$(npx lerna updated > /dev/null 2>&1; echo "${?}")"
+          echo "HAS_UPDATES=${HAS_UPDATES}" >> $GITHUB_ENV
+          echo -e "HAS_UPDATES = ${HAS_UPDATES}"
+          echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> "${HOME}/.npmrc"
+          git config --global user.email webapp+otto@wire.com
+          git config --global user.name "Otto the Bot"
 
       # - name: Release
-      #   if: env.BRANCH_NAME == 'main' && env.HAS_UPDATES == '0' && !startsWith(env.TITLE, 'chore') && !startsWith(env.TITLE, 'test')
+      #   env:
+      #     NPM_TOKEN: ${{secrets.WEBTEAM_NPM_TOKEN}}
+      #   if: |
+      #     env.BRANCH_NAME == 'main' &&
+      #     env.HAS_UPDATES == '0' &&
+      #     !startsWith(env.TITLE, 'chore') &&
+      #     !startsWith(env.TITLE, 'test')
       #   run: yarn release
 
-      # - name: Notify CI error
-      #   if: failure() && github.event_name != 'pull_request'
-      #   uses: wireapp/github-action-wire-messenger@v1
-      #   with:
-      #     email: ${{secrets.WIRE_EMAIL}}
-      #     password: ${{secrets.WIRE_PASSWORD}}
-      #     conversation: 'b2cc7120-4154-4be4-b0c0-45a8c361c4d1'
-      #     text: '🌵 ${{env.COMMITTER}} broke the "${{env.BRANCH_NAME}}" branch on "${{github.repository}}" with [${{env.TITLE}}](${{env.COMMIT_URL}})'
+      - name: Notify CI error
+        if: failure() && github.event_name != 'pull_request'
+        uses: wireapp/github-action-wire-messenger@v1
+        with:
+          email: ${{secrets.WIRE_EMAIL}}
+          password: ${{secrets.WIRE_PASSWORD}}
+          conversation: 'b2cc7120-4154-4be4-b0c0-45a8c361c4d1'
+          text: '🌵 ${{env.COMMITTER}} broke the "${{env.BRANCH_NAME}}" branch on "${{github.repository}}" with [${{env.TITLE}}](${{env.COMMIT_URL}})'
 
-      # - name: Merge dependency updates from Dependabot
-      #   uses: ahmadnassri/action-dependabot-auto-merge@v2
-      #   # Guarantee that commit comes from Dependabot (don't blindly trust external GitHub action checks)
-      #   if: github.event_name == 'pull_request' && github.actor == 'dependabot[bot]'
-      #   with:
-      #     github-token: ${{secrets.OTTO_THE_BOT_GH_TOKEN}}
+      - name: Merge dependency updates from Dependabot
+        uses: ahmadnassri/action-dependabot-auto-merge@v2
+        # Guarantee that commit comes from Dependabot (don't blindly trust external GitHub action checks)
+        if: github.event_name == 'pull_request' && github.actor == 'dependabot[bot]'
+        with:
+          github-token: ${{secrets.OTTO_THE_BOT_GH_TOKEN}}
