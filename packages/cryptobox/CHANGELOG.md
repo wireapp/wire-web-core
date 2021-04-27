@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.5.0](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/compare/@wireapp/cryptobox@12.4.0...@wireapp/cryptobox@12.5.0) (2021-04-27)
+
+
+### Features
+
+* **lru-cache:** Move LRU Cache to wire-web-core monorepo ([#10](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/issues/10)) ([05fdaa7](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/commit/05fdaa7140d5899675b6ed0c26b3a665fa1f5266))
+
+
+
+
+
 # 12.4.0 (2021-04-27)
 
 

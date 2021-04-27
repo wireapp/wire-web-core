@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@types/karma": "6.3.0",
-    "@wireapp/lru-cache": "3.7.18",
+    "@wireapp/lru-cache": "3.8.0",
     "@wireapp/priority-queue": "1.6.31",
     "@wireapp/proteus": "9.11.0",
     "@wireapp/store-engine": "4.6.0",
@@ -47,5 +47,5 @@
     "test:browser": "karma start",
     "test:types": "tsc --noEmit"
   },
-  "version": "12.4.0"
+  "version": "12.5.0"
 }

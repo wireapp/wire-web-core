@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.8.0 (2021-04-27)
+
+
+### Features
+
+* **lru-cache:** Move LRU Cache to wire-web-core monorepo ([#10](https://github.com/wireapp/wire-web-core/tree/main/packages/lru-cache/issues/10)) ([05fdaa7](https://github.com/wireapp/wire-web-core/tree/main/packages/lru-cache/commit/05fdaa7140d5899675b6ed0c26b3a665fa1f5266))
+
+
+
+
+
 ## [3.7.17](https://github.com/wireapp/wire-web-packages/tree/master/packages/lru-cache/compare/@wireapp/lru-cache@3.7.16...@wireapp/lru-cache@3.7.17) (2021-04-14)
 
 **Note:** Version bump only for package @wireapp/lru-cache
