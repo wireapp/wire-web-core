@@ -17,7 +17,7 @@
  *
  */
 
-import {Configuration} from 'webpack';
+import {Configuration, WebpackPluginInstance} from 'webpack';
 import * as CircularDependencyPlugin from 'circular-dependency-plugin';
 
 const config: Configuration = {
@@ -42,7 +42,7 @@ const config: Configuration = {
       allowAsyncCycles: false,
       cwd: process.cwd(),
       failOnError: false,
-    }) as any,
+    }) as WebpackPluginInstance,
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
