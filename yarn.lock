@@ -1803,11 +1803,6 @@
   resolved "https://registry.npmjs.org/@wireapp/eslint-config/-/eslint-config-1.11.0.tgz#d7ce75fa83dcdd722d0b5865f8b1237ba215b593"
   integrity sha512-TJyiXFHZv70y0La+ySu4tG25+njrYEJeePZYXuT+Km1wGAGD/yuAhEIfcQUfbc329sUXj6C8/DATVQAv3lzY/A==
 
-"@wireapp/lru-cache@3.7.17":
-  version "3.7.17"
-  resolved "https://registry.npmjs.org/@wireapp/lru-cache/-/lru-cache-3.7.17.tgz#e94d7d6c1d04ce07eb490bd17ce461d0e58a34a4"
-  integrity sha512-C6whm5ISgIFM75yrGX/7ek0GHbafS+/k/1OdHR+GidRrWQ1kOlyuhoyyjRcllYT8UIYek4y02eMz8KRhLk9ApQ==
-
 "@wireapp/prettier-config@0.3.0":
   version "0.3.0"
   resolved "https://registry.npmjs.org/@wireapp/prettier-config/-/prettier-config-0.3.0.tgz#e8129b31021c81d90d564d9c4ff0f7f7b514e943"
