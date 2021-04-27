@@ -27,7 +27,7 @@ import {CryptoboxCRUDStore} from './CryptoboxCRUDStore';
 import {keys as ProteusKeys, session as ProteusSession} from '@wireapp/proteus';
 import {SerialisedRecord} from './SerialisedRecord';
 import {LRUCache} from '@wireapp/lru-cache';
-import {init} from "@wireapp/proteus";
+import {init} from '@wireapp/proteus';
 
 describe('cryptobox.store.IndexedDB', () => {
   let dexieInstances: Dexie[] = [];
