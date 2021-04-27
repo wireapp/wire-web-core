@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 12.4.0 (2021-04-27)
+
+
+### Features
+
+* **cryptobox:** Add cryptobox ([#8](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/issues/8)) ([2f75c4b](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/commit/2f75c4b312c72a0d0f05969e477c8126ed64ac4b))
+
+
+
+
+
 # [12.3.0](https://github.com/wireapp/wire-web-packages/tree/master/packages/cryptobox/compare/@wireapp/cryptobox@12.2.63...@wireapp/cryptobox@12.3.0) (2021-04-23)
 
 
