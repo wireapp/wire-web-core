@@ -48,5 +48,5 @@
     "test:browser": "karma start",
     "test:types": "tsc --noEmit"
   },
-  "version": "12.2.62"
+  "version": "12.3.0"
 }
