@@ -1,6 +1,6 @@
 /*
  * Wire
- * Copyright (C) 2018 Wire Swiss GmbH
+ * Copyright (C) 2021 Wire Swiss GmbH
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,15 +17,11 @@
  *
  */
 
-export * as derived from './derived/';
-export * as errors from './errors/';
-export * as keys from './keys/';
-export * as message from './message/';
-export * as session from './session/';
-export * as util from './util/';
-
-import {initProteus} from './initProteus';
-
-export function init(): Promise<void> {
-  return initProteus();
-}
+module.exports = {
+  plugins: [
+    '@babel/plugin-proposal-class-properties',
+    '@babel/plugin-proposal-nullish-coalescing-operator',
+    '@babel/plugin-proposal-optional-chaining',
+  ],
+  presets: ['@babel/preset-typescript'],
+};

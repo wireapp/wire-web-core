@@ -18,13 +18,15 @@
  */
 
 import {performance, PerformanceObserver} from 'perf_hooks';
-import {init} from '@wireapp/proteus';
 import * as os from 'os';
 import * as path from 'path';
 import {Worker, MessageChannel} from 'worker_threads';
-import {IdentityKeyPair, PreKey, PreKeyBundle} from '../keys';
-import {Session} from '../session';
 import type {SessionCreationOptions} from './InitSessionWorker';
+import {Session} from '../session/Session';
+import {PreKeyBundle} from '../keys/PreKeyBundle';
+import {IdentityKeyPair} from '../keys/IdentityKeyPair';
+import {PreKey} from '../keys/PreKey';
+import {initProteus} from '../initProteus';
 
 const useThreading = process.argv.includes('--parallel');
 
@@ -62,7 +64,7 @@ function chunkArray<T>(array: T[], size: number): T[][] {
 }
 
 async function main() {
-  await init();
+  await initProteus();
 
   const amountOfUsers = 500;
   const clientsPerUser = 8;

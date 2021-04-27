@@ -18,8 +18,9 @@
  */
 
 import {Decoder, Encoder} from '@wireapp/cbor';
-import {CipherKey, MacKey} from '../derived/';
-import {DecodeError} from '../errors';
+import {MacKey} from '../derived/MacKey';
+import {CipherKey} from '../derived/CipherKey';
+import {DecodeError} from '../errors/DecodeError';
 
 export class MessageKeys {
   readonly cipher_key: CipherKey;

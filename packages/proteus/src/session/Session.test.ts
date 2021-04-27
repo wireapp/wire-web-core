@@ -18,11 +18,17 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
-import {PreKey, IdentityKeyPair, PreKeyBundle} from '../keys';
-import {CipherMessage, Envelope} from '../message';
-import {PreKeyStore, Session} from '../session';
-import {DecryptError, ProteusError} from '../errors';
-import {init} from '@wireapp/proteus';
+import {PreKey} from '../keys/PreKey';
+import {PreKeyStore} from './PreKeyStore';
+import {Session} from './Session';
+import {IdentityKeyPair} from '../keys/IdentityKeyPair';
+import {Envelope} from '../message/Envelope';
+import {PreKeyBundle} from '../keys/PreKeyBundle';
+import {CipherMessage} from '../message/CipherMessage';
+import {DecryptError} from '../errors/DecryptError';
+import {ProteusError} from '../errors/ProteusError';
+import {initProteus} from '../initProteus';
+import {SessionState} from './SessionState';
 
 class SimplePreKeyStore implements PreKeyStore {
   readonly prekeys: Map<number, ArrayBuffer> = new Map();
@@ -68,7 +74,7 @@ const assert_init_from_message = async (
 };
 
 beforeAll(async () => {
-  await init();
+  await initProteus();
 });
 
 describe('Session', () => {
@@ -196,7 +202,7 @@ describe('Session', () => {
       expect(bob.session_states[bob.session_tag.toString()].state.recv_chains.length).toBe(1);
 
       await Promise.all(
-        Array.from({length: Session.MAX_RECV_CHAINS * 2}, async () => {
+        Array.from({length: SessionState.MAX_RECV_CHAINS * 2}, async () => {
           const bob_to_alice = Session.encrypt(bob, 'ping');
           expect(sodium.to_string(await alice.decrypt(alice_store, bob_to_alice))).toBe('ping');
 
@@ -204,11 +210,11 @@ describe('Session', () => {
           expect(sodium.to_string(await bob.decrypt(bob_store, alice_to_bob))).toBe('pong');
 
           expect(alice.session_states[alice.session_tag.toString()].state.recv_chains.length).not.toBeGreaterThan(
-            Session.MAX_RECV_CHAINS,
+            SessionState.MAX_RECV_CHAINS,
           );
 
           expect(bob.session_states[bob.session_tag.toString()].state.recv_chains.length).not.toBeGreaterThan(
-            Session.MAX_RECV_CHAINS,
+            SessionState.MAX_RECV_CHAINS,
           );
         }),
       );

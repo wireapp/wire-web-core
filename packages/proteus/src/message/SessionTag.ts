@@ -19,15 +19,15 @@
 
 import {Decoder, Encoder} from '@wireapp/cbor';
 import * as sodium from 'libsodium-wrappers-sumo';
-import {DecodeError} from '../errors/';
-import {RandomUtil} from '../util/';
+import {DecodeError} from '../errors/DecodeError';
+import {random_bytes} from '../util/RandomUtil';
 
 export class SessionTag {
   private static readonly randomBytesLength = 16;
   readonly tag: Uint8Array;
 
   constructor(tag?: Uint8Array) {
-    this.tag = tag || RandomUtil.random_bytes(SessionTag.randomBytesLength);
+    this.tag = tag || random_bytes(SessionTag.randomBytesLength);
   }
 
   toString(): string {

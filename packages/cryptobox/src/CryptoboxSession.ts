@@ -17,10 +17,9 @@
  *
  */
 
-import {message as ProteusMessage, session as ProteusSession} from '@wireapp/proteus';
-
 import {DecryptionError} from './error/DecryptionError';
 import type {CryptoboxCRUDStore} from './store/';
+import {message as ProteusMessage, session as ProteusSession} from '@wireapp/proteus';
 
 export class CryptoboxSession {
   public readonly id: string;
@@ -37,7 +36,7 @@ export class CryptoboxSession {
       throw new DecryptionError('Cannot decrypt an empty ArrayBuffer.');
     }
 
-    const envelope: ProteusMessage.Envelope = ProteusMessage.Envelope.deserialise(ciphertext);
+    const envelope = ProteusMessage.Envelope.deserialise(ciphertext);
     return this.session.decrypt(pk_store, envelope);
   }
 

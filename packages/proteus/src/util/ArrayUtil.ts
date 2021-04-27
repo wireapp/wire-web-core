@@ -17,7 +17,7 @@
  *
  */
 
-import {ProteusError} from '../errors/';
+import {ProteusError} from '../errors/ProteusError';
 
 export function assert_is_not_zeros(array: number[] | Uint8Array): void {
   let onlyZeros = true;

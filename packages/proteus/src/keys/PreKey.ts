@@ -18,8 +18,8 @@
  */
 
 import {Decoder, Encoder} from '@wireapp/cbor';
+import {DecodeError} from '../errors/DecodeError';
 import {KeyPair} from './KeyPair';
-import {DecodeError} from '../errors';
 
 /**
  * Pre-generated (and regularly refreshed) pre-keys.

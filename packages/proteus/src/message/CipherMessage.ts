@@ -21,7 +21,8 @@ import {Decoder, Encoder} from '@wireapp/cbor';
 import {PublicKey} from '../keys/PublicKey';
 import {SessionTag} from './SessionTag';
 import {Message} from './Message';
-import {DecodeError, InputError} from '../errors';
+import {InputError} from '../errors/InputError';
+import {DecodeError} from '../errors/DecodeError';
 
 export class CipherMessage extends Message {
   readonly cipher_text: Uint8Array;
@@ -86,5 +87,12 @@ export class CipherMessage extends Message {
     }
 
     throw new DecodeError(`Unexpected number of properties: "${propertiesLength}"`);
+  }
+
+  serialise(): ArrayBuffer {
+    const encoder = new Encoder();
+    encoder.u8(1);
+    CipherMessage.encode(encoder, this);
+    return encoder.get_buffer();
   }
 }

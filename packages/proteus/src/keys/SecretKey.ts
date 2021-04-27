@@ -19,9 +19,10 @@
 
 import {Decoder, Encoder} from '@wireapp/cbor';
 import * as sodium from 'libsodium-wrappers-sumo';
-import {ArrayUtil} from '../util/';
 import type {PublicKey} from './PublicKey';
-import {DecodeError, InputError} from '../errors';
+import {DecodeError} from '../errors/DecodeError';
+import {InputError} from '../errors/InputError';
+import {assert_is_not_zeros} from '../util/ArrayUtil';
 
 export class SecretKey {
   readonly sec_curve: Uint8Array;
@@ -51,7 +52,7 @@ export class SecretKey {
   static shared_secret(publicKey: PublicKey, secretKey: SecretKey): Uint8Array {
     const sharedSecret = sodium.crypto_scalarmult(secretKey.sec_curve, publicKey.pub_curve);
 
-    ArrayUtil.assert_is_not_zeros(sharedSecret);
+    assert_is_not_zeros(sharedSecret);
 
     return sharedSecret;
   }

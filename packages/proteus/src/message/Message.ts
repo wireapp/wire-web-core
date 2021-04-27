@@ -17,41 +17,6 @@
  *
  */
 
-import {Decoder, Encoder} from '@wireapp/cbor';
-import {DecodeError} from '../errors/';
-
-export class Message {
-  constructor() {}
-
-  serialise(): ArrayBuffer {
-    const encoder = new Encoder();
-    if (this instanceof CipherMessage) {
-      encoder.u8(1);
-      CipherMessage.encode(encoder, this);
-    } else if (this instanceof PreKeyMessage) {
-      encoder.u8(2);
-      PreKeyMessage.encode(encoder, this);
-    } else {
-      throw new TypeError('Unexpected message type');
-    }
-    return encoder.get_buffer();
-  }
-
-  static deserialise<T extends CipherMessage | PreKeyMessage>(buf: ArrayBuffer): T {
-    const decoder = new Decoder(buf);
-
-    switch (decoder.u8()) {
-      case 1:
-        return CipherMessage.decode(decoder) as T;
-      case 2:
-        return PreKeyMessage.decode(decoder) as T;
-      default:
-        throw new DecodeError.InvalidType('Unrecognised message type', DecodeError.CODE.CASE_302);
-    }
-  }
+export abstract class Message {
+  abstract serialise(): ArrayBuffer;
 }
-
-// these import statements have to come after the Message definition because otherwise
-// it creates a circular dependency with the message subtypes
-import {CipherMessage} from './CipherMessage';
-import {PreKeyMessage} from './PreKeyMessage';

@@ -19,13 +19,14 @@
 
 /* eslint no-magic-numbers: "off" */
 
-import type {Dexie} from 'dexie';
-import {store as CryptoboxStore, Cryptobox} from '../';
-import {LRUCache} from '@wireapp/lru-cache';
-import {keys as ProteusKeys, session as ProteusSession} from '@wireapp/proteus';
-import * as UUID from 'uuidjs';
 import {IndexedDBEngine} from '@wireapp/store-engine-dexie';
-import type {SerialisedRecord} from './';
+import * as UUID from 'uuidjs';
+import {Cryptobox, store as CryptoboxStore} from '../';
+import type {Dexie} from 'dexie';
+import {CryptoboxCRUDStore} from './CryptoboxCRUDStore';
+import {keys as ProteusKeys, session as ProteusSession} from '@wireapp/proteus';
+import {SerialisedRecord} from './SerialisedRecord';
+import {LRUCache} from '@wireapp/lru-cache';
 
 describe('cryptobox.store.IndexedDB', () => {
   let dexieInstances: Dexie[] = [];
@@ -60,10 +61,10 @@ describe('cryptobox.store.IndexedDB', () => {
     const dbName = UUID.genV4().toString();
     const engine = await createEngine(dbName);
     dexieInstances.push(engine['db']);
-    return new CryptoboxStore.CryptoboxCRUDStore(engine);
+    return new CryptoboxCRUDStore(engine);
   }
 
-  describe('create_session"', () => {
+  describe('create_session', () => {
     it('saves a session with meta data', async () => {
       const store = await createStore();
 
@@ -86,7 +87,7 @@ describe('cryptobox.store.IndexedDB', () => {
     });
   });
 
-  describe('update_session"', () => {
+  describe('update_session', () => {
     it('updates an already persisted session', async () => {
       const store = await createStore();
 
@@ -112,7 +113,7 @@ describe('cryptobox.store.IndexedDB', () => {
     });
   });
 
-  describe('session_from_prekey"', () => {
+  describe('session_from_prekey', () => {
     it('saves and caches a valid session from a serialized PreKey bundle', async () => {
       const store = await createStore();
 
@@ -160,7 +161,7 @@ describe('cryptobox.store.IndexedDB', () => {
     });
   });
 
-  describe('refill_prekeys"', () => {
+  describe('refill_prekeys', () => {
     it('publishes refilled PreKeys when a Cryptobox is loaded', async () => {
       const aliceStore = await createStore();
       const alice = new Cryptobox(aliceStore['engine'], 2);

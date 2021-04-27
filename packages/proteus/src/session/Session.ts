@@ -18,12 +18,22 @@
  */
 
 import {Decoder, Encoder} from '@wireapp/cbor';
-import {MemoryUtil} from '../util/';
-import {DecodeError, DecryptError, ProteusError} from '../errors/';
 import {SessionState} from './SessionState';
-import {IdentityKey, IdentityKeyPair, KeyPair, PreKey, PreKeyBundle, PublicKey} from '../keys/';
-import {CipherMessage, Envelope, PreKeyMessage, SessionTag} from '../message/';
 import type {PreKeyStore} from './PreKeyStore';
+import {SessionTag} from '../message/SessionTag';
+import {IdentityKeyPair} from '../keys/IdentityKeyPair';
+import {IdentityKey} from '../keys/IdentityKey';
+import {PublicKey} from '../keys/PublicKey';
+import {CipherMessage} from '../message/CipherMessage';
+import {DecryptError} from '../errors/DecryptError';
+import {Envelope} from '../message/Envelope';
+import {PreKey} from '../keys/PreKey';
+import {PreKeyMessage} from '../message/PreKeyMessage';
+import {zeroize} from '../util/MemoryUtil';
+import {ProteusError} from '../errors/ProteusError';
+import {PreKeyBundle} from '../keys/PreKeyBundle';
+import {KeyPair} from '../keys/KeyPair';
+import {DecodeError} from '../errors/DecodeError';
 
 export interface IntermediateSessionState {
   [index: string]: {
@@ -34,7 +44,6 @@ export interface IntermediateSessionState {
 }
 
 export class Session {
-  static MAX_RECV_CHAINS = 5;
   static MAX_SESSION_STATES = 100;
 
   readonly local_identity: IdentityKeyPair;
@@ -105,7 +114,7 @@ export class Session {
 
       if (preKeyMessage.prekey_id < PreKey.MAX_PREKEY_ID) {
         const prekey = await prekey_store.load_prekey(preKeyMessage.prekey_id);
-        MemoryUtil.zeroize(prekey);
+        zeroize(prekey);
 
         try {
           await prekey_store.delete_prekey(preKeyMessage.prekey_id);
@@ -183,7 +192,7 @@ export class Session {
         return this.session_states[obj].idx < this.session_states[lowest].idx ? obj.toString() : lowest;
       });
 
-    MemoryUtil.zeroize(this.session_states[oldest]);
+    zeroize(this.session_states[oldest]);
     delete this.session_states[oldest];
   }
 
@@ -250,7 +259,7 @@ export class Session {
 
         if (msg.prekey_id !== PreKey.MAX_PREKEY_ID) {
           const prekey = await prekey_store.load_prekey(msg.prekey_id);
-          MemoryUtil.zeroize(prekey);
+          zeroize(prekey);
           await prekey_store.delete_prekey(msg.prekey_id);
         }
 

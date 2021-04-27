@@ -18,9 +18,10 @@
  */
 
 import {Decoder, Encoder} from '@wireapp/cbor';
-import {DerivedSecrets, MacKey} from '../derived/';
+import {DerivedSecrets} from '../derived/DerivedSecrets';
+import {MacKey} from '../derived/MacKey';
+import {DecodeError} from '../errors/DecodeError';
 import {MessageKeys} from './MessageKeys';
-import {DecodeError} from '../errors';
 
 export class ChainKey {
   readonly idx: number;

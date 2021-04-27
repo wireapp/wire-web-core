@@ -17,11 +17,11 @@
  *
  */
 
-import {keys as ProteusKeys, session as ProteusSession} from '@wireapp/proteus';
+import {init, keys as ProteusKeys, session as ProteusSession} from '@wireapp/proteus';
 import {CRUDEngine, error as StoreEngineError} from '@wireapp/store-engine';
 import {Decoder, Encoder} from 'bazinga64';
-
-import {PersistedRecord, SerialisedRecord} from '../store/';
+import {PersistedRecord} from './PersistedRecord';
+import {SerialisedRecord} from './SerialisedRecord';
 
 export enum CRUDStoreKeys {
   LOCAL_IDENTITY = 'local_identity',
@@ -76,6 +76,7 @@ export class CryptoboxCRUDStore implements ProteusSession.PreKeyStore {
         CryptoboxCRUDStore.KEYS.LOCAL_IDENTITY,
       );
       const payload = this.from_store(record);
+      await init();
       return ProteusKeys.IdentityKeyPair.deserialise(payload);
     } catch (error) {
       if (
@@ -96,6 +97,7 @@ export class CryptoboxCRUDStore implements ProteusSession.PreKeyStore {
     try {
       const record = await this.engine.read<PersistedRecord>(CryptoboxCRUDStore.STORES.PRE_KEYS, prekeyId.toString());
       const payload = this.from_store(record);
+      await init();
       return ProteusKeys.PreKey.deserialise(payload);
     } catch (error) {
       if (
@@ -112,6 +114,7 @@ export class CryptoboxCRUDStore implements ProteusSession.PreKeyStore {
    * Loads all available PreKeys.
    */
   public async load_prekeys(): Promise<ProteusKeys.PreKey[]> {
+    await init();
     const records = await this.engine.readAll<PersistedRecord>(CryptoboxCRUDStore.STORES.PRE_KEYS);
     return records.map(record => {
       const payload = this.from_store(record);
