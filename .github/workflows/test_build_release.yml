@@ -80,15 +80,15 @@ jobs:
           git config --global user.email webapp+otto@wire.com
           git config --global user.name "Otto the Bot"
 
-      # - name: Release
-      #   env:
-      #     NPM_TOKEN: ${{secrets.WEBTEAM_NPM_TOKEN}}
-      #   if: |
-      #     env.BRANCH_NAME == 'main' &&
-      #     env.HAS_UPDATES == '0' &&
-      #     !startsWith(env.TITLE, 'chore') &&
-      #     !startsWith(env.TITLE, 'test')
-      #   run: yarn release
+      - name: Release
+        env:
+          NPM_TOKEN: ${{secrets.WEBTEAM_NPM_TOKEN}}
+        if: |
+          env.BRANCH_NAME == 'main' &&
+          env.HAS_UPDATES == '0' &&
+          !startsWith(env.TITLE, 'chore') &&
+          !startsWith(env.TITLE, 'test')
+        run: yarn release
 
       - name: Notify CI error
         if: failure() && github.event_name != 'pull_request'
