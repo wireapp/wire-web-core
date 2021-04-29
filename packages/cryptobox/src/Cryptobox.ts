@@ -19,7 +19,12 @@
 
 import {LRUCache} from '@wireapp/lru-cache';
 import {PriorityQueue} from '@wireapp/priority-queue';
-import {keys as ProteusKeys, message as ProteusMessage, session as ProteusSession} from '@wireapp/proteus';
+import {
+  keys as ProteusKeys,
+  init as initProteus,
+  message as ProteusMessage,
+  session as ProteusSession,
+} from '@wireapp/proteus';
 import type {CRUDEngine} from '@wireapp/store-engine';
 import {Decoder, Encoder} from 'bazinga64';
 import {EventEmitter} from 'events';
@@ -107,6 +112,7 @@ export class Cryptobox extends EventEmitter {
   }
 
   public async create(): Promise<ProteusKeys.PreKey[]> {
+    await initProteus();
     this.logger.log('Initializing Cryptobox. Creating local identity...');
     await this.create_new_identity();
     const lastResortPreKey = await this.create_last_resort_prekey();
