@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.5.1](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/compare/@wireapp/cryptobox@12.5.0...@wireapp/cryptobox@12.5.1) (2021-04-29)
+
+
+### Bug Fixes
+
+* **cryptobox:** Initialize Proteus on creation ([53df3ab](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/commit/53df3ab2943369a823375b6ff6bab3e07853bb7a))
+
+
+
+
+
 # [12.5.0](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/compare/@wireapp/cryptobox@12.4.0...@wireapp/cryptobox@12.5.0) (2021-04-27)
 
 
