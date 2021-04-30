@@ -34,7 +34,7 @@ import type {SerializedCryptobox} from './SerializedCryptobox';
 import {CryptoboxCRUDStore} from './store/CryptoboxCRUDStore';
 
 const DEFAULT_CAPACITY = 1000;
-const {version}: {version: string} = require('../package.json');
+const {version}: { version: string } = require('../package.json');
 
 enum TOPIC {
   NEW_PREKEYS = 'new-prekeys',
@@ -127,7 +127,7 @@ export class Cryptobox extends EventEmitter {
     return prekeys.sort((a, b) => a.key_id - b.key_id);
   }
 
-  public async get_serialized_last_resort_prekey(): Promise<{id: number; key: string}> {
+  public async get_serialized_last_resort_prekey(): Promise<{ id: number; key: string }> {
     if (this.lastResortPreKey) {
       return this.serialize_prekey(this.lastResortPreKey);
     }
@@ -153,7 +153,7 @@ export class Cryptobox extends EventEmitter {
     return new ProteusKeys.PreKeyBundle(this.identity.public_key, preKey);
   }
 
-  public async get_serialized_standard_prekeys(): Promise<{id: number; key: string}[]> {
+  public async get_serialized_standard_prekeys(): Promise<{ id: number; key: string }[]> {
     const prekeys = await this.store.load_prekeys();
     return prekeys
       .filter((preKey: ProteusKeys.PreKey) => {
@@ -301,7 +301,7 @@ export class Cryptobox extends EventEmitter {
     return preKeys[0];
   }
 
-  public serialize_prekey(prekey: ProteusKeys.PreKey): {id: number; key: string} {
+  public serialize_prekey(prekey: ProteusKeys.PreKey): { id: number; key: string } {
     if (this.identity) {
       return new ProteusKeys.PreKeyBundle(this.identity.public_key, prekey).serialised_json();
     }
@@ -365,21 +365,21 @@ export class Cryptobox extends EventEmitter {
     });
   }
 
-  private async deleteData(): Promise<void> {
+  private async deleteData(): Promise<true> {
     this.cachedSessions = new LRUCache(DEFAULT_CAPACITY);
     this.identity = undefined;
     this.lastResortPreKey = undefined;
     this.queues = new LRUCache<PriorityQueue>(DEFAULT_CAPACITY);
-    await this.store.delete_all();
+    return this.store.delete_all();
   }
 
-  private async importIdentity(payload: string): Promise<void> {
+  private async importIdentity(payload: string): Promise<ProteusKeys.IdentityKeyPair> {
     const identityBuffer = Decoder.fromBase64(payload).asBytes.buffer;
     const identity = ProteusKeys.IdentityKeyPair.deserialise(identityBuffer);
-    await this.save_identity(identity);
+    return this.save_identity(identity);
   }
 
-  private async importPreKeys(serializedPreKeys: {[sessionId: string]: string}): Promise<void> {
+  private async importPreKeys(serializedPreKeys: { [sessionId: string]: string }): Promise<ProteusKeys.PreKey[]> {
     const proteusPreKeys = Object.values(serializedPreKeys).map(preKey => {
       const preKeyBuffer = Decoder.fromBase64(preKey).asBytes.buffer;
       const proteusPreKey = ProteusKeys.PreKey.deserialise(preKeyBuffer);
@@ -389,10 +389,10 @@ export class Cryptobox extends EventEmitter {
       return proteusPreKey;
     });
 
-    await this.store.save_prekeys(proteusPreKeys);
+    return this.store.save_prekeys(proteusPreKeys);
   }
 
-  private async importSessions(serializedSessions: {[sessionId: string]: string}): Promise<void> {
+  private async importSessions(serializedSessions: { [sessionId: string]: string }): Promise<void> {
     for (const sessionId in serializedSessions) {
       const serializedSession = serializedSessions[sessionId];
       const sessionBuffer = Decoder.fromBase64(serializedSession).asBytes.buffer;
@@ -402,12 +402,12 @@ export class Cryptobox extends EventEmitter {
     }
   }
 
-  public async deserialize(payload: SerializedCryptobox): Promise<void> {
+  public async deserialize(payload: SerializedCryptobox): Promise<ProteusKeys.PreKey[]> {
     await this.deleteData();
     await this.importIdentity(payload.identity);
     await this.importPreKeys(payload.prekeys);
     await this.importSessions(payload.sessions);
-    await this.refill_prekeys(true);
+    return this.refill_prekeys(true);
   }
 
   public async serialize(): Promise<SerializedCryptobox> {
