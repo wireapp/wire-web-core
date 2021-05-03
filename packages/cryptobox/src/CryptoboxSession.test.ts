@@ -42,7 +42,7 @@ describe('CryptoboxSession', () => {
     await bob.create();
 
     // 1. Bob creates and "uploads" a PreKey, which can be "consumed" by Alice
-    const preKey = await bob.get_prekey(bobPreKeyId);
+    const preKey = await bob['get_prekey'](bobPreKeyId);
     expect(bob.identity).toBeDefined();
     expect(preKey).toBeDefined();
     const bobBundle = new ProteusKeys.PreKeyBundle(bob.identity!.public_key, preKey!);
@@ -101,7 +101,7 @@ describe('CryptoboxSession', () => {
       const message = 'Hello Bob. Nice to see you!';
       await alice.session_delete(sessionIdFromAlice);
 
-      const bobBundle = await bob.get_prekey_bundle(1);
+      const bobBundle = await bob['get_prekey_bundle'](1);
       serialisedCipherText = await alice.encrypt(sessionIdFromAlice, message, bobBundle.serialise());
       decryptedBuffer = await bob.decrypt(sessionIdFromBob, serialisedCipherText);
       decryptedString = sodium.to_string(decryptedBuffer);

@@ -105,6 +105,7 @@ export class Cryptobox extends EventEmitter {
   }
 
   public async load(): Promise<ProteusKeys.PreKey[]> {
+    await initProteus();
     const identity = await this.store.load_identity();
     if (!identity) {
       throw new CryptoboxError('Failed to load local identity');
@@ -134,11 +135,11 @@ export class Cryptobox extends EventEmitter {
     throw new CryptoboxError('No last resort PreKey available.');
   }
 
-  public get_prekey(prekey_id: number = ProteusKeys.PreKey.MAX_PREKEY_ID): Promise<ProteusKeys.PreKey | undefined> {
+  private get_prekey(prekey_id: number = ProteusKeys.PreKey.MAX_PREKEY_ID): Promise<ProteusKeys.PreKey | undefined> {
     return this.store.load_prekey(prekey_id);
   }
 
-  public async get_prekey_bundle(
+  protected async get_prekey_bundle(
     preKeyId: number = ProteusKeys.PreKey.MAX_PREKEY_ID,
   ): Promise<ProteusKeys.PreKeyBundle> {
     const preKey = await this.get_prekey(preKeyId);
