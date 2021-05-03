@@ -34,7 +34,7 @@ import type {SerializedCryptobox} from './SerializedCryptobox';
 import {CryptoboxCRUDStore} from './store/CryptoboxCRUDStore';
 
 const DEFAULT_CAPACITY = 1000;
-const {version}: { version: string } = require('../package.json');
+const {version}: {version: string} = require('../package.json');
 
 enum TOPIC {
   NEW_PREKEYS = 'new-prekeys',
@@ -127,7 +127,7 @@ export class Cryptobox extends EventEmitter {
     return prekeys.sort((a, b) => a.key_id - b.key_id);
   }
 
-  public async get_serialized_last_resort_prekey(): Promise<{ id: number; key: string }> {
+  public async get_serialized_last_resort_prekey(): Promise<{id: number; key: string}> {
     if (this.lastResortPreKey) {
       return this.serialize_prekey(this.lastResortPreKey);
     }
@@ -153,7 +153,7 @@ export class Cryptobox extends EventEmitter {
     return new ProteusKeys.PreKeyBundle(this.identity.public_key, preKey);
   }
 
-  public async get_serialized_standard_prekeys(): Promise<{ id: number; key: string }[]> {
+  public async get_serialized_standard_prekeys(): Promise<{id: number; key: string}[]> {
     const prekeys = await this.store.load_prekeys();
     return prekeys
       .filter((preKey: ProteusKeys.PreKey) => {
@@ -301,7 +301,7 @@ export class Cryptobox extends EventEmitter {
     return preKeys[0];
   }
 
-  public serialize_prekey(prekey: ProteusKeys.PreKey): { id: number; key: string } {
+  public serialize_prekey(prekey: ProteusKeys.PreKey): {id: number; key: string} {
     if (this.identity) {
       return new ProteusKeys.PreKeyBundle(this.identity.public_key, prekey).serialised_json();
     }
@@ -379,7 +379,7 @@ export class Cryptobox extends EventEmitter {
     return this.save_identity(identity);
   }
 
-  private async importPreKeys(serializedPreKeys: { [sessionId: string]: string }): Promise<ProteusKeys.PreKey[]> {
+  private async importPreKeys(serializedPreKeys: {[sessionId: string]: string}): Promise<ProteusKeys.PreKey[]> {
     const proteusPreKeys = Object.values(serializedPreKeys).map(preKey => {
       const preKeyBuffer = Decoder.fromBase64(preKey).asBytes.buffer;
       const proteusPreKey = ProteusKeys.PreKey.deserialise(preKeyBuffer);
@@ -392,7 +392,7 @@ export class Cryptobox extends EventEmitter {
     return this.store.save_prekeys(proteusPreKeys);
   }
 
-  private async importSessions(serializedSessions: { [sessionId: string]: string }): Promise<void> {
+  private async importSessions(serializedSessions: {[sessionId: string]: string}): Promise<void> {
     for (const sessionId in serializedSessions) {
       const serializedSession = serializedSessions[sessionId];
       const sessionBuffer = Decoder.fromBase64(serializedSession).asBytes.buffer;
