@@ -20,7 +20,7 @@
 /* eslint no-magic-numbers: "off" */
 
 import bazinga64 from 'bazinga64';
-import {keys as ProteusKeys, init as proteusInit, errors as ProteusErrors} from '@wireapp/proteus';
+import {errors as ProteusErrors, keys as ProteusKeys} from '@wireapp/proteus';
 import {Cryptobox} from '@wireapp/cryptobox';
 import {MemoryEngine} from '@wireapp/store-engine';
 
@@ -30,10 +30,6 @@ describe('Cryptobox', () => {
     await engine.init(storeName);
     return new Cryptobox(engine, amountOfPreKeys);
   }
-
-  beforeAll(async () => {
-    await proteusInit();
-  });
 
   describe('encrypt / decrypt"', () => {
     it('encrypts messages for multiple clients and decrypts', async () => {
