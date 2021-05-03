@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.5.4](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/compare/@wireapp/cryptobox@12.5.3...@wireapp/cryptobox@12.5.4) (2021-05-03)
+
+
+### Bug Fixes
+
+* **cryptobox:** Move @types/karma to devDependencies, remove unused async ([07e4e5b](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/commit/07e4e5b34f5527f90ed5019150181e0c6ad74838))
+
+
+
+
+
 ## [12.5.3](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/compare/@wireapp/cryptobox@12.5.2...@wireapp/cryptobox@12.5.3) (2021-04-30)
 
 **Note:** Version bump only for package @wireapp/cryptobox
