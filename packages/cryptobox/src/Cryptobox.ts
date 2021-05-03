@@ -365,7 +365,7 @@ export class Cryptobox extends EventEmitter {
     });
   }
 
-  private async deleteData(): Promise<true> {
+  private deleteData(): Promise<true> {
     this.cachedSessions = new LRUCache(DEFAULT_CAPACITY);
     this.identity = undefined;
     this.lastResortPreKey = undefined;
@@ -373,13 +373,13 @@ export class Cryptobox extends EventEmitter {
     return this.store.delete_all();
   }
 
-  private async importIdentity(payload: string): Promise<ProteusKeys.IdentityKeyPair> {
+  private importIdentity(payload: string): Promise<ProteusKeys.IdentityKeyPair> {
     const identityBuffer = Decoder.fromBase64(payload).asBytes.buffer;
     const identity = ProteusKeys.IdentityKeyPair.deserialise(identityBuffer);
     return this.save_identity(identity);
   }
 
-  private async importPreKeys(serializedPreKeys: {[sessionId: string]: string}): Promise<ProteusKeys.PreKey[]> {
+  private importPreKeys(serializedPreKeys: {[sessionId: string]: string}): Promise<ProteusKeys.PreKey[]> {
     const proteusPreKeys = Object.values(serializedPreKeys).map(preKey => {
       const preKeyBuffer = Decoder.fromBase64(preKey).asBytes.buffer;
       const proteusPreKey = ProteusKeys.PreKey.deserialise(preKeyBuffer);
