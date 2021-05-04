@@ -18,7 +18,7 @@
  */
 
 import {init, keys as ProteusKeys, session as ProteusSession} from '@wireapp/proteus';
-import {CRUDEngine, error as StoreEngineError} from '@wireapp/store-engine';
+import {CRUDEngineBaseCollection, error as StoreEngineError} from '@wireapp/store-engine';
 import {Decoder, Encoder} from 'bazinga64';
 import {PersistedRecord} from './PersistedRecord';
 import {SerialisedRecord} from './SerialisedRecord';
@@ -37,7 +37,7 @@ export class CryptoboxCRUDStore implements ProteusSession.PreKeyStore {
   public static readonly KEYS = CRUDStoreKeys;
   public static readonly STORES = CRUDStoreStores;
 
-  constructor(private readonly engine: CRUDEngine) {}
+  constructor(private readonly engine: CRUDEngineBaseCollection) {}
 
   private from_store(record: PersistedRecord): ArrayBuffer {
     return typeof record.serialised === 'string'

@@ -25,7 +25,7 @@ import {
   message as ProteusMessage,
   session as ProteusSession,
 } from '@wireapp/proteus';
-import type {CRUDEngine} from '@wireapp/store-engine';
+import type {CRUDEngineBaseCollection} from '@wireapp/store-engine';
 import {Decoder, Encoder} from 'bazinga64';
 import {EventEmitter} from 'events';
 import {CryptoboxSession} from './CryptoboxSession';
@@ -57,12 +57,8 @@ export class Cryptobox extends EventEmitter {
   public lastResortPreKey: ProteusKeys.PreKey | undefined;
   public identity: ProteusKeys.IdentityKeyPair | undefined;
 
-  constructor(engine: CRUDEngine, minimumAmountOfPreKeys: number = 1) {
+  constructor(engine: CRUDEngineBaseCollection, minimumAmountOfPreKeys: number = 1) {
     super();
-
-    if (!engine) {
-      throw new Error('You cannot initialize Cryptobox without a storage component.');
-    }
 
     if (minimumAmountOfPreKeys > ProteusKeys.PreKey.MAX_PREKEY_ID) {
       minimumAmountOfPreKeys = ProteusKeys.PreKey.MAX_PREKEY_ID;
