@@ -26,6 +26,20 @@ const yourIdentity = keys.IdentityKeyPair.new();
 
 ### Performance Benchmark
 
+Run benchmark on main thread:
+
+```
+yarn start:benchmark
+```
+
+Run benchmark with worker threads:
+
+```
+yarn start:benchmark --workers [amount]
+```
+
+Results:
+
 | Scenario | MacBook Air M1 (2020) A2337<br>(8C CPU, 16 GB RAM)<br>Node v16.0.0 |
 | --- | :-: |
 | Generating "4000" pre-key bundles (single-threaded) | 1461ms |

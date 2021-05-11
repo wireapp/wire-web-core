@@ -30,21 +30,21 @@ import * as program from 'commander';
 import * as os from 'os';
 
 program
-  .option('--threads [amount]', 'amount of threads')
+  .option('--workers [amount]', 'amount of workers')
   .parse();
 
-function mapArgumentToThreads(threads: undefined | boolean | string): number {
-  switch (typeof threads) {
+function mapWorkers(workers: undefined | boolean | string): number {
+  switch (typeof workers) {
     case 'undefined':
       return 0;
     case 'boolean':
-      return (threads === true) ? os.cpus().length : 0;
+      return (workers === true) ? os.cpus().length : 0;
     case 'string':
-      return parseInt(threads);
+      return parseInt(workers);
   }
 }
 
-const amountOfThreads = mapArgumentToThreads(program.opts().threads);
+const amountOfWorkers = mapWorkers(program.opts().workers);
 
 function spawnWorker(): {
   closeConnection: () => void;
@@ -106,13 +106,13 @@ async function main() {
 
   let sessions: Session[] = [];
 
-  if (amountOfThreads) {
-    const bundlesPerThread = preKeyBundles.length / amountOfThreads;
+  if (amountOfWorkers) {
+    const bundlesPerThread = preKeyBundles.length / amountOfWorkers;
     const preKeyBundleChunks = chunkArray<PreKeyBundle>(preKeyBundles, bundlesPerThread);
-    console.info(`Run test with "${amountOfThreads}" threads.`);
+    console.info(`Run test with "${amountOfWorkers}" worker threads.`);
 
     performance.mark('workerPoolStart');
-    const workers = Array.from({length: amountOfThreads}, () => spawnWorker());
+    const workers = Array.from({length: amountOfWorkers}, () => spawnWorker());
     performance.mark('workerPoolStop');
     performance.measure(`Creating "${workers.length}" worker threads`, 'workerPoolStart', 'workerPoolStop');
 
