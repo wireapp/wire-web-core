@@ -19,10 +19,10 @@
 
 /* eslint no-magic-numbers: "off" */
 
-import bazinga64 from 'bazinga64';
 import {errors as ProteusErrors, keys as ProteusKeys} from '@wireapp/proteus';
 import {Cryptobox} from '@wireapp/cryptobox';
 import {MemoryEngine} from '@wireapp/store-engine';
+import { Decoder } from 'bazinga64';
 
 describe('Cryptobox', () => {
   async function createCryptobox(storeName: string, amountOfPreKeys: number = 1): Promise<Cryptobox> {
@@ -89,7 +89,7 @@ describe('Cryptobox', () => {
       await alice.create();
       await alice.deserialize(cryptobox);
 
-      const ciphertext = bazinga64.Decoder.fromBase64(event.data.text).asBytes;
+      const ciphertext = Decoder.fromBase64(event.data.text).asBytes;
 
       try {
         await alice.decrypt(sessionId, ciphertext.buffer);
