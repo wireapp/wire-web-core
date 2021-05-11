@@ -29,16 +29,14 @@ import {initProteus} from '../initProteus';
 import * as program from 'commander';
 import * as os from 'os';
 
-program
-  .option('--workers [amount]', 'amount of workers')
-  .parse();
+program.option('--workers [amount]', 'amount of workers').parse();
 
 function mapWorkers(workers: undefined | boolean | string): number {
   switch (typeof workers) {
     case 'undefined':
       return 0;
     case 'boolean':
-      return (workers === true) ? os.cpus().length : 0;
+      return workers === true ? os.cpus().length : 0;
     case 'string':
       return parseInt(workers);
   }
