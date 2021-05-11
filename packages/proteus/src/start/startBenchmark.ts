@@ -18,17 +18,33 @@
  */
 
 import {performance, PerformanceObserver} from 'perf_hooks';
-import * as os from 'os';
 import * as path from 'path';
-import {Worker, MessageChannel} from 'worker_threads';
+import {MessageChannel, Worker} from 'worker_threads';
 import type {SessionCreationOptions} from './InitSessionWorker';
 import {Session} from '../session/Session';
 import {PreKeyBundle} from '../keys/PreKeyBundle';
 import {IdentityKeyPair} from '../keys/IdentityKeyPair';
 import {PreKey} from '../keys/PreKey';
 import {initProteus} from '../initProteus';
+import * as program from 'commander';
+import * as os from 'os';
 
-const useThreading = process.argv.includes('--parallel');
+program
+  .option('--threads [amount]', 'amount of threads')
+  .parse();
+
+function mapArgumentToThreads(threads: undefined | boolean | string): number {
+  switch (typeof threads) {
+    case 'undefined':
+      return 0;
+    case 'boolean':
+      return (threads === true) ? os.cpus().length : 0;
+    case 'string':
+      return parseInt(threads);
+  }
+}
+
+const amountOfThreads = mapArgumentToThreads(program.opts().threads);
 
 function spawnWorker(): {
   closeConnection: () => void;
@@ -85,16 +101,16 @@ async function main() {
   performance.measure(`Generating "${preKeyBundles.length}" pre-key bundles`, 'bundlesStart', 'bundlesStop');
 
   const ownIdentity = new IdentityKeyPair();
-  const amountOfThreads = os.cpus().length;
-  const bundlesPerThread = preKeyBundles.length / amountOfThreads;
-  const preKeyBundleChunks = chunkArray<PreKeyBundle>(preKeyBundles, bundlesPerThread);
-  console.info(`Your machine has "${amountOfThreads}" threads.`);
 
   performance.mark('sessionsStart');
 
   let sessions: Session[] = [];
 
-  if (useThreading) {
+  if (amountOfThreads) {
+    const bundlesPerThread = preKeyBundles.length / amountOfThreads;
+    const preKeyBundleChunks = chunkArray<PreKeyBundle>(preKeyBundles, bundlesPerThread);
+    console.info(`Run test with "${amountOfThreads}" threads.`);
+
     performance.mark('workerPoolStart');
     const workers = Array.from({length: amountOfThreads}, () => spawnWorker());
     performance.mark('workerPoolStop');

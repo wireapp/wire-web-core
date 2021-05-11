@@ -5,6 +5,9 @@
     "@wireapp/cbor": "4.7.1",
     "libsodium-wrappers-sumo": "0.7.9"
   },
+  "devDependencies": {
+    "commander": "7.2.0"
+  },
   "description": "Axolotl protocol implementation for TypeScript.",
   "files": [
     "src",
