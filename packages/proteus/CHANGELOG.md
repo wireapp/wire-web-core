@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.12.0](https://github.com/wireapp/wire-web-core/tree/main/packages/proteus/compare/@wireapp/proteus@9.11.1...@wireapp/proteus@9.12.0) (2021-05-11)
+
+
+### Features
+
+* **proteus:** Run benchmark with custom amount of threads ([#12](https://github.com/wireapp/wire-web-core/tree/main/packages/proteus/issues/12)) ([5c8c560](https://github.com/wireapp/wire-web-core/tree/main/packages/proteus/commit/5c8c56097eadfa55e79856cd6745087f0fd12e24))
+
+
+
+
+
 ## [9.11.1](https://github.com/wireapp/wire-web-core/tree/main/packages/proteus/compare/@wireapp/proteus@9.11.0...@wireapp/proteus@9.11.1) (2021-05-10)
 
 **Note:** Version bump only for package @wireapp/proteus
