@@ -1555,10 +1555,10 @@
   dependencies:
     dexie "3.0.3"
 
-"@wireapp/store-engine-fs@2.2.44":
-  version "2.2.44"
-  resolved "https://registry.npmjs.org/@wireapp/store-engine-fs/-/store-engine-fs-2.2.44.tgz#b9c470d9247fbc947ea319e584050ec6e6df2923"
-  integrity sha512-NRhFreKXyamyhhBk5dZMvFHgCPfrRLqqQ1nHnAsqWzgjU/5Y2v03IMKQHRaY1+MoBsfFPY+HR0wmAdpV2vIuhw==
+"@wireapp/store-engine-fs@2.4.0":
+  version "2.4.0"
+  resolved "https://registry.npmjs.org/@wireapp/store-engine-fs/-/store-engine-fs-2.4.0.tgz#f47da46bb8da2b1ff61a71c73f04acaf49739822"
+  integrity sha512-dSy2gZLzC6LtMLOQ71N14l0yMy8Ym0g0S3He3QPtNWF6JzfEIMLsbVuW0Fh/TckXYeUKjv9RMRMd7eQ0bQCZEw==
   dependencies:
     "@types/fs-extra" "9.0.11"
     fs-extra "10.0.0"
