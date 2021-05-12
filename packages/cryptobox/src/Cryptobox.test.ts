@@ -219,8 +219,7 @@ describe('cryptobox.Cryptobox', () => {
       it('creates a session from a valid PreKey format', async () => {
         const remotePreKey = {
           id: 65535,
-          key:
-            'pQABARn//wKhAFggY/Yre8URI2xF93otjO7pUJ3ZjP4aM+sNJb6pL6J+iYgDoQChAFggZ049puHgS2zw8wjJorpl+EG9/op9qEOANG7ecEU2hfwE9g==',
+          key: 'pQABARn//wKhAFggY/Yre8URI2xF93otjO7pUJ3ZjP4aM+sNJb6pL6J+iYgDoQChAFggZ049puHgS2zw8wjJorpl+EG9/op9qEOANG7ecEU2hfwE9g==',
         };
         const sessionId = 'session_id';
         const decodedPreKeyBundleBuffer = sodium.from_base64(remotePreKey.key, sodium.base64_variants.ORIGINAL).buffer;

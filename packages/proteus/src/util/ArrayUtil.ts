@@ -36,12 +36,10 @@ export function assert_is_not_zeros(array: number[] | Uint8Array): void {
 
 /** Concatenates array buffers (usually 8-bit unsigned). */
 export function concatenate_array_buffers(buffers: Uint8Array[]): Uint8Array {
-  return buffers.reduce(
-    (accumulator: Uint8Array, bytes: Uint8Array): Uint8Array => {
-      const buffer = new Uint8Array(accumulator.byteLength + bytes.byteLength);
-      buffer.set(accumulator, 0);
-      buffer.set(bytes, accumulator.byteLength);
-      return buffer;
-    },
-  );
+  return buffers.reduce((accumulator: Uint8Array, bytes: Uint8Array): Uint8Array => {
+    const buffer = new Uint8Array(accumulator.byteLength + bytes.byteLength);
+    buffer.set(accumulator, 0);
+    buffer.set(bytes, accumulator.byteLength);
+    return buffer;
+  });
 }
