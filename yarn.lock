@@ -1803,10 +1803,10 @@
   resolved "https://registry.npmjs.org/@wireapp/prettier-config/-/prettier-config-0.3.2.tgz#831bf7e66c52e627c0fb8e6692d25f49962c00fa"
   integrity sha512-BYCsyqXe3oy/19R03hwD91Kd1AtNm8p2xQf8qyVVv9rxU3F3z83CwAKSGQfq05AFEUVp1K1SHhKeHVZ+rQrTPQ==
 
-"@wireapp/priority-queue@1.6.31":
-  version "1.6.31"
-  resolved "https://registry.npmjs.org/@wireapp/priority-queue/-/priority-queue-1.6.31.tgz#fc177e14faf649ac4e17df0f259a0ca869a08a98"
-  integrity sha512-VC6V7GRkKl3TZDeQ5D0+U6bbD6WUAz15hCalixWS8pQYhP08lvbIUIzSOuAAQDdzc6wh/+aFBEgfs53d8JM/VA==
+"@wireapp/priority-queue@1.6.33":
+  version "1.6.33"
+  resolved "https://registry.npmjs.org/@wireapp/priority-queue/-/priority-queue-1.6.33.tgz#4f4d0de8a83bbcb8c1d775be3aac28cc569fcc17"
+  integrity sha512-aZsrmDbHFH/mstTRnlls0upp/7wIc8J2duJwS6VjTsUiSieKOC/JmfeHaZFA2Kry4wPsEGwJixEA4o7poSHSJg==
   dependencies:
     "@types/node" "~14"
 
