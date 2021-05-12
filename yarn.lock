@@ -1531,10 +1531,10 @@
     "@webassemblyjs/ast" "1.11.0"
     "@xtuc/long" "4.2.2"
 
-"@wireapp/eslint-config@1.11.0":
-  version "1.11.0"
-  resolved "https://registry.npmjs.org/@wireapp/eslint-config/-/eslint-config-1.11.0.tgz#d7ce75fa83dcdd722d0b5865f8b1237ba215b593"
-  integrity sha512-TJyiXFHZv70y0La+ySu4tG25+njrYEJeePZYXuT+Km1wGAGD/yuAhEIfcQUfbc329sUXj6C8/DATVQAv3lzY/A==
+"@wireapp/eslint-config@1.11.2":
+  version "1.11.2"
+  resolved "https://registry.npmjs.org/@wireapp/eslint-config/-/eslint-config-1.11.2.tgz#b6a67ef7d6ac037641dfbeb1c9f0af289d5cb08e"
+  integrity sha512-jt8Jtf6TiKdokOhB5ZesptFtcujvq22Y7ds8QtKm/yV2u/5md/ZUNnoizB6FevyfhZvj6cz+uuSmykt0BxYSyQ==
 
 "@wireapp/prettier-config@0.3.2":
   version "0.3.2"
