@@ -1934,10 +1934,10 @@ base64id@2.0.0, base64id@~2.0.0:
   resolved "https://registry.npmjs.org/base64id/-/base64id-2.0.0.tgz#2770ac6bc47d312af97a8bf9a634342e0cd25cb6"
   integrity sha512-lGe34o6EHj9y3Kts9R4ZYs/Gr+6N7MCaMlIFA3F1R2O5/m7K06AxfSeO5530PEERE6/WyEg3lsuyw4GHlPZHog==
 
-bazinga64@5.9.0:
-  version "5.9.0"
-  resolved "https://registry.npmjs.org/bazinga64/-/bazinga64-5.9.0.tgz#3d7ed978910f8b79c52447baa37c799d9711b171"
-  integrity sha512-qGWWJwiokZkGTnN8cPJzd0eNPC8mTRk0UZ0PDlOjwanbk/U8tBqaB7X/s6hNDILhf722MzNApYC2rNz0IQZvMw==
+bazinga64@5.9.1:
+  version "5.9.1"
+  resolved "https://registry.npmjs.org/bazinga64/-/bazinga64-5.9.1.tgz#d0b32c6b6513e9171884f8873ed7fbf42463b71d"
+  integrity sha512-0oEDVsalHbCHqfUqKpOhMAf588dnQKiuFZ93jbCIDqSfhUU/QKZFNedkiTsBzhP6tsUtLkLjWLC4vZ19va5zxg==
 
 bcrypt-pbkdf@^1.0.0:
   version "1.0.2"
