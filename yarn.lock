@@ -315,6 +315,15 @@
     "@babel/helper-validator-identifier" "^7.14.0"
     to-fast-properties "^2.0.0"
 
+"@es-joy/jsdoccomment@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.npmjs.org/@es-joy/jsdoccomment/-/jsdoccomment-0.6.0.tgz#8926a8184df0968860f8c69b3bfc52efa6aeaa30"
+  integrity sha512-zT1EtysKMITJ7vE4RvOJqitxk/Str6It8hq+fykxkwLuTyzgak+TnVuVSIyovT/qrEz3i46ypCSXgNtIDYwNOg==
+  dependencies:
+    comment-parser "^1.1.5"
+    esquery "^1.4.0"
+    jsdoctypeparser "^9.0.0"
+
 "@eslint/eslintrc@^0.4.0":
   version "0.4.0"
   resolved "https://registry.npmjs.org/@eslint/eslintrc/-/eslintrc-0.4.0.tgz#99cc0a0584d72f1df38b900fb062ba995f395547"
@@ -2310,10 +2319,10 @@ commander@^2.20.0:
   resolved "https://registry.npmjs.org/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
 
-comment-parser@1.1.2:
-  version "1.1.2"
-  resolved "https://registry.npmjs.org/comment-parser/-/comment-parser-1.1.2.tgz#e5317d7a2ec22b470dcb54a29b25426c30bf39d8"
-  integrity sha512-AOdq0i8ghZudnYv8RUnHrhTgafUGs61Rdz9jemU5x2lnZwAWyOq7vySo626K59e1fVKH1xSRorJwPVRLSWOoAQ==
+comment-parser@1.1.5, comment-parser@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.npmjs.org/comment-parser/-/comment-parser-1.1.5.tgz#453627ef8f67dbcec44e79a9bd5baa37f0bce9b2"
+  integrity sha512-RePCE4leIhBlmrqiYTvaqEeGYg7qpSl4etaIabKtdOQVi+mSTIBBklGUwIr79GXYnl3LpMwmDw4KeR2stNc6FA==
 
 commondir@^1.0.1:
   version "1.0.1"
@@ -2984,17 +2993,19 @@ eslint-plugin-jasmine@4.1.2:
   resolved "https://registry.npmjs.org/eslint-plugin-jasmine/-/eslint-plugin-jasmine-4.1.2.tgz#50cc20d603b02b37727f8d174d4b83b9b8ef25a5"
   integrity sha512-Jr52EBi6Ql5WVDvRCKBID9kRD6/CaObvCWmgHpqobczX2Mzt8/QMu9vpgx6q/O5jyQ9CIGrKaEbPuEfHRf8guw==
 
-eslint-plugin-jsdoc@32.3.1:
-  version "32.3.1"
-  resolved "https://registry.npmjs.org/eslint-plugin-jsdoc/-/eslint-plugin-jsdoc-32.3.1.tgz#1c50b82b12f903bdb4117f7b68e97fb2f65a5f73"
-  integrity sha512-Xcbc8Cr79QveH+MndVwtZ3uafDdXyrsIkS8lP71Fhn5Qi1Lr8TU2QZNkMYIJSvmuLqDB5Jj/VVULMCvaBZBkvg==
+eslint-plugin-jsdoc@34.6.3:
+  version "34.6.3"
+  resolved "https://registry.npmjs.org/eslint-plugin-jsdoc/-/eslint-plugin-jsdoc-34.6.3.tgz#5a4770ae33fa429785936d6a3b61576d088b8c39"
+  integrity sha512-ixty4/Zl7cZ0fcvqQAWKuTzQ5hnWIirZOuJrzLtWV0RwF4E70/WG5vLXyppxDFbLCiwmYXjSkiqBfcKfm4VA3Q==
   dependencies:
-    comment-parser "1.1.2"
+    "@es-joy/jsdoccomment" "^0.6.0"
+    comment-parser "1.1.5"
     debug "^4.3.1"
+    esquery "^1.4.0"
     jsdoctypeparser "^9.0.0"
-    lodash "^4.17.20"
+    lodash "^4.17.21"
     regextras "^0.7.1"
-    semver "^7.3.4"
+    semver "^7.3.5"
     spdx-expression-parse "^3.0.1"
 
 eslint-plugin-no-unsanitized@3.1.5:
@@ -4693,7 +4704,7 @@ lodash.truncate@^4.4.2:
   resolved "https://registry.npmjs.org/lodash.truncate/-/lodash.truncate-4.4.2.tgz#5a350da0b1113b837ecfffd5812cbe58d6eae193"
   integrity sha1-WjUNoLERO4N+z//VgSy+WNbq4ZM=
 
-lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21, lodash@^4.7.0:
+lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.21, lodash@^4.7.0:
   version "4.17.21"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
