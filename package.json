@@ -1,9 +1,9 @@
 {
   "devDependencies": {
-    "@types/jasmine": "3.7.2",
+    "@types/jasmine": "3.7.4",
     "@types/node": "~14",
     "@typescript-eslint/eslint-plugin": "4.23.0",
-    "@typescript-eslint/parser": "4.22.0",
+    "@typescript-eslint/parser": "4.23.0",
     "@wireapp/eslint-config": "1.11.2",
     "@wireapp/prettier-config": "0.3.2",
     "babel-eslint": "10.1.0",
@@ -11,9 +11,9 @@
     "eslint": "7.25.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-header": "3.1.1",
-    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-import": "2.23.2",
     "eslint-plugin-jasmine": "4.1.2",
-    "eslint-plugin-jsdoc": "32.3.1",
+    "eslint-plugin-jsdoc": "34.6.3",
     "eslint-plugin-no-unsanitized": "3.1.5",
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-react": "7.23.2",
