@@ -17,9 +17,9 @@
  *
  */
 
-import * as commonConfig from './webpack.config';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 import {HotModuleReplacementPlugin} from 'webpack';
+import config from './webpack.config';
 
 const devConfig = {
   devServer: {
@@ -38,9 +38,7 @@ const devConfig = {
   plugins: [new HotModuleReplacementPlugin(), new HtmlWebpackPlugin()],
 };
 
-const config = {
-  ...(commonConfig.default as any),
+export default {
+  ...(config as any),
   ...devConfig,
 };
-
-export default config;
