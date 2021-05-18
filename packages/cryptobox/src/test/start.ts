@@ -17,4 +17,18 @@
  *
  */
 
-(() => {})();
+import {MemoryEngine} from '@wireapp/store-engine';
+import {Cryptobox} from '@wireapp/cryptobox';
+
+(async () => {
+  const storage = new MemoryEngine();
+  await storage.init('storage');
+
+  const cryptobox = new Cryptobox(storage, 1);
+  await cryptobox.create();
+
+  if (cryptobox.identity) {
+    const fingerprint = cryptobox.identity.public_key.fingerprint();
+    console.info(fingerprint);
+  }
+})().catch(console.error);

@@ -34,7 +34,7 @@ const devConfig = {
     stats: 'errors-only',
     watchContentBase: true,
   },
-  entry: [`${process.cwd()}/test/index.ts`],
+  entry: [`${process.cwd()}/src/test/start.ts`],
   plugins: [new HotModuleReplacementPlugin(), new HtmlWebpackPlugin()],
 };
 
