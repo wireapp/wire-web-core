@@ -23,6 +23,8 @@ import bazinga64 from 'bazinga64';
 import {errors as ProteusErrors, keys as ProteusKeys} from '@wireapp/proteus';
 import {Cryptobox} from '@wireapp/cryptobox';
 import {MemoryEngine} from '@wireapp/store-engine';
+import event from './test/fixtures/qa-break-session/event.json';
+import cryptobox from './test/fixtures/qa-break-session/cryptobox.json';
 
 describe('Cryptobox', () => {
   async function createCryptobox(storeName: string, amountOfPreKeys: number = 1): Promise<Cryptobox> {
@@ -31,7 +33,7 @@ describe('Cryptobox', () => {
     return new Cryptobox(engine, amountOfPreKeys);
   }
 
-  describe('encrypt / decrypt"', () => {
+  describe('encrypt / decrypt', () => {
     it('encrypts messages for multiple clients and decrypts', async () => {
       const alice = await createCryptobox('alice');
       const text = 'Hello, World!';
@@ -80,10 +82,7 @@ describe('Cryptobox', () => {
     });
 
     it("throws an error when receiving a PreKey message that was encoded with a PreKey which does not exist anymore on the receiver's side", async () => {
-      const cryptobox = require('../test/fixtures/qa-break-session/cryptobox.json');
-      const event = require('../test/fixtures/qa-break-session/event.json');
       const sessionId = `${event.from}@${event.data.sender}`;
-
       const amountOfAlicePreKeys = Object.keys(cryptobox.prekeys).length;
       const alice = await createCryptobox('alice', amountOfAlicePreKeys);
       await alice.create();
@@ -100,7 +99,7 @@ describe('Cryptobox', () => {
     });
   });
 
-  describe('serialize / deserialize"', () => {
+  describe('serialize / deserialize', () => {
     it('can be used to export and import Cryptobox instances', async () => {
       // Test serialization
       const amountOfAlicePreKeys = 15;
