@@ -3,7 +3,7 @@
     "@wireapp/lru-cache": "3.8.0",
     "@wireapp/priority-queue": "1.6.33",
     "@wireapp/proteus": "9.12.0",
-    "@wireapp/store-engine": "4.9.0",
+    "@wireapp/store-engine": "4.9.1",
     "bazinga64": "5.9.1"
   },
   "description": "High-level API with persistent storage for Proteus.",
