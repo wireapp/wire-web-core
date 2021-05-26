@@ -17,12 +17,21 @@
  *
  */
 
-import {wrap} from 'comlink';
-import type {PublicCryptobox} from '../PublicCryptobox';
+import {expose} from 'comlink';
+import {PublicCryptobox} from './PublicCryptobox';
+import {Cryptobox} from './Cryptobox';
+import {MemoryEngine} from '@wireapp/store-engine';
 
-(async () => {
-  const worker = new Worker('./src/cryptobox.webworker.js');
-  const cryptobox = wrap<PublicCryptobox>(worker);
-  const fingerprint = await cryptobox.fingerprint();
-  console.info(fingerprint);
-})().catch(console.error);
+const api: PublicCryptobox = {
+  fingerprint: async function (): Promise<string> {
+    const storage = new MemoryEngine();
+    await storage.init('storage');
+
+    const cryptobox = new Cryptobox(storage);
+    await cryptobox.create();
+
+    return cryptobox.getIdentity().public_key.fingerprint();
+  },
+};
+
+expose(api);

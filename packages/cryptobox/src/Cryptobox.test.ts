@@ -66,8 +66,8 @@ describe('cryptobox.Cryptobox', () => {
       const bob = await createCryptobox('bob');
       const bobsPreKeys = await bob.create();
 
-      expect(bob.identity).toBeDefined();
-      const bobBundle = new ProteusKeys.PreKeyBundle(bob.identity!.public_key, bobsPreKeys[0]);
+      expect(bob.getIdentity()).toBeDefined();
+      const bobBundle = new ProteusKeys.PreKeyBundle(bob.getIdentity().public_key, bobsPreKeys[0]);
 
       const plaintext = 'Hello, Bob!';
       const ciphertext = await alice.encrypt('session-with-bob', plaintext, bobBundle.serialise());
@@ -92,7 +92,7 @@ describe('cryptobox.Cryptobox', () => {
       const box = new Cryptobox(engine);
 
       await box.create();
-      expect(box.identity).toBeDefined();
+      expect(box.getIdentity()).toBeDefined();
 
       const identity = await box['store'].load_identity();
       expect(identity).toBeDefined();
@@ -121,23 +121,22 @@ describe('cryptobox.Cryptobox', () => {
   describe('load', () => {
     it('initializes a Cryptobox with an existing identity and the last resort PreKey', async () => {
       let box = new Cryptobox(engine, 4);
-      let initialFingerPrint = undefined;
 
       const initialPreKeys = await box.create();
       const lastResortPreKey = initialPreKeys[initialPreKeys.length - 1];
       expect(lastResortPreKey.key_id).toBe(ProteusKeys.PreKey.MAX_PREKEY_ID);
 
-      const identity = box.identity;
+      const identity = box.getIdentity();
       expect(identity).toBeDefined();
-      expect(identity!.public_key.fingerprint()).toBeDefined();
+      expect(identity.public_key.fingerprint()).toBeDefined();
 
-      initialFingerPrint = identity!.public_key.fingerprint();
+      const initialFingerPrint = identity.public_key.fingerprint();
 
       box = new Cryptobox(engine);
-      expect(box.identity).not.toBeDefined();
+      expect(box['identity']).not.toBeDefined();
       await box.load();
-      expect(box.identity).toBeDefined();
-      expect(box.identity!.public_key.fingerprint()).toBe(initialFingerPrint);
+      expect(box['identity']).toBeDefined();
+      expect(box.getIdentity().public_key.fingerprint()).toBe(initialFingerPrint);
     });
 
     it('fails to initialize a Cryptobox of which the identity is missing', async () => {
@@ -145,14 +144,14 @@ describe('cryptobox.Cryptobox', () => {
 
       try {
         await box.create();
-        expect(box.identity).toBeDefined();
+        expect(box.getIdentity()).toBeDefined();
         await box['store'].delete_all();
 
         const identity = await box['store'].load_identity();
         expect(identity).not.toBeDefined();
 
         box = new Cryptobox(engine);
-        expect(box.identity).not.toBeDefined();
+        expect(box.getIdentity()).not.toBeDefined();
         await box.load();
         fail();
       } catch (error) {
@@ -165,14 +164,14 @@ describe('cryptobox.Cryptobox', () => {
 
       try {
         await box.create();
-        expect(box.identity).toBeDefined();
+        expect(box.getIdentity()).toBeDefined();
         await box['store'].delete_prekey(ProteusKeys.PreKey.MAX_PREKEY_ID);
 
         const prekey = await box['store'].load_prekey(ProteusKeys.PreKey.MAX_PREKEY_ID);
         expect(prekey).not.toBeDefined();
 
         box = new Cryptobox(engine);
-        expect(box.identity).not.toBeDefined();
+        expect(box.getIdentity()).not.toBeDefined();
         await box.load();
         fail();
       } catch (error) {
@@ -185,7 +184,7 @@ describe('cryptobox.Cryptobox', () => {
     describe('serialize_prekey', () => {
       it('generates a JSON format', async () => {
         const box = new Cryptobox(engine, 10);
-        box.identity = new ProteusKeys.IdentityKeyPair();
+        box['identity'] = new ProteusKeys.IdentityKeyPair();
         const preKeyId = 72;
         const preKey = new ProteusKeys.PreKey(preKeyId);
         const json = box.serialize_prekey(preKey);
@@ -209,8 +208,8 @@ describe('cryptobox.Cryptobox', () => {
 
       const bobBundle = new ProteusKeys.PreKeyBundle(bobIdentity.public_key, bobPrekey);
 
-      expect(box.identity).toBeDefined();
-      const session = ProteusSession.Session.init_from_prekey(box.identity!, bobBundle);
+      expect(box.getIdentity()).toBeDefined();
+      const session = ProteusSession.Session.init_from_prekey(box.getIdentity()!, bobBundle);
       const cryptoBoxSession = new CryptoboxSession(sessionIdUnique, session);
       await box['session_save'](cryptoBoxSession);
     });

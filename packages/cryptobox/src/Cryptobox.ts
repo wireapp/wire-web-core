@@ -51,11 +51,11 @@ export class Cryptobox extends EventEmitter {
   private queues = new LRUCache<PriorityQueue>(DEFAULT_CAPACITY);
   private readonly minimumAmountOfPreKeys: number;
   private readonly store: CryptoboxCRUDStore;
+  private identity: ProteusKeys.IdentityKeyPair | undefined;
 
   public static VERSION = version;
   public static readonly TOPIC = TOPIC;
   public lastResortPreKey: ProteusKeys.PreKey | undefined;
-  public identity: ProteusKeys.IdentityKeyPair | undefined;
 
   constructor(engine: CRUDEngineBaseCollection, minimumAmountOfPreKeys: number = 1) {
     super();
@@ -98,6 +98,13 @@ export class Cryptobox extends EventEmitter {
     await this.create_new_identity();
     await this.create_last_resort_prekey();
     return this.init(false);
+  }
+
+  public getIdentity(): ProteusKeys.IdentityKeyPair {
+    if (!this.identity) {
+      throw new CryptoboxError('Failed to load local identity');
+    }
+    return this.identity;
   }
 
   public async load(): Promise<ProteusKeys.PreKey[]> {

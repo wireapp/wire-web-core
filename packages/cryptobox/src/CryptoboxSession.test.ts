@@ -43,9 +43,9 @@ describe('CryptoboxSession', () => {
 
     // 1. Bob creates and "uploads" a PreKey, which can be "consumed" by Alice
     const preKey = await bob['get_prekey'](bobPreKeyId);
-    expect(bob.identity).toBeDefined();
+    expect(bob.getIdentity()).toBeDefined();
     expect(preKey).toBeDefined();
-    const bobBundle = new ProteusKeys.PreKeyBundle(bob.identity!.public_key, preKey!);
+    const bobBundle = new ProteusKeys.PreKeyBundle(bob.getIdentity().public_key, preKey!);
     // 2. Alice takes Bob's PreKey bundle to initiate a session
     const sessionWithBob = await alice.session_from_prekey('alice-to-bob', bobBundle.serialise());
     return sessionWithBob;
@@ -59,10 +59,10 @@ describe('CryptoboxSession', () => {
   describe('fingerprints', () => {
     it('returns the local & remote fingerpint', async () => {
       const sessionWithBob = await setupAliceToBob(1, ProteusKeys.PreKey.MAX_PREKEY_ID);
-      expect(alice.identity).toBeDefined();
-      expect(bob.identity).toBeDefined();
-      expect(sessionWithBob.fingerprint_local()).toBe(alice.identity!.public_key.fingerprint());
-      expect(sessionWithBob.fingerprint_remote()).toBe(bob.identity!.public_key.fingerprint());
+      expect(alice.getIdentity()).toBeDefined();
+      expect(bob.getIdentity()).toBeDefined();
+      expect(sessionWithBob.fingerprint_local()).toBe(alice.getIdentity().public_key.fingerprint());
+      expect(sessionWithBob.fingerprint_remote()).toBe(bob.getIdentity().public_key.fingerprint());
     });
   });
 
