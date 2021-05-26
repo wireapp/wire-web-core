@@ -18,10 +18,10 @@
  */
 
 import {wrap} from 'comlink';
-import {PublicCryptobox} from '../PublicCryptobox';
+import type {PublicCryptobox} from '../PublicCryptobox';
 
 (async () => {
-  const worker = new Worker('./src/CryptoboxWorker.js');
+  const worker = new Worker('./src/cryptobox.webworker.js');
   const cryptobox = wrap<PublicCryptobox>(worker);
   const fingerprint = await cryptobox.fingerprint();
   console.info(fingerprint);
