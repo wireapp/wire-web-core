@@ -27,10 +27,10 @@ const api: PublicCryptobox = {
     const storage = new MemoryEngine();
     await storage.init('storage');
 
-    const cryptobox = new Cryptobox(storage, 1);
+    const cryptobox = new Cryptobox(storage);
     await cryptobox.create();
 
-    return cryptobox.identity!.public_key.fingerprint();
+    return cryptobox.getIdentity().public_key.fingerprint();
   },
 };
 

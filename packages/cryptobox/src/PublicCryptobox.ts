@@ -18,13 +18,5 @@
  */
 
 export interface PublicCryptobox {
-  // encrypt(
-  //   sessionId: string,
-  //   payload: Uint8Array,
-  //   preKeyBundle?: ArrayBuffer
-  // ): Promise<ArrayBuffer>;
-  //
-  // decrypt(sessionId: string, ciphertext: ArrayBuffer): Promise<Uint8Array>;
-
   fingerprint(): Promise<string>;
 }
