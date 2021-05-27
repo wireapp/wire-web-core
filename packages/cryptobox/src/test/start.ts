@@ -17,12 +17,19 @@
  *
  */
 
-import {wrap} from 'comlink';
+import {Remote, wrap} from 'comlink';
 import type {PublicCryptobox} from '../PublicCryptobox';
+import nodeEndpoint from 'comlink/dist/esm/node-adapter';
+
+function getCryptoboxWorker(): Remote<PublicCryptobox> {
+  const inBrowser = typeof process !== 'object';
+  const workerConstructor = inBrowser ? Worker : require('worker_threads').Worker;
+  const worker = new workerConstructor('./src/cryptobox.webworker.js');
+  return wrap<PublicCryptobox>(inBrowser ? worker : nodeEndpoint(worker));
+}
 
 (async () => {
-  const worker = new Worker('./src/cryptobox.webworker.js');
-  const cryptobox = wrap<PublicCryptobox>(worker);
+  const cryptobox = getCryptoboxWorker();
   const fingerprint = await cryptobox.fingerprint();
   console.info(fingerprint);
 })().catch(console.error);
