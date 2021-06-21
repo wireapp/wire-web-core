@@ -217,9 +217,9 @@ describe('cryptobox.store.IndexedDB', () => {
       const sessionId = 'session_with_bob';
       const preKey = await bob['store'].load_prekey(3);
 
-      expect(bob.identity).toBeDefined();
+      expect(bob['identity']).toBeDefined();
       expect(preKey).toBeDefined();
-      const bobBundle = new ProteusKeys.PreKeyBundle(bob.identity!.public_key, preKey!);
+      const bobBundle = new ProteusKeys.PreKeyBundle(bob['identity']!.public_key, preKey!);
 
       const cipherMessage = await alice.encrypt(sessionId, 'Hello Bob!', bobBundle.serialise());
       expect((await bob['store'].load_prekeys()).length).toBe(7);
