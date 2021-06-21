@@ -20,20 +20,17 @@
 import {Remote, wrap} from 'comlink';
 // @ts-ignore
 import nodeEndpoint from 'comlink/dist/esm/node-adapter.mjs';
+import {PublicCryptobox} from '../PublicCryptobox';
 
-interface WorkerAPI {
-  doMath: () => number;
-}
-
-async function getCryptoboxWorker(): Promise<Remote<WorkerAPI>> {
+async function getCryptoboxWorker(): Promise<Remote<PublicCryptobox>> {
   const inBrowser = typeof process !== 'object';
   const workerConstructor = inBrowser ? Worker : (await import('worker_threads')).Worker;
-  const worker = new workerConstructor('./src/worker.mjs');
-  return wrap<WorkerAPI>(inBrowser ? worker : nodeEndpoint(worker));
+  const worker = new workerConstructor('./src/cryptobox.webworker.js');
+  return wrap<PublicCryptobox>(inBrowser ? worker : nodeEndpoint(worker));
 }
 
 (async () => {
-  const api = await getCryptoboxWorker();
-  const result = await api.doMath();
+  const cryptobox = await getCryptoboxWorker();
+  const result = await cryptobox.fingerprint();
   console.info(result);
 })().catch(console.error);

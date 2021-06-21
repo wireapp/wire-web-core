@@ -17,11 +17,46 @@
  *
  */
 
-module.exports = {
+import webpack from 'webpack';
+import * as path from 'path';
+
+const config = {
+  entry: ['./src/CryptoboxWorker.ts'],
+  externals: {
+    'fs-extra': '{}',
+  },
+  mode: 'production',
+  module: {
+    rules: [
+      {
+        exclude: /(node_modules)/,
+        loader: 'babel-loader',
+        test: /\.[tj]sx?$/,
+      },
+    ],
+  },
+  optimization: {
+    minimize: false,
+  },
+  output: {
+    filename: 'cryptobox.webworker.js',
+    path: path.resolve('./src'),
+  },
   plugins: [
-    '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-proposal-nullish-coalescing-operator',
-    '@babel/plugin-proposal-optional-chaining',
+    new webpack.ProvidePlugin({
+      Buffer: ['buffer', 'Buffer'],
+    }),
   ],
-  presets: ['@babel/preset-typescript'],
+  resolve: {
+    extensions: ['.js', '.ts'],
+    fallback: {
+      crypto: false,
+      path: false,
+    },
+  },
+  stats: {
+    errorDetails: true,
+  },
 };
+
+export default config;
