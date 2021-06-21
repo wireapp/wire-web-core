@@ -37,7 +37,7 @@ const config: Configuration = {
     ],
   },
   optimization: {
-    minimize: true,
+    minimize: false,
     minimizer: [
       new TerserPlugin({
         extractComments: false,
@@ -63,6 +63,7 @@ const config: Configuration = {
   stats: {
     errorDetails: true,
   },
+  target: 'webworker',
 };
 
 export default config;
