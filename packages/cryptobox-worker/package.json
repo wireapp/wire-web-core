@@ -11,6 +11,9 @@
   "license": "GPL-3.0",
   "main": "src/CryptoboxWorker",
   "name": "@wireapp/cryptobox-worker",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": "https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox-worker",
   "scripts": {
     "build": "exit 0",
