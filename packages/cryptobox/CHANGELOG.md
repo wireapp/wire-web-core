@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.6.0](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/compare/@wireapp/cryptobox@12.5.9...@wireapp/cryptobox@12.6.0) (2021-06-22)
+
+
+### Features
+
+* **cryptobox:** Use Cryptobox from web worker in browsers ([#55](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/issues/55)) ([36045cc](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/commit/36045cc15f684375bf04098c75a18e65a1989d17))
+
+
+
+
+
 ## [12.5.9](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/compare/@wireapp/cryptobox@12.5.8...@wireapp/cryptobox@12.5.9) (2021-05-11)
 
 **Note:** Version bump only for package @wireapp/cryptobox
