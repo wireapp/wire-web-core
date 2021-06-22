@@ -17,11 +17,42 @@
  *
  */
 
-module.exports = {
+import CircularDependencyPlugin from 'circular-dependency-plugin';
+
+const config = {
+  externals: {
+    'fs-extra': '{}',
+  },
+  mode: 'development',
+  module: {
+    rules: [
+      {
+        exclude: /(node_modules)/,
+        loader: 'babel-loader',
+        test: /\.[tj]sx?$/,
+      },
+    ],
+  },
+  optimization: {
+    minimize: false,
+  },
   plugins: [
-    '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-proposal-nullish-coalescing-operator',
-    '@babel/plugin-proposal-optional-chaining',
+    new CircularDependencyPlugin({
+      allowAsyncCycles: false,
+      cwd: process.cwd(),
+      failOnError: false,
+    }),
   ],
-  presets: ['@babel/preset-typescript'],
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    fallback: {
+      crypto: false,
+      path: false,
+    },
+  },
+  stats: {
+    errorDetails: true,
+  },
 };
+
+export default config;

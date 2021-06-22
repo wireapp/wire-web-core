@@ -47,14 +47,15 @@
   "repository": "https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "build:webworker": "webpack --config webpack.config.webworker.ts",
+    "build:webworker": "webpack --config webpack.config.webworker.js",
     "clean": "rimraf \"src/**/!(*worker).{js,js.map,d.ts}\" .nyc_output coverage",
     "dist": "yarn clean && yarn build",
-    "start": "yarn build:webworker && webpack serve --config webpack.config.dev.ts",
+    "start": "yarn build:webworker && webpack serve --config webpack.config.dev.js",
     "test": "yarn test:node && yarn test:browser",
     "test:browser": "karma start",
     "test:node": "cross-env NODE_DEBUG=@wireapp/cryptobox* nyc --nycrc-path=../../nyc.config.js jasmine --config=jasmine.json",
     "test:types": "tsc --noEmit"
   },
+  "type": "module",
   "version": "12.5.9"
 }

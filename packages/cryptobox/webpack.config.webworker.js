@@ -17,14 +17,18 @@
  *
  */
 
-import {Configuration, WebpackPluginInstance} from 'webpack';
-const CircularDependencyPlugin = require('circular-dependency-plugin');
+import webpack from 'webpack';
+import * as path from 'path';
+import TerserPlugin from 'terser-webpack-plugin';
 
-const config: Configuration = {
+const config = {
+  entry: {
+    CryptoboxWorker: './src/CryptoboxWorker.ts',
+  },
   externals: {
     'fs-extra': '{}',
   },
-  mode: 'development',
+  mode: 'production',
   module: {
     rules: [
       {
@@ -36,16 +40,27 @@ const config: Configuration = {
   },
   optimization: {
     minimize: false,
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false,
+      }),
+    ],
+  },
+  output: {
+    filename: '[name].js',
+    path: path.resolve('./src'),
+    publicPath: '',
   },
   plugins: [
-    new CircularDependencyPlugin({
-      allowAsyncCycles: false,
-      cwd: process.cwd(),
-      failOnError: false,
-    }) as WebpackPluginInstance,
+    new webpack.ProvidePlugin({
+      Buffer: ['buffer', 'Buffer'],
+    }),
   ],
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    alias: {
+      worker_threads: false,
+    },
+    extensions: ['.js', '.ts'],
     fallback: {
       crypto: false,
       path: false,
@@ -54,6 +69,7 @@ const config: Configuration = {
   stats: {
     errorDetails: true,
   },
+  target: 'webworker',
 };
 
 export default config;

@@ -17,9 +17,9 @@
  *
  */
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-import {HotModuleReplacementPlugin} from 'webpack';
-import config from './webpack.config';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import webpack from 'webpack';
+import config from './webpack.config.js';
 
 const devConfig = {
   devServer: {
@@ -35,10 +35,10 @@ const devConfig = {
     watchContentBase: true,
   },
   entry: [`${process.cwd()}/src/test/start.ts`],
-  plugins: [new HotModuleReplacementPlugin(), new HtmlWebpackPlugin()],
+  plugins: [new webpack.HotModuleReplacementPlugin(), new HtmlWebpackPlugin()],
 };
 
 export default {
-  ...(config as any),
+  ...config,
   ...devConfig,
 };
