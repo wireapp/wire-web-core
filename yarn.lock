@@ -1614,6 +1614,22 @@
   resolved "https://registry.npmjs.org/@webpack-cli/serve/-/serve-1.5.1.tgz#b5fde2f0f79c1e120307c415a4c1d5eb15a6f278"
   integrity sha512-4vSVUiOPJLmr45S8rMGy7WDvpWxfFxfP/Qx/cxZFCfvoypTYpPPL1X8VIZMe0WTA+Jr7blUxwUSEZNkjoMTgSw==
 
+"@wireapp/cbor@4.7.1":
+  version "4.7.1"
+  resolved "https://registry.npmjs.org/@wireapp/cbor/-/cbor-4.7.1.tgz#83d5d4cfc1f3924b7c491e6a03416fad313c4f0c"
+  integrity sha512-AgSMtgHmKwjJ31mCPFGoXvHbM+v4ODIJpBBU3J4GM5u827St7YmlnI+u+OZwA9PgRAwKliQbyumtShGVn0cKMw==
+
+"@wireapp/cryptobox@12.5.9":
+  version "12.5.9"
+  resolved "https://registry.npmjs.org/@wireapp/cryptobox/-/cryptobox-12.5.9.tgz#69b9e00f7090e083fe0412a638216e4cd73957e1"
+  integrity sha512-nYWreU/0q0lx5mq3v7v6gm2zFUNbVGdOE3Cayv5zb9aH5pvzDT3C2aDuQ0tuc0TuGd60//115KoerKlQ2Hb1tQ==
+  dependencies:
+    "@wireapp/lru-cache" "3.8.0"
+    "@wireapp/priority-queue" "1.6.31"
+    "@wireapp/proteus" "9.12.0"
+    "@wireapp/store-engine" "4.7.0"
+    bazinga64 "5.7.33"
+
 "@wireapp/eslint-config@1.11.2":
   version "1.11.2"
   resolved "https://registry.npmjs.org/@wireapp/eslint-config/-/eslint-config-1.11.2.tgz#b6a67ef7d6ac037641dfbeb1c9f0af289d5cb08e"
@@ -1624,12 +1640,29 @@
   resolved "https://registry.npmjs.org/@wireapp/prettier-config/-/prettier-config-0.3.2.tgz#831bf7e66c52e627c0fb8e6692d25f49962c00fa"
   integrity sha512-BYCsyqXe3oy/19R03hwD91Kd1AtNm8p2xQf8qyVVv9rxU3F3z83CwAKSGQfq05AFEUVp1K1SHhKeHVZ+rQrTPQ==
 
+"@wireapp/priority-queue@1.6.31":
+  version "1.6.31"
+  resolved "https://registry.npmjs.org/@wireapp/priority-queue/-/priority-queue-1.6.31.tgz#fc177e14faf649ac4e17df0f259a0ca869a08a98"
+  integrity sha512-VC6V7GRkKl3TZDeQ5D0+U6bbD6WUAz15hCalixWS8pQYhP08lvbIUIzSOuAAQDdzc6wh/+aFBEgfs53d8JM/VA==
+  dependencies:
+    "@types/node" "~14"
+
 "@wireapp/priority-queue@1.6.34":
   version "1.6.34"
   resolved "https://registry.npmjs.org/@wireapp/priority-queue/-/priority-queue-1.6.34.tgz#bde94c4e8f9141a528ac9cebcba81d3215a51444"
   integrity sha512-ndD0sjRbV9/tnF/Z/rd+JJKW9mVlOguJx6LLWSL+7PjTqN6KDLt5TcWnTz90h7tXDXZA/iDmDDk/IeWEfqTc8A==
   dependencies:
     "@types/node" "~14"
+
+"@wireapp/proteus@9.12.0":
+  version "9.12.0"
+  resolved "https://registry.npmjs.org/@wireapp/proteus/-/proteus-9.12.0.tgz#b47a25bd8d453d3fd7d043f6aa03c0f035b8499b"
+  integrity sha512-nayzbNdJZic+TLK8SzsONL+aVujqQ/ftdkfLRrT0EJCSh87DELHlaaq7JzgR8uLQIs5Pm2hi6PTBDMFsDLx8iw==
+  dependencies:
+    "@types/libsodium-wrappers-sumo" "0.7.5"
+    "@types/node" "~14"
+    "@wireapp/cbor" "4.7.1"
+    libsodium-wrappers-sumo "0.7.9"
 
 "@wireapp/store-engine-dexie@1.6.2":
   version "1.6.2"
@@ -1645,6 +1678,13 @@
   dependencies:
     "@types/fs-extra" "9.0.11"
     fs-extra "10.0.0"
+
+"@wireapp/store-engine@4.7.0":
+  version "4.7.0"
+  resolved "https://registry.npmjs.org/@wireapp/store-engine/-/store-engine-4.7.0.tgz#1184b0783d17d7fa2b26c2e61478e9208316b276"
+  integrity sha512-Z82TkBLS2C0iZwvFC2pTNVKE7ddXMIBZGr6wvpCOP3Ibpw0TC5TGQ9H2U1+LLizIphCISILUJwqPI+jbleZ/PQ==
+  dependencies:
+    "@types/node" "~14"
 
 "@wireapp/store-engine@4.9.2":
   version "4.9.2"
@@ -2102,6 +2142,11 @@ batch@0.6.1:
   version "0.6.1"
   resolved "https://registry.npmjs.org/batch/-/batch-0.6.1.tgz#dc34314f4e679318093fc760272525f94bf25c16"
   integrity sha1-3DQxT05nkxgJP8dgJyUl+UvyXBY=
+
+bazinga64@5.7.33:
+  version "5.7.33"
+  resolved "https://registry.npmjs.org/bazinga64/-/bazinga64-5.7.33.tgz#09f17c5cdf9c38fbbac931f0d1b3d2359071d84b"
+  integrity sha512-lJVZgVUvGcZoUBBnK+aUBCKhWbOOX8UmaZgV3UZSTFFncjDtduuJp7XFgqsxnyqgw7Jn7cG4n0C1X8xjHUyvXw==
 
 bazinga64@5.9.2:
   version "5.9.2"
