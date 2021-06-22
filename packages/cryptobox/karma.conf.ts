@@ -18,7 +18,7 @@
  */
 
 import type {Config} from 'karma';
-import webpackConfig from './webpack.config';
+import * as webpackConfig from './webpack.config.js';
 import {ConfigOptions} from 'karma';
 
 const testCode = 'src/**/*test.browser.ts';
@@ -47,6 +47,6 @@ module.exports = (config: Config): void => {
     },
     reporters: ['progress'],
     singleRun: true,
-    webpack: webpackConfig,
+    webpack: webpackConfig.default,
   } as ConfigOptions);
 };

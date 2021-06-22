@@ -17,7 +17,7 @@
  *
  */
 
-import CircularDependencyPlugin from 'circular-dependency-plugin';
+const CircularDependencyPlugin = require('circular-dependency-plugin');
 
 const config = {
   externals: {

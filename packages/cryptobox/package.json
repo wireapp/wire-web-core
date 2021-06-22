@@ -56,6 +56,5 @@
     "test:node": "cross-env NODE_DEBUG=@wireapp/cryptobox* nyc --nycrc-path=../../nyc.config.js jasmine --config=jasmine.json",
     "test:types": "tsc --noEmit"
   },
-  "type": "module",
   "version": "12.5.9"
 }
