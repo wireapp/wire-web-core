@@ -17,9 +17,9 @@
  *
  */
 
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import webpack from 'webpack';
-import config from './webpack.config.js';
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const config = require('./webpack.config.js');
 
 const devConfig = {
   devServer: {
@@ -38,7 +38,7 @@ const devConfig = {
   plugins: [new webpack.HotModuleReplacementPlugin(), new HtmlWebpackPlugin()],
 };
 
-export default {
+module.exports = {
   ...config,
   ...devConfig,
 };
