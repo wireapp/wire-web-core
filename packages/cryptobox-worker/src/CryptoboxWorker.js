@@ -37,7 +37,11 @@ const api = {
 
 async function getEndpoint() {
   const inBrowser = typeof process !== 'object';
-  return inBrowser ? undefined : nodeEndpoint((await import('worker_threads')).parentPort);
+  if (inBrowser) {
+    return undefined;
+  }
+  const workerThreads = await import('worker_threads');
+  return nodeEndpoint(workerThreads.parentPort);
 }
 
 getEndpoint().then(endpoint => expose(api, endpoint));
