@@ -17,10 +17,14 @@
  *
  */
 
-import {getCryptoboxWorker} from './CryptoboxWorkerExport.js';
+import {Worker} from 'worker_threads';
+import {wrap} from 'comlink';
+// @ts-ignore
+import nodeEndpoint from 'comlink/dist/esm/node-adapter.mjs';
 
-(async () => {
-  const cryptobox = await getCryptoboxWorker();
-  const result = await cryptobox.fingerprint();
-  console.info(result);
-})().catch(console.error);
+export async function getCryptoboxWorker() {
+  const inBrowser = typeof process !== 'object';
+  const workerConstructor = inBrowser ? Worker : (await import('worker_threads')).Worker;
+  const worker = new workerConstructor('./src/CryptoboxWorker.js');
+  return wrap(inBrowser ? worker : nodeEndpoint(worker));
+}

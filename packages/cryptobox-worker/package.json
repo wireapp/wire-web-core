@@ -9,7 +9,7 @@
     "src"
   ],
   "license": "GPL-3.0",
-  "main": "src/CryptoboxWorker",
+  "main": "src/CryptoboxWorkerExport",
   "name": "@wireapp/cryptobox-worker",
   "publishConfig": {
     "access": "public"
