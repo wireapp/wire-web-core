@@ -17,12 +17,9 @@
  *
  */
 
-import {Worker} from 'worker_threads';
 import {wrap} from 'comlink';
-// @ts-ignore
-import nodeEndpoint from 'comlink/dist/esm/node-adapter.mjs';
 
 export async function getCryptoboxWorker() {
   const worker = new Worker('./src/CryptoboxWorker.js');
-  return wrap(nodeEndpoint(worker));
+  return wrap(worker);
 }

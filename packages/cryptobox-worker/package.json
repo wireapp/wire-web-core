@@ -1,6 +1,9 @@
 {
+  "browser": {
+    "./src/CryptoboxWorkerExport": "./src/CryptoboxWorkerBrowserExport.js"
+  },
   "dependencies": {
-    "@wireapp/cryptobox": "12.5.9",
+    "@wireapp/cryptobox": "12.6.0",
     "@wireapp/store-engine": "4.9.2",
     "comlink": "4.3.1"
   },
