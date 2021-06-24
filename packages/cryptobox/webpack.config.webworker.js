@@ -17,11 +17,11 @@
  *
  */
 
-import webpack from 'webpack';
-import * as path from 'path';
-import TerserPlugin from 'terser-webpack-plugin';
+const webpack = require('webpack');
+const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
 
-const config = {
+module.exports = {
   entry: {
     CryptoboxWorker: './src/CryptoboxWorker.ts',
   },
@@ -71,5 +71,3 @@ const config = {
   },
   target: 'webworker',
 };
-
-export default config;

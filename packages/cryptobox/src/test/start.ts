@@ -21,7 +21,7 @@ import {wrap} from 'comlink';
 import type {PublicCryptobox} from '../PublicCryptobox';
 
 (async () => {
-  const worker = new Worker('@webapp/cryptobox-worker');
+  const worker = new Worker('./src/CryptoboxWorker.js');
   const cryptobox = wrap<PublicCryptobox>(worker);
   const fingerprint = await cryptobox.fingerprint();
   console.info(fingerprint);
