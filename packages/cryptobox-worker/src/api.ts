@@ -17,41 +17,18 @@
  *
  */
 
-const CircularDependencyPlugin = require('circular-dependency-plugin');
+import {PublicCryptobox} from './PublicCryptobox';
+import {MemoryEngine} from '@wireapp/store-engine';
+import {Cryptobox} from '@wireapp/cryptobox';
 
-module.exports = {
-  externals: {
-    'fs-extra': '{}',
-    worker_threads: false,
-  },
-  mode: 'development',
-  module: {
-    rules: [
-      {
-        exclude: /(node_modules)/,
-        loader: 'babel-loader',
-        test: /\.[tj]sx?$/,
-      },
-    ],
-  },
-  optimization: {
-    minimize: false,
-  },
-  plugins: [
-    new CircularDependencyPlugin({
-      allowAsyncCycles: false,
-      cwd: process.cwd(),
-      failOnError: false,
-    }),
-  ],
-  resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    fallback: {
-      crypto: false,
-      path: false,
-    },
-  },
-  stats: {
-    errorDetails: true,
+export const api: PublicCryptobox = {
+  fingerprint: async function (): Promise<string> {
+    const storage = new MemoryEngine();
+    await storage.init('storage');
+
+    const cryptobox = new Cryptobox(storage);
+    await cryptobox.create();
+
+    return cryptobox.getIdentity().public_key.fingerprint();
   },
 };

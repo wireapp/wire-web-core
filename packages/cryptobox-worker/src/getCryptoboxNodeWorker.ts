@@ -17,41 +17,14 @@
  *
  */
 
-const CircularDependencyPlugin = require('circular-dependency-plugin');
+import {Worker} from 'worker_threads';
+import {wrap} from 'comlink';
+import {PublicCryptobox} from './PublicCryptobox';
 
-module.exports = {
-  externals: {
-    'fs-extra': '{}',
-    worker_threads: false,
-  },
-  mode: 'development',
-  module: {
-    rules: [
-      {
-        exclude: /(node_modules)/,
-        loader: 'babel-loader',
-        test: /\.[tj]sx?$/,
-      },
-    ],
-  },
-  optimization: {
-    minimize: false,
-  },
-  plugins: [
-    new CircularDependencyPlugin({
-      allowAsyncCycles: false,
-      cwd: process.cwd(),
-      failOnError: false,
-    }),
-  ],
-  resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    fallback: {
-      crypto: false,
-      path: false,
-    },
-  },
-  stats: {
-    errorDetails: true,
-  },
-};
+// @ts-ignore
+import nodeEndpoint from 'comlink/dist/esm/node-adapter.mjs';
+
+export async function getCryptoboxNodeWorker() {
+  const worker = new Worker('./src/CryptoboxNodeWorker.js');
+  return wrap<PublicCryptobox>(nodeEndpoint(worker));
+}

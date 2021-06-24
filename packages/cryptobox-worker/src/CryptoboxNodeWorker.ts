@@ -17,41 +17,11 @@
  *
  */
 
-const CircularDependencyPlugin = require('circular-dependency-plugin');
+import {expose} from 'comlink';
+import {parentPort} from 'worker_threads';
+import {api} from './api';
 
-module.exports = {
-  externals: {
-    'fs-extra': '{}',
-    worker_threads: false,
-  },
-  mode: 'development',
-  module: {
-    rules: [
-      {
-        exclude: /(node_modules)/,
-        loader: 'babel-loader',
-        test: /\.[tj]sx?$/,
-      },
-    ],
-  },
-  optimization: {
-    minimize: false,
-  },
-  plugins: [
-    new CircularDependencyPlugin({
-      allowAsyncCycles: false,
-      cwd: process.cwd(),
-      failOnError: false,
-    }),
-  ],
-  resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    fallback: {
-      crypto: false,
-      path: false,
-    },
-  },
-  stats: {
-    errorDetails: true,
-  },
-};
+// @ts-ignore
+import nodeEndpoint from 'comlink/dist/esm/node-adapter.mjs';
+
+expose(api, nodeEndpoint(parentPort));

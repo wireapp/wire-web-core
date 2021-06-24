@@ -18,7 +18,7 @@
  */
 
 import {expose} from 'comlink';
-import {PublicCryptobox} from './PublicCryptobox';
+import {PublicCryptobox} from '@wireapp/cryptobox-worker/src/PublicCryptobox';
 import {Cryptobox} from './Cryptobox';
 import {MemoryEngine} from '@wireapp/store-engine';
 

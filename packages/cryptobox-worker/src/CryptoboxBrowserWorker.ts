@@ -18,27 +18,6 @@
  */
 
 import {expose} from 'comlink';
-import {Cryptobox} from '@wireapp/cryptobox';
-import {MemoryEngine} from '@wireapp/store-engine';
-// @ts-ignore
-import nodeEndpoint from 'comlink/dist/esm/node-adapter.mjs';
+import {api} from './api';
 
-const api = {
-  fingerprint: async function () {
-    const storage = new MemoryEngine();
-    await storage.init('storage');
-
-    const cryptobox = new Cryptobox(storage);
-    await cryptobox.create();
-
-    return cryptobox.getIdentity().public_key.fingerprint();
-  },
-};
-
-async function getEndpoint() {
-  if (typeof process === 'object') {
-    return nodeEndpoint((await import('worker_threads')).parentPort);
-  }
-}
-
-getEndpoint().then(endpoint => expose(api, endpoint));
+expose(api);

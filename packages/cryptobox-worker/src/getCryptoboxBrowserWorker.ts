@@ -17,10 +17,12 @@
  *
  */
 
-import {getCryptoboxWorker} from './CryptoboxWorkerExport.js';
+import {wrap} from 'comlink';
+import {PublicCryptobox} from './PublicCryptobox';
 
-(async () => {
-  const cryptobox = await getCryptoboxWorker();
-  const result = await cryptobox.fingerprint();
-  console.info(result);
-})().catch(console.error);
+// @ts-ignore
+
+export async function getCryptoboxBrowserWorker() {
+  const worker = new Worker('./src/CryptoboxBrowserWorker.js');
+  return wrap<PublicCryptobox>(worker);
+}

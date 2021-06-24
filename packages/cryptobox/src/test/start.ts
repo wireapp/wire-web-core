@@ -17,12 +17,10 @@
  *
  */
 
-import {wrap} from 'comlink';
-import type {PublicCryptobox} from '../PublicCryptobox';
+import {getCryptoboxWorker} from '@wireapp/cryptobox-worker';
 
 (async () => {
-  const worker = new Worker('./src/CryptoboxWorker.js');
-  const cryptobox = wrap<PublicCryptobox>(worker);
+  const cryptobox = await getCryptoboxWorker();
   const fingerprint = await cryptobox.fingerprint();
   console.info(fingerprint);
 })().catch(console.error);

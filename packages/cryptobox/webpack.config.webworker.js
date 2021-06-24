@@ -25,9 +25,6 @@ module.exports = {
   entry: {
     CryptoboxWorker: './src/CryptoboxWorker.ts',
   },
-  externals: {
-    'fs-extra': '{}',
-  },
   mode: 'production',
   module: {
     rules: [

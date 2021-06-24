@@ -17,41 +17,10 @@
  *
  */
 
-const CircularDependencyPlugin = require('circular-dependency-plugin');
+import {getCryptoboxNodeWorker} from './getCryptoboxNodeWorker';
 
-module.exports = {
-  externals: {
-    'fs-extra': '{}',
-    worker_threads: false,
-  },
-  mode: 'development',
-  module: {
-    rules: [
-      {
-        exclude: /(node_modules)/,
-        loader: 'babel-loader',
-        test: /\.[tj]sx?$/,
-      },
-    ],
-  },
-  optimization: {
-    minimize: false,
-  },
-  plugins: [
-    new CircularDependencyPlugin({
-      allowAsyncCycles: false,
-      cwd: process.cwd(),
-      failOnError: false,
-    }),
-  ],
-  resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    fallback: {
-      crypto: false,
-      path: false,
-    },
-  },
-  stats: {
-    errorDetails: true,
-  },
-};
+(async () => {
+  const cryptobox = await getCryptoboxNodeWorker();
+  const result = await cryptobox.fingerprint();
+  console.info(result);
+})().catch(console.error);
