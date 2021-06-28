@@ -23,6 +23,7 @@ const config = require('./webpack.config.js');
 
 const devConfig = {
   devServer: {
+    contentBase: `${process.cwd()}/..`,
     host: 'localhost',
     hot: true,
     open: true,

@@ -19,7 +19,7 @@
 
 import {wrap} from 'comlink';
 
-export async function getCryptoboxWorker() {
-  const worker = new Worker('./src/CryptoboxWorker.js');
+export async function getCryptoboxWorker(path = './src/CryptoboxWorker.js') {
+  const worker = new Worker(path);
   return wrap(worker);
 }
