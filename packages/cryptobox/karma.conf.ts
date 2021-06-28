@@ -47,6 +47,6 @@ module.exports = (config: Config): void => {
     },
     reporters: ['progress'],
     singleRun: true,
-    webpack: webpackConfig.default,
+    webpack: webpackConfig,
   } as ConfigOptions);
 };
