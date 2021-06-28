@@ -17,21 +17,9 @@
  *
  */
 
-import {expose} from 'comlink';
-import {PublicCryptobox} from './PublicCryptobox';
-import {Cryptobox} from './Cryptobox';
-import {MemoryEngine} from '@wireapp/store-engine';
+import {wrap} from 'comlink';
 
-const api: PublicCryptobox = {
-  fingerprint: async function (): Promise<string> {
-    const storage = new MemoryEngine();
-    await storage.init('storage');
-
-    const cryptobox = new Cryptobox(storage);
-    await cryptobox.create();
-
-    return cryptobox.getIdentity().public_key.fingerprint();
-  },
-};
-
-expose(api);
+export async function getCryptoboxWorker(path = './src/CryptoboxWorker.js') {
+  const worker = new Worker(path);
+  return wrap(worker);
+}

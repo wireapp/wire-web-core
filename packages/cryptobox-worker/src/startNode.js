@@ -17,7 +17,7 @@
  *
  */
 
-import {getCryptoboxWorker} from './CryptoboxWorkerExport.js';
+import {getCryptoboxWorker} from './getCryptoboxWorker.js';
 
 (async () => {
   const cryptobox = await getCryptoboxWorker();

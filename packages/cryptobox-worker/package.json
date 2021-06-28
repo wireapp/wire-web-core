@@ -1,6 +1,6 @@
 {
   "browser": {
-    "./src/CryptoboxWorkerExport": "./src/CryptoboxWorkerBrowserExport.js"
+    "./src/getCryptoboxWorker": "./src/getCryptoboxWorker.browser.js"
   },
   "dependencies": {
     "@wireapp/cryptobox": "12.6.0",
@@ -12,7 +12,7 @@
     "src"
   ],
   "license": "GPL-3.0",
-  "main": "src/CryptoboxWorkerExport",
+  "main": "src/getCryptoboxWorker",
   "name": "@wireapp/cryptobox-worker",
   "publishConfig": {
     "access": "public"
@@ -20,8 +20,9 @@
   "repository": "https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox-worker",
   "scripts": {
     "build": "exit 0",
-    "clean": "rimraf src/**/*{.js,.js.map,.d.ts} .nyc_output coverage",
+    "clean": "rimraf src/**/*{.js.map} .nyc_output coverage",
     "dist": "exit 0",
+    "start": "yarn start:node",
     "start:node": "node ./src/startNode.js",
     "test": "exit 0"
   },
