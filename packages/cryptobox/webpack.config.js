@@ -19,7 +19,7 @@
 
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 
-const config = {
+module.exports = {
   externals: {
     'fs-extra': '{}',
   },
@@ -54,5 +54,3 @@ const config = {
     errorDetails: true,
   },
 };
-
-export default config;
