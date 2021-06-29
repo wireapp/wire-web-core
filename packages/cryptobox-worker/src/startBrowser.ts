@@ -17,10 +17,10 @@
  *
  */
 
-import {getCryptoboxWorker} from './getCryptoboxWorker.js';
+import {getCryptoboxWorker} from './getCryptoboxWorker';
 
 (async () => {
-  const cryptobox = await getCryptoboxWorker();
-  const result = await cryptobox.fingerprint();
-  console.info(result);
+  const cryptobox = await getCryptoboxWorker('./src/cryptobox.webworker.js');
+  const fingerprint = await cryptobox.fingerprint();
+  console.info(fingerprint);
 })().catch(console.error);
