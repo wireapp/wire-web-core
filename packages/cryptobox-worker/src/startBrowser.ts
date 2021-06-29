@@ -20,7 +20,7 @@
 import {getCryptoboxWorker} from '@wireapp/cryptobox-worker';
 
 (async () => {
-  const cryptobox = await getCryptoboxWorker('./cryptobox-worker/src/cryptobox.webworker.js');
+  const cryptobox = await getCryptoboxWorker('./src/cryptobox.webworker.js');
   const fingerprint = await cryptobox.fingerprint();
   console.info(fingerprint);
 })().catch(console.error);

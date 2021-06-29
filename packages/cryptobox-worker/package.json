@@ -8,8 +8,9 @@
     "comlink": "4.3.1"
   },
   "devDependencies": {
-    "@types/terser-webpack-plugin": "^5.0.3",
-    "terser-webpack-plugin": "5.1.4"
+    "@types/terser-webpack-plugin": "5.0.3",
+    "terser-webpack-plugin": "5.1.4",
+    "html-webpack-plugin": "5.3.2"
   },
   "description": "Cryptobox Web Worker",
   "files": [
@@ -29,6 +30,7 @@
     "clean": "rimraf \"src/**/!(*worker).{js,js.map,d.ts}\" .nyc_output coverage",
     "dist": "yarn clean && yarn build",
     "start": "node --loader ts-node/esm ./src/startNode.ts",
+    "start:brower": "yarn build && webpack serve",
     "test": "exit 0"
   },
   "version": "0.2.0"
