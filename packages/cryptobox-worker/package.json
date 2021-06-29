@@ -7,6 +7,10 @@
     "@wireapp/store-engine": "4.9.2",
     "comlink": "4.3.1"
   },
+  "devDependencies": {
+    "@types/terser-webpack-plugin": "^5.0.3",
+    "terser-webpack-plugin": "5.1.4"
+  },
   "description": "Cryptobox Web Worker",
   "files": [
     "src"
@@ -19,14 +23,13 @@
   },
   "repository": "https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox-worker",
   "scripts": {
-    "build": "exit 0",
-    "clean": "rimraf src/**/*{.js.map} .nyc_output coverage",
-    "dist": "exit 0",
-    "start": "yarn start:node",
-    "start:node": "node ./src/startNode.js",
+    "build": "yarn build:node && yarn build:browser",
+    "build:browser": "webpack --config webpack.config.webworker.ts",
+    "build:node": "tsc -p tsconfig.build.json",
+    "clean": "rimraf \"src/**/!(*worker).{js,js.map,d.ts}\" .nyc_output coverage",
+    "dist": "yarn clean && yarn build",
+    "start": "node --loader ts-node/esm ./src/startNode.ts",
     "test": "exit 0"
   },
-  "type": "module",
-  "types": "src/index.d.ts",
   "version": "0.1.0"
 }

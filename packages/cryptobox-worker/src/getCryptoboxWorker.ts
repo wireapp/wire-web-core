@@ -17,9 +17,14 @@
  *
  */
 
-import {wrap} from 'comlink';
+import {Worker} from 'worker_threads';
+import {Remote, wrap} from 'comlink';
+import {PublicCryptobox} from './PublicCryptobox';
 
-export async function getCryptoboxWorker(path = './src/CryptoboxWorker.js') {
+// @ts-ignore
+import nodeEndpoint from 'comlink/dist/esm/node-adapter.mjs';
+
+export async function getCryptoboxWorker(path = './src/CryptoboxWorker.js'): Promise<Remote<PublicCryptobox>> {
   const worker = new Worker(path);
-  return wrap(worker);
+  return wrap(nodeEndpoint(worker));
 }

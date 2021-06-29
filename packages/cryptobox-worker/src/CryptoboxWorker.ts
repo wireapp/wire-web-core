@@ -17,12 +17,30 @@
  *
  */
 
-import {Worker} from 'worker_threads';
-import {wrap} from 'comlink';
+import {expose} from 'comlink';
+import {Cryptobox} from '@wireapp/cryptobox';
+import {MemoryEngine} from '@wireapp/store-engine';
+import {PublicCryptobox} from './PublicCryptobox';
+
 // @ts-ignore
 import nodeEndpoint from 'comlink/dist/esm/node-adapter.mjs';
 
-export async function getCryptoboxWorker(path = './src/CryptoboxWorker.js') {
-  const worker = new Worker(path);
-  return wrap(nodeEndpoint(worker));
+const api: PublicCryptobox = {
+  fingerprint: async function (): Promise<string> {
+    const storage = new MemoryEngine();
+    await storage.init('storage');
+
+    const cryptobox = new Cryptobox(storage);
+    await cryptobox.create();
+
+    return cryptobox.getIdentity().public_key.fingerprint();
+  },
+};
+
+async function getEndpoint() {
+  if (typeof process === 'object') {
+    return nodeEndpoint((await import('worker_threads')).parentPort);
+  }
 }
+
+void getEndpoint().then(endpoint => expose(api, endpoint));
