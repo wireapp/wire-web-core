@@ -17,7 +17,7 @@
  *
  */
 
-import {getCryptoboxWorker} from '@wireapp/cryptobox-worker';
+import {getCryptoboxWorker} from './getCryptoboxWorker';
 
 (async () => {
   const cryptobox = await getCryptoboxWorker('./src/cryptobox.webworker.js');

@@ -24,13 +24,11 @@
   },
   "repository": "https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox-worker",
   "scripts": {
-    "build": "yarn build:node && yarn build:browser",
+    "build": "tsc -p tsconfig.build.json && yarn build:browser",
     "build:browser": "webpack --config webpack.config.webworker.js",
-    "build:node": "tsc -p tsconfig.build.json",
     "clean": "rimraf \"src/**/!(*worker).{js,js.map,d.ts}\" .nyc_output coverage",
     "dist": "yarn clean && yarn build",
-    "start": "node --loader ts-node/esm ./src/startNode.ts",
-    "start:browser": "yarn build && webpack serve",
+    "start": "yarn dist && webpack serve",
     "test": "exit 0"
   },
   "version": "0.2.0"
