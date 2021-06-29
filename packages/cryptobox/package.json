@@ -5,8 +5,7 @@
     "@wireapp/proteus": "9.12.1",
     "@wireapp/store-engine": "4.9.2",
     "bazinga64": "5.9.2",
-    "buffer": "6.0.3",
-    "comlink": "4.3.1"
+    "buffer": "6.0.3"
   },
   "description": "High-level API with persistent storage for Proteus.",
   "devDependencies": {
