@@ -17,11 +17,11 @@
  *
  */
 
-import {Configuration, ProvidePlugin} from 'webpack';
-import * as path from 'path';
-import * as TerserPlugin from 'terser-webpack-plugin';
+const webpack = require('webpack');
+const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
 
-const config: Configuration = {
+module.exports = {
   entry: ['./src/CryptoboxWorker.ts'],
   externals: {
     'fs-extra': '{}',
@@ -49,7 +49,7 @@ const config: Configuration = {
     path: path.resolve(__dirname, 'src'),
   },
   plugins: [
-    new ProvidePlugin({
+    new webpack.ProvidePlugin({
       Buffer: ['buffer', 'Buffer'],
     }),
   ],
@@ -65,5 +65,3 @@ const config: Configuration = {
     errorDetails: true,
   },
 };
-
-export default config;

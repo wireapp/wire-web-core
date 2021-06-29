@@ -22,7 +22,7 @@ const webpack = require('webpack');
 
 module.exports = {
   devServer: {
-    contentBase: `${process.cwd()}/..`,
+    contentBase: `${process.cwd()}`,
     host: 'localhost',
     hot: true,
     open: true,
@@ -34,7 +34,7 @@ module.exports = {
     stats: 'errors-only',
     watchContentBase: true,
   },
-  entry: [`${process.cwd()}/src/test/start.ts`],
+  entry: [`${process.cwd()}/src/startBrowser.ts`],
   externals: {
     'fs-extra': '{}',
   },
