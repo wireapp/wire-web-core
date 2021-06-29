@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.7.0](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/compare/@wireapp/cryptobox@12.6.0...@wireapp/cryptobox@12.7.0) (2021-06-29)
+
+
+### Features
+
+* **cryptobox-worker:** Export Cryptobox Worker ([#102](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/issues/102)) ([95f3d93](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/commit/95f3d930b884b9ce816c26ba8d7475e25faaed16))
+
+
+
+
+
 # [12.6.0](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/compare/@wireapp/cryptobox@12.5.9...@wireapp/cryptobox@12.6.0) (2021-06-22)
 
 

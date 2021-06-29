@@ -3,7 +3,7 @@
     "./src/getCryptoboxWorker": "./src/getCryptoboxWorker.browser.js"
   },
   "dependencies": {
-    "@wireapp/cryptobox": "12.6.0",
+    "@wireapp/cryptobox": "12.7.0",
     "@wireapp/store-engine": "4.9.2",
     "comlink": "4.3.1"
   },
@@ -31,5 +31,5 @@
     "start": "node --loader ts-node/esm ./src/startNode.ts",
     "test": "exit 0"
   },
-  "version": "0.1.0"
+  "version": "0.2.0"
 }
