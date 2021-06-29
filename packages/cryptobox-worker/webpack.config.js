@@ -19,9 +19,8 @@
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const config = require('./webpack.config.js');
 
-const devConfig = {
+module.exports = {
   devServer: {
     contentBase: `${process.cwd()}/..`,
     host: 'localhost',
@@ -36,10 +35,31 @@ const devConfig = {
     watchContentBase: true,
   },
   entry: [`${process.cwd()}/src/test/start.ts`],
+  externals: {
+    'fs-extra': '{}',
+  },
+  mode: 'development',
+  module: {
+    rules: [
+      {
+        exclude: /(node_modules)/,
+        loader: 'babel-loader',
+        test: /\.[tj]sx?$/,
+      },
+    ],
+  },
+  optimization: {
+    minimize: false,
+  },
   plugins: [new webpack.HotModuleReplacementPlugin(), new HtmlWebpackPlugin()],
-};
-
-module.exports = {
-  ...config,
-  ...devConfig,
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    fallback: {
+      crypto: false,
+      path: false,
+    },
+  },
+  stats: {
+    errorDetails: true,
+  },
 };
