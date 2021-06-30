@@ -12,6 +12,8 @@ For licensing information, see the attached LICENSE file and the list of third-p
 
 ![Core packages](./wire_web_packages_core.svg)
 
+Made with: [NPMGraph](https://npmgraph.js.org/)
+
 ## Motivation
 
 This monorepo provides core packages which are required to send and receive encrypted messages on Wire. All packages are fully written in TypeScript.
