@@ -23,7 +23,7 @@
     "eslint-plugin-typescript-sort-keys": "1.7.0",
     "eslint-plugin-unused-imports": "1.1.1",
     "husky": "4.3.8",
-    "jasmine": "3.7.0",
+    "jasmine": "3.8.0",
     "lerna": "4.0.0",
     "lint-staged": "11.0.0",
     "nyc": "15.1.0",
