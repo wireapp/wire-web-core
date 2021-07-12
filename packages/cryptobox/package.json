@@ -4,7 +4,7 @@
     "@wireapp/priority-queue": "1.6.34",
     "@wireapp/proteus": "9.12.1",
     "@wireapp/store-engine": "4.9.3",
-    "bazinga64": "5.9.2",
+    "bazinga64": "5.9.3",
     "buffer": "6.0.3"
   },
   "description": "High-level API with persistent storage for Proteus.",
