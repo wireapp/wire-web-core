@@ -150,7 +150,7 @@ describe('CBOR.Decoder', () => {
       fail();
     } catch (error) {
       expect(error instanceof CBOR.DecodeError);
-      expect((error as CBOR.DecodeError).message).toEqual('Type is unsupported.');
+      expect((error as CBOR.DecodeError).message).toEqual(CBOR.DecodeError.UNEXPECTED_TYPE);
 
       let decoded = decoder('f6');
       const nullResult = decoded.optional(() => decoded.u8());
