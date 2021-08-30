@@ -64,7 +64,7 @@ describe('assert_is_not_zeros', () => {
       assert_is_not_zeros(array);
       fail();
     } catch (error) {
-      expect(error.message).toBe('Array consists only of zeros');
+      expect((error as Error).message).toBe('Array consists only of zeros');
     }
   });
 

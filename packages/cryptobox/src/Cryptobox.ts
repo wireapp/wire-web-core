@@ -235,7 +235,9 @@ export class Cryptobox extends EventEmitter {
       try {
         bundle = ProteusKeys.PreKeyBundle.deserialise(preKeyBundle);
       } catch (error) {
-        const message = `PreKey bundle for session "${sessionId}" has an unsupported format: ${error.message}`;
+        const message = `PreKey bundle for session "${sessionId}" has an unsupported format: ${
+          (error as Error).message
+        }`;
         throw new InvalidPreKeyFormatError(message);
       }
 

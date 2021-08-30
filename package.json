@@ -30,7 +30,7 @@
     "prettier": "2.3.2",
     "rimraf": "3.0.2",
     "ts-node": "10.2.1",
-    "typescript": "4.3.5"
+    "typescript": "4.4.2"
   },
   "prettier": "@wireapp/prettier-config",
   "private": true,
@@ -49,7 +49,8 @@
     "release:ci": "yarn install && yarn dist && lerna publish --no-verify-access && (lerna publish from-package --no-verify-access || true)",
     "style": "prettier --ignore-path .gitignore \"**/*.{md,json,html,ts}\" --write",
     "test": "lerna run --no-sort test",
-    "test:all": "yarn && yarn test"
+    "test:all": "yarn && yarn test",
+    "test:types": "lerna run test:types"
   },
   "workspaces": {
     "packages": [

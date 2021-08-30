@@ -140,7 +140,7 @@ describe('CryptoboxSession', () => {
         fail();
       } catch (error) {
         expect(error).toEqual(jasmine.any(StoreEngineError.RecordNotFoundError));
-        expect(error.code).toBe(2);
+        expect((error as StoreEngineError.RecordNotFoundError).code).toBe(2);
       }
     });
   });

@@ -81,7 +81,7 @@ export class CryptoboxCRUDStore implements ProteusSession.PreKeyStore {
     } catch (error) {
       if (
         error instanceof StoreEngineError.RecordNotFoundError ||
-        error.constructor.name === StoreEngineError.RecordNotFoundError.name
+        (error as StoreEngineError.RecordNotFoundError).constructor.name === StoreEngineError.RecordNotFoundError.name
       ) {
         return undefined;
       }
@@ -102,7 +102,7 @@ export class CryptoboxCRUDStore implements ProteusSession.PreKeyStore {
     } catch (error) {
       if (
         error instanceof StoreEngineError.RecordNotFoundError ||
-        error.constructor.name === StoreEngineError.RecordNotFoundError.name
+        (error as StoreEngineError.RecordNotFoundError).constructor.name === StoreEngineError.RecordNotFoundError.name
       ) {
         return undefined;
       }
