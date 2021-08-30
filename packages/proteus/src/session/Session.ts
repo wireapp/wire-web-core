@@ -120,7 +120,7 @@ export class Session {
           await prekey_store.delete_prekey(preKeyMessage.prekey_id);
         } catch (error) {
           throw new DecryptError.PrekeyNotFound(
-            `Could not delete PreKey: ${error.message}`,
+            `Could not delete PreKey: ${(error as Error).message}`,
             DecryptError.CODE.CASE_203,
           );
         }

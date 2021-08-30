@@ -262,7 +262,7 @@ describe('Session', () => {
             fail();
           } catch (error) {
             expect(error instanceof DecryptError.DuplicateMessage).toBe(true);
-            expect(error.code).toBe(DecryptError.CODE.CASE_209);
+            expect((error as DecryptError.DuplicateMessage).code).toBe(DecryptError.CODE.CASE_209);
           }
         }),
       );
@@ -442,7 +442,7 @@ describe('Session', () => {
         fail();
       } catch (error) {
         expect(error instanceof ProteusError).toBe(true);
-        expect(error.code).toBe(ProteusError.CODE.CASE_101);
+        expect((error as ProteusError).code).toBe(ProteusError.CODE.CASE_101);
       }
     });
 
