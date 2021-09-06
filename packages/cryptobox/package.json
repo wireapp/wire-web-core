@@ -15,7 +15,7 @@
     "@babel/plugin-proposal-optional-chaining": "7.14.5",
     "@babel/preset-typescript": "7.15.0",
     "@types/karma": "6.3.1",
-    "@types/node": "14.17.12",
+    "@types/node": "14.17.14",
     "@wireapp/store-engine-dexie": "1.6.7",
     "@wireapp/store-engine-fs": "2.4.7",
     "babel-loader": "8.2.2",
