@@ -6,7 +6,7 @@
     "libsodium-wrappers-sumo": "0.7.9"
   },
   "devDependencies": {
-    "commander": "8.1.0"
+    "commander": "8.2.0"
   },
   "description": "Axolotl protocol implementation for TypeScript.",
   "files": [
