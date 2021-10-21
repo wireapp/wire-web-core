@@ -48,6 +48,9 @@ describe('cryptobox.Cryptobox', () => {
   });
 
   describe('decrypt', () => {
+    
+    // This test conforms to the following testing standards:
+    // @SF.Messages @TSFI.RESTfulAPI
     it("doesn't decrypt empty ArrayBuffers", async () => {
       const box = new Cryptobox(engine);
       const sessionId = 'sessionWithBob';
@@ -58,7 +61,9 @@ describe('cryptobox.Cryptobox', () => {
         expect(error).toEqual(jasmine.any(errors.DecryptionError));
       }
     });
-
+  
+    // This test conforms to the following testing standards:
+    // @SF.Messages @TSFI.RESTfulAPI
     it('throws a Proteus decryption error if you try to decrypt the same message twice', async () => {
       const alice = await createCryptobox('alice');
       await alice.create();
@@ -138,7 +143,9 @@ describe('cryptobox.Cryptobox', () => {
       expect(box['identity']).toBeDefined();
       expect(box.getIdentity().public_key.fingerprint()).toBe(initialFingerPrint);
     });
-
+    
+    // This test conforms to the following testing standards:
+    // @SF.Messages @TSFI.RESTfulAPI
     it('fails to initialize a Cryptobox of which the identity is missing', async () => {
       let box = new Cryptobox(engine);
 
@@ -158,7 +165,9 @@ describe('cryptobox.Cryptobox', () => {
         expect(error).toEqual(jasmine.any(errors.CryptoboxError));
       }
     });
-
+    
+    // This test conforms to the following testing standards:
+    // @SF.Messages @TSFI.RESTfulAPI
     it('fails to initialize a Cryptobox of which the last resort PreKey is missing', async () => {
       let box = new Cryptobox(engine);
 
@@ -226,7 +235,10 @@ describe('cryptobox.Cryptobox', () => {
         const session = await box.session_from_prekey(sessionId, decodedPreKeyBundleBuffer);
         expect(session.id).toBe(sessionId);
       });
-
+      
+      // This test conforms to the following testing standards:
+      // @SF.Messages @TSFI.RESTfulAPI
+      
       it('fails for outdated PreKey formats', async () => {
         const remotePreKey = {
           id: 65535,
