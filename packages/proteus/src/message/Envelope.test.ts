@@ -78,6 +78,8 @@ describe('Envelope', () => {
     expect(envelopeCopy.verify(mac_key)).toBe(true);
   });
 
+  // This test conforms to the following testing standards:
+  // @SF.Messages @TSFI.RESTfulAPI
   it('fails when passing invalid input', () => {
     const empty_buffer = new ArrayBuffer(0);
     try {
