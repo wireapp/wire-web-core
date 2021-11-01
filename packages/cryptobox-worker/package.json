@@ -16,7 +16,7 @@
     "babel-loader": "8.2.2",
     "html-webpack-plugin": "5.3.2",
     "terser-webpack-plugin": "5.2.4",
-    "webpack": "5.55.1",
+    "webpack": "5.61.0",
     "webpack-dev-server": "4.3.0"
   },
   "description": "Cryptobox Web Worker",
