@@ -18,7 +18,14 @@
  */
 
 import * as sodium from 'libsodium-wrappers-sumo';
+import {CSPRNG} from './util/RandomUtil';
 
 export function initProteus(): Promise<void> {
+  /* We won't seed here, but just ensure that an instance has been created.
+     Seeding will either happen implicitly on the first call to random_bytes(),
+     in test cases, or should be triggered from upper layer code, possibly with
+     additional external entropy.
+   */
+  CSPRNG.get_instance();
   return sodium.ready;
 }

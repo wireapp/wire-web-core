@@ -20,6 +20,7 @@
 import {LRUCache} from '@wireapp/lru-cache';
 import {PriorityQueue} from '@wireapp/priority-queue';
 import {
+  add_entropy,
   init as initProteus,
   keys as ProteusKeys,
   message as ProteusMessage,
@@ -95,6 +96,8 @@ export class Cryptobox extends EventEmitter {
 
   public async create(): Promise<ProteusKeys.PreKey[]> {
     await initProteus();
+    add_entropy();
+    // FIXME Inject external entropy before creating the identity key
     await this.create_new_identity();
     await this.create_last_resort_prekey();
     return this.init(false);
@@ -114,6 +117,11 @@ export class Cryptobox extends EventEmitter {
       throw new CryptoboxError('Failed to load local identity');
     }
     this.identity = identity;
+
+    /* Add entropy from the identity key secret key. We'll use the complete serialized
+     * keypair, because that's easiest to get here.
+     */
+    add_entropy(new Uint8Array(identity.serialise()));
 
     const preKeysFromStorage = await this.store.load_prekeys();
     const lastResortPreKey = preKeysFromStorage.find(preKey => preKey.key_id === ProteusKeys.PreKey.MAX_PREKEY_ID);

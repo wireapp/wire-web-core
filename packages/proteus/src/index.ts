@@ -25,7 +25,26 @@ export * as session from './session/';
 export * as util from './util/';
 
 import {initProteus} from './initProteus';
+import {CSPRNG} from './util/RandomUtil';
 
 export function init(): Promise<void> {
   return initProteus();
+}
+
+/**
+ * Add entropy to the random number generator. This function should be called before generating
+ * long term keys, with a buffer that contains at least as much entropy as the key length to be generated.
+ * As defense in depth it will also add entropy from the system secure random number generator.
+ * Additionally it's recommended to regularly call this function with external entropy.
+ * It MUST be called at least once for every 2**48 operations that require random bytes, such as
+ * ratchet key generation, though it's not expected that this limit is ever reached.
+ *
+ * @param entropy Optional buffer with entropy (random bytes) to be added to the random number generator.
+ * It is safe to provide secret data here, such as private keys.
+ */
+export function add_entropy(entropy?: Uint8Array) {
+  CSPRNG.get_instance().seed();
+  if (entropy) {
+    CSPRNG.get_instance().seed(entropy);
+  }
 }
