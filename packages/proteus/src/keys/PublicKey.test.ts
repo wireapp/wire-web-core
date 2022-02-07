@@ -23,7 +23,7 @@ import {SecretKey} from './SecretKey';
 describe('Public Key', () => {
 
   // This test conforms to the following testing standards:
-  // @SF.Messages @TSFI.RESTfulAPI @S0.3
+  // @SF.Messages @TSFI.RESTfulAPI
   it('rejects shared secrets at the point of infinity', async () => {
     try {
       const emptyCurve = new Uint8Array([1].concat(Array.from({length: 30})));
