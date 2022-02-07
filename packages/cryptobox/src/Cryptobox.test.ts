@@ -50,7 +50,7 @@ describe('cryptobox.Cryptobox', () => {
   describe('decrypt', () => {
     
     // This test conforms to the following testing standards:
-    // @SF.Messages @TSFI.RESTfulAPI
+    // @SF.Messages @TSFI.RESTfulAPI @S0.3
     it("doesn't decrypt empty ArrayBuffers", async () => {
       const box = new Cryptobox(engine);
       const sessionId = 'sessionWithBob';
@@ -63,7 +63,7 @@ describe('cryptobox.Cryptobox', () => {
     });
   
     // This test conforms to the following testing standards:
-    // @SF.Messages @TSFI.RESTfulAPI
+    // @SF.Messages @TSFI.ClientRNG @S0.3
     it('throws a Proteus decryption error if you try to decrypt the same message twice', async () => {
       const alice = await createCryptobox('alice');
       await alice.create();
@@ -145,7 +145,7 @@ describe('cryptobox.Cryptobox', () => {
     });
     
     // This test conforms to the following testing standards:
-    // @SF.Messages @TSFI.RESTfulAPI
+    // @SF.Messages @TSFI.RESTfulAPI @S0.3
     it('fails to initialize a Cryptobox of which the identity is missing', async () => {
       let box = new Cryptobox(engine);
 
@@ -167,7 +167,7 @@ describe('cryptobox.Cryptobox', () => {
     });
     
     // This test conforms to the following testing standards:
-    // @SF.Messages @TSFI.RESTfulAPI
+    // @SF.Messages @TSFI.RESTfulAPI @S0.3
     it('fails to initialize a Cryptobox of which the last resort PreKey is missing', async () => {
       let box = new Cryptobox(engine);
 
@@ -237,7 +237,7 @@ describe('cryptobox.Cryptobox', () => {
       });
       
       // This test conforms to the following testing standards:
-      // @SF.Messages @TSFI.RESTfulAPI
+      // @SF.Messages @TSFI.RESTfulAPI @S0.3
       
       it('fails for outdated PreKey formats', async () => {
         const remotePreKey = {

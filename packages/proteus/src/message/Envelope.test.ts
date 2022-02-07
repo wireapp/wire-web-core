@@ -79,7 +79,7 @@ describe('Envelope', () => {
   });
 
   // This test conforms to the following testing standards:
-  // @SF.Messages @TSFI.RESTfulAPI
+  // @SF.Messages @TSFI.RESTfulAPI @S0.3
   it('fails when passing invalid input', () => {
     const empty_buffer = new ArrayBuffer(0);
     try {
