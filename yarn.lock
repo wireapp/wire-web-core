@@ -1740,10 +1740,10 @@
   resolved "https://registry.npmjs.org/@webpack-cli/serve/-/serve-1.5.2.tgz#ea584b637ff63c5a477f6f21604b5a205b72c9ec"
   integrity sha512-vgJ5OLWadI8aKjDlOH3rb+dYyPd2GTZuQC/Tihjct6F9GpXGZINo3Y/IVuZVTM1eDQB+/AOsjPUWH/WySDaXvw==
 
-"@wireapp/eslint-config@1.11.2":
-  version "1.11.2"
-  resolved "https://registry.npmjs.org/@wireapp/eslint-config/-/eslint-config-1.11.2.tgz#b6a67ef7d6ac037641dfbeb1c9f0af289d5cb08e"
-  integrity sha512-jt8Jtf6TiKdokOhB5ZesptFtcujvq22Y7ds8QtKm/yV2u/5md/ZUNnoizB6FevyfhZvj6cz+uuSmykt0BxYSyQ==
+"@wireapp/eslint-config@1.12.0":
+  version "1.12.0"
+  resolved "https://registry.npmjs.org/@wireapp/eslint-config/-/eslint-config-1.12.0.tgz#05b5339b0b7a80dd9d663a0fac139a7e3e3b2ced"
+  integrity sha512-cyE2+ajy4DZ00RTnVfm3F2MvKErSUDw8oh2o4gapqaA/jptjfqYE2MqE4dxGfNwWDZtCk4AOyR3qMnK+XEzrAg==
 
 "@wireapp/prettier-config@0.3.3":
   version "0.3.3"
