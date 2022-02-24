@@ -21,7 +21,6 @@ import {KeyPair} from './KeyPair';
 import {SecretKey} from './SecretKey';
 
 describe('Public Key', () => {
-
   // This test conforms to the following testing standards:
   // @SF.Messages @TSFI.RESTfulAPI @S0.3
   it('rejects shared secrets at the point of infinity', async () => {

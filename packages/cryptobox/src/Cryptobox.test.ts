@@ -48,7 +48,6 @@ describe('cryptobox.Cryptobox', () => {
   });
 
   describe('decrypt', () => {
-    
     // This test conforms to the following testing standards:
     // @SF.Messages @TSFI.RESTfulAPI @S0.3
     it("doesn't decrypt empty ArrayBuffers", async () => {
@@ -61,7 +60,7 @@ describe('cryptobox.Cryptobox', () => {
         expect(error).toEqual(jasmine.any(errors.DecryptionError));
       }
     });
-  
+
     // This test conforms to the following testing standards:
     // @SF.Messages @TSFI.ClientRNG @S0.3
     it('throws a Proteus decryption error if you try to decrypt the same message twice', async () => {
@@ -143,7 +142,7 @@ describe('cryptobox.Cryptobox', () => {
       expect(box['identity']).toBeDefined();
       expect(box.getIdentity().public_key.fingerprint()).toBe(initialFingerPrint);
     });
-    
+
     // This test conforms to the following testing standards:
     // @SF.Messages @TSFI.RESTfulAPI @S0.3
     it('fails to initialize a Cryptobox of which the identity is missing', async () => {
@@ -165,7 +164,7 @@ describe('cryptobox.Cryptobox', () => {
         expect(error).toEqual(jasmine.any(errors.CryptoboxError));
       }
     });
-    
+
     // This test conforms to the following testing standards:
     // @SF.Messages @TSFI.RESTfulAPI @S0.3
     it('fails to initialize a Cryptobox of which the last resort PreKey is missing', async () => {
@@ -235,10 +234,10 @@ describe('cryptobox.Cryptobox', () => {
         const session = await box.session_from_prekey(sessionId, decodedPreKeyBundleBuffer);
         expect(session.id).toBe(sessionId);
       });
-      
+
       // This test conforms to the following testing standards:
       // @SF.Messages @TSFI.RESTfulAPI @S0.3
-      
+
       it('fails for outdated PreKey formats', async () => {
         const remotePreKey = {
           id: 65535,
