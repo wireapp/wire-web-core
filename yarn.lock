@@ -8250,10 +8250,10 @@ uuid@^3.3.2, uuid@^3.3.3, uuid@^3.4.0:
   resolved "https://registry.npmjs.org/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
 
-uuidjs@4.2.9:
-  version "4.2.9"
-  resolved "https://registry.npmjs.org/uuidjs/-/uuidjs-4.2.9.tgz#f1225bd51f9e8aee3c56ec3be0683c14dd9e05ed"
-  integrity sha512-ie/yQOFIBnswUUTPQRwMphF/OeE3Pg9y0jorjOPPFtGaeVp9JSdGN5rA9odsXDFH1UfwtpriJXKTro1JTNaIXg==
+uuidjs@4.2.11:
+  version "4.2.11"
+  resolved "https://registry.npmjs.org/uuidjs/-/uuidjs-4.2.11.tgz#1c975d113277cdc4f140565cb1853218bf3764cb"
+  integrity sha512-uSd98rMEeoOEfCFphspo8f9N6eyrLv4Qhew56XciomGemP4uOYZ/fLZUPpnlJklVSsAV2S6Hd5p2XzF/ub5kxA==
 
 v8-compile-cache-lib@^3.0.0:
   version "3.0.0"
