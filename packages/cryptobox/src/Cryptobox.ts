@@ -94,10 +94,10 @@ export class Cryptobox extends EventEmitter {
     this.cachedSessions.delete(sessionId);
   }
 
-  public async create(): Promise<ProteusKeys.PreKey[]> {
+  public async create(entropy_data?: Uint8Array): Promise<ProteusKeys.PreKey[]> {
     await initProteus();
-    add_entropy();
-    // FIXME Inject external entropy before creating the identity key
+    add_entropy(entropy_data);
+
     await this.create_new_identity();
     await this.create_last_resort_prekey();
     return this.init(false);
