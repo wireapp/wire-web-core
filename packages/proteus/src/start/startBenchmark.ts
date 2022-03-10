@@ -26,7 +26,7 @@ import {PreKeyBundle} from '../keys/PreKeyBundle';
 import {IdentityKeyPair} from '../keys/IdentityKeyPair';
 import {PreKey} from '../keys/PreKey';
 import {initProteus} from '../initProteus';
-import * as program from 'commander';
+import {program} from 'commander';
 import * as os from 'os';
 
 program.option('--workers [amount]', 'amount of workers').parse();
