@@ -3,7 +3,7 @@
     "./src/getCryptoboxWorker": "./src/getCryptoboxWorker.browser.js"
   },
   "dependencies": {
-    "@wireapp/cryptobox": "12.7.1",
+    "@wireapp/cryptobox": "12.7.2",
     "comlink": "4.3.1"
   },
   "devDependencies": {
@@ -39,5 +39,5 @@
     "test": "exit 0",
     "test:types": "tsc --noEmit"
   },
-  "version": "0.2.1"
+  "version": "0.2.2"
 }

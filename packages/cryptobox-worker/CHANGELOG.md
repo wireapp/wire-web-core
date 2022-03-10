@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox-worker/compare/@wireapp/cryptobox-worker@0.2.1...@wireapp/cryptobox-worker@0.2.2) (2022-03-10)
+
+**Note:** Version bump only for package @wireapp/cryptobox-worker
+
+
+
+
+
 ## [0.2.1](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox-worker/compare/@wireapp/cryptobox-worker@0.2.0...@wireapp/cryptobox-worker@0.2.1) (2021-06-29)
 
 **Note:** Version bump only for package @wireapp/cryptobox-worker

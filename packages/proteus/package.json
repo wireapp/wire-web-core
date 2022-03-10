@@ -2,7 +2,7 @@
   "dependencies": {
     "@types/libsodium-wrappers-sumo": "0.7.5",
     "@types/node": "~14",
-    "@wireapp/cbor": "4.7.2",
+    "@wireapp/cbor": "4.7.3",
     "libsodium-wrappers-sumo": "0.7.9"
   },
   "devDependencies": {
@@ -26,5 +26,5 @@
     "test": "nyc --nycrc-path=../../nyc.config.js jasmine --config=jasmine.json",
     "test:types": "tsc --noEmit"
   },
-  "version": "9.12.1"
+  "version": "9.12.2"
 }

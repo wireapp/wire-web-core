@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.12.2](https://github.com/wireapp/wire-web-core/tree/main/packages/proteus/compare/@wireapp/proteus@9.12.1...@wireapp/proteus@9.12.2) (2022-03-10)
+
+
+### Bug Fixes
+
+* Fix commander usage ([4188a6e](https://github.com/wireapp/wire-web-core/tree/main/packages/proteus/commit/4188a6ee3ac88d729214d1ad80f68474be027b6c))
+
+
+
+
+
 ## [9.12.1](https://github.com/wireapp/wire-web-core/tree/main/packages/proteus/compare/@wireapp/proteus@9.12.0...@wireapp/proteus@9.12.1) (2021-06-22)
 
 **Note:** Version bump only for package @wireapp/proteus
