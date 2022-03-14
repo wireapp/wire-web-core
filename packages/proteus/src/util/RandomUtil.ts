@@ -119,7 +119,7 @@ export class CSPRNG {
   private readonly drbg: HmacDrbgSha256;
   private seeded: Boolean;
 
-  public constructor() {
+  private constructor() {
     this.drbg = new HmacDrbgSha256();
     this.seeded = false;
   }

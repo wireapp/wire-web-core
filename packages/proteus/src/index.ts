@@ -42,9 +42,9 @@ export function init(): Promise<void> {
  * @param entropy Optional buffer with entropy (random bytes) to be added to the random number generator.
  * It is safe to provide secret data here, such as private keys.
  */
-export function add_entropy(entropy?: Uint8Array) {
+export function addEntropy(entropyData?: Uint8Array) {
   CSPRNG.get_instance().seed();
-  if (entropy) {
-    CSPRNG.get_instance().seed(entropy);
+  if (entropyData) {
+    CSPRNG.get_instance().seed(entropyData);
   }
 }

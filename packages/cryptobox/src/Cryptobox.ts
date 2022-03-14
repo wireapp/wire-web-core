@@ -20,7 +20,7 @@
 import {LRUCache} from '@wireapp/lru-cache';
 import {PriorityQueue} from '@wireapp/priority-queue';
 import {
-  add_entropy,
+  addEntropy,
   init as initProteus,
   keys as ProteusKeys,
   message as ProteusMessage,
@@ -94,9 +94,9 @@ export class Cryptobox extends EventEmitter {
     this.cachedSessions.delete(sessionId);
   }
 
-  public async create(entropy_data?: Uint8Array): Promise<ProteusKeys.PreKey[]> {
+  public async create(entropyData?: Uint8Array): Promise<ProteusKeys.PreKey[]> {
     await initProteus();
-    add_entropy(entropy_data);
+    addEntropy(entropyData);
 
     await this.create_new_identity();
     await this.create_last_resort_prekey();
@@ -121,7 +121,7 @@ export class Cryptobox extends EventEmitter {
     /* Add entropy from the identity key secret key. We'll use the complete serialized
      * keypair, because that's easiest to get here.
      */
-    add_entropy(new Uint8Array(identity.serialise()));
+    addEntropy(new Uint8Array(identity.serialise()));
 
     const preKeysFromStorage = await this.store.load_prekeys();
     const lastResortPreKey = preKeysFromStorage.find(preKey => preKey.key_id === ProteusKeys.PreKey.MAX_PREKEY_ID);
