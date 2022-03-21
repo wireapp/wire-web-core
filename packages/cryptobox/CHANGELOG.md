@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.8.0](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/compare/@wireapp/cryptobox@12.7.2...@wireapp/cryptobox@12.8.0) (2022-03-21)
+
+
+### Features
+
+* **proteus,cryptobox:** CSPRNG ([#300](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/issues/300)) ([75cbce6](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/commit/75cbce6ace327468aec7a23b59540a0e96721724))
+
+
+
+
+
 ## [12.7.2](https://github.com/wireapp/wire-web-core/tree/main/packages/cryptobox/compare/@wireapp/cryptobox@12.7.1...@wireapp/cryptobox@12.7.2) (2022-03-10)
 
 **Note:** Version bump only for package @wireapp/cryptobox

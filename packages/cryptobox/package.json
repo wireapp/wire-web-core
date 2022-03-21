@@ -2,7 +2,7 @@
   "dependencies": {
     "@wireapp/lru-cache": "3.8.1",
     "@wireapp/priority-queue": "1.6.38",
-    "@wireapp/proteus": "9.12.2",
+    "@wireapp/proteus": "9.13.0",
     "@wireapp/store-engine": "4.9.8",
     "bazinga64": "5.10.0",
     "buffer": "6.0.3"
@@ -48,5 +48,5 @@
     "test:node": "cross-env NODE_DEBUG=@wireapp/cryptobox* nyc --nycrc-path=../../nyc.config.js jasmine --config=jasmine.json",
     "test:types": "tsc --noEmit"
   },
-  "version": "12.7.2"
+  "version": "12.8.0"
 }

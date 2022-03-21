@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.13.0](https://github.com/wireapp/wire-web-core/tree/main/packages/proteus/compare/@wireapp/proteus@9.12.2...@wireapp/proteus@9.13.0) (2022-03-21)
+
+
+### Features
+
+* **proteus,cryptobox:** CSPRNG ([#300](https://github.com/wireapp/wire-web-core/tree/main/packages/proteus/issues/300)) ([75cbce6](https://github.com/wireapp/wire-web-core/tree/main/packages/proteus/commit/75cbce6ace327468aec7a23b59540a0e96721724))
+
+
+
+
+
 ## [9.12.2](https://github.com/wireapp/wire-web-core/tree/main/packages/proteus/compare/@wireapp/proteus@9.12.1...@wireapp/proteus@9.12.2) (2022-03-10)
 
 
