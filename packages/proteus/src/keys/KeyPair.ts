@@ -21,6 +21,7 @@ import {Decoder, Encoder} from '@wireapp/cbor';
 import * as sodium from 'libsodium-wrappers-sumo';
 import {DecodeError} from '../errors/DecodeError';
 import {InputError} from '../errors/InputError';
+import {CSPRNG} from '../util/RandomUtil';
 import {PublicKey} from './PublicKey';
 import {SecretKey} from './SecretKey';
 
@@ -37,7 +38,7 @@ export class KeyPair {
       this.public_key = publicKey;
       this.secret_key = secretKey;
     } else {
-      const ed25519KeyPair = sodium.crypto_sign_keypair();
+      const ed25519KeyPair = sodium.crypto_sign_seed_keypair(CSPRNG.get_instance().random_bytes(32));
 
       this.public_key = KeyPair.construct_public_key(ed25519KeyPair);
       this.secret_key = KeyPair.construct_private_key(ed25519KeyPair);
