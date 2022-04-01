@@ -3,7 +3,7 @@
     "@wireapp/lru-cache": "3.8.1",
     "@wireapp/priority-queue": "1.6.38",
     "@wireapp/proteus": "9.13.0",
-    "@wireapp/store-engine": "4.9.8",
+    "@wireapp/store-engine": "4.9.9",
     "bazinga64": "5.10.0",
     "buffer": "6.0.3"
   },
