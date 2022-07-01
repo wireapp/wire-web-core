@@ -1468,10 +1468,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/jasmine@3.10.3":
-  version "3.10.3"
-  resolved "https://registry.npmjs.org/@types/jasmine/-/jasmine-3.10.3.tgz#a89798b3d5a8bd23ca56e855a9aee3e5a93bdaaa"
-  integrity sha512-SWyMrjgdAUHNQmutvDcKablrJhkDLy4wunTme8oYLjKp41GnHGxMRXr2MQMvy/qy8H3LdzwQk9gH4hZ6T++H8g==
+"@types/jasmine@4.0.3":
+  version "4.0.3"
+  resolved "https://registry.npmjs.org/@types/jasmine/-/jasmine-4.0.3.tgz#097ce710d70eb7f3662e96c1f75824dd22c27d5c"
+  integrity sha512-Opp1LvvEuZdk8fSSvchK2mZwhVrsNT0JgJE9Di6MjnaIpmEXM8TLCPPrVtNTYh8+5MPdY8j9bAHMu2SSfwpZJg==
 
 "@types/json-schema@*", "@types/json-schema@^7.0.5", "@types/json-schema@^7.0.7":
   version "7.0.7"
@@ -5091,18 +5091,23 @@ istanbul-reports@^3.0.2:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
 
-jasmine-core@^3.6.0, jasmine-core@~3.9.0:
+jasmine-core@^3.6.0:
   version "3.9.0"
   resolved "https://registry.npmjs.org/jasmine-core/-/jasmine-core-3.9.0.tgz#09a3c8169fe98ec69440476d04a0e4cb4d59e452"
   integrity sha512-Tv3kVbPCGVrjsnHBZ38NsPU3sDOtNa0XmbG2baiyJqdb5/SPpDO6GVwJYtUryl6KB4q1Ssckwg612ES9Z0dreQ==
 
-jasmine@3.9.0:
-  version "3.9.0"
-  resolved "https://registry.npmjs.org/jasmine/-/jasmine-3.9.0.tgz#286c4f9f88b69defc24acf3989af5533d5c6a0e6"
-  integrity sha512-JgtzteG7xnqZZ51fg7N2/wiQmXon09szkALcRMTgCMX4u/m17gVJFjObnvw5FXkZOWuweHPaPRVB6DI2uN0wVA==
+jasmine-core@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.npmjs.org/jasmine-core/-/jasmine-core-4.2.0.tgz#0605bea284d6d78276f43c47de2532ecd4a73b00"
+  integrity sha512-OcFpBrIhnbmb9wfI8cqPSJ50pv3Wg4/NSgoZIqHzIwO/2a9qivJWzv8hUvaREIMYYJBas6AvfXATFdVuzzCqVw==
+
+jasmine@4.2.1:
+  version "4.2.1"
+  resolved "https://registry.npmjs.org/jasmine/-/jasmine-4.2.1.tgz#55f81ab9d5d32f2645aa598d1356b6858407f4a9"
+  integrity sha512-LNZEKcScnjPRj5J92I1P515bxTvaHMRAERTyCoaGnWr87eOT6zv+b3M+kxKdH/06Gz4TnnXyHbXLiPtMHZ0ncw==
   dependencies:
     glob "^7.1.6"
-    jasmine-core "~3.9.0"
+    jasmine-core "^4.2.0"
 
 jest-worker@^27.4.5:
   version "27.5.1"
