@@ -1812,10 +1812,10 @@
   resolved "https://registry.npmjs.org/@wireapp/eslint-config/-/eslint-config-1.12.0.tgz#05b5339b0b7a80dd9d663a0fac139a7e3e3b2ced"
   integrity sha512-cyE2+ajy4DZ00RTnVfm3F2MvKErSUDw8oh2o4gapqaA/jptjfqYE2MqE4dxGfNwWDZtCk4AOyR3qMnK+XEzrAg==
 
-"@wireapp/prettier-config@0.4.0":
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/@wireapp/prettier-config/-/prettier-config-0.4.0.tgz#d5f01e4ebca5ba2ca9d989cbde3d2e1b5bd0714c"
-  integrity sha512-URhRqUaCf8DVq/4fhH0U/db22rcqA++7X8n+HfaiKoW0H6HXqCOb2Z5IIAWc9mJQswJXWKm1ON9TQjUGy5XI4A==
+"@wireapp/prettier-config@0.4.6":
+  version "0.4.6"
+  resolved "https://registry.npmjs.org/@wireapp/prettier-config/-/prettier-config-0.4.6.tgz#fc9ee13be1c2581dd11f452b9d0570276443d46d"
+  integrity sha512-gXT2J48yfwLQGpuK1ScwBFvD4l4ItGfkA03XL3duu3jdvMm9sd6U/HMaQKWnMzuFu5sjR5vS7/U/mCUE2WqISQ==
 
 "@wireapp/priority-queue@1.6.39":
   version "1.6.39"
