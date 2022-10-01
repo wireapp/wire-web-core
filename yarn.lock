@@ -1464,13 +1464,6 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
-"@types/fs-extra@9.0.12":
-  version "9.0.12"
-  resolved "https://registry.npmjs.org/@types/fs-extra/-/fs-extra-9.0.12.tgz#9b8f27973df8a7a3920e8461517ebf8a7d4fdfaf"
-  integrity sha512-I+bsBr67CurCGnSenZZ7v94gd3tc3+Aj2taxMT4yu4ABLuOgOjeFxX3dokG24ztSRg5tnT00sL8BszO7gSMoIw==
-  dependencies:
-    "@types/node" "*"
-
 "@types/html-minifier-terser@^6.0.0":
   version "6.1.0"
   resolved "https://registry.npmjs.org/@types/html-minifier-terser/-/html-minifier-terser-6.1.0.tgz#4fc33a00c1d0c16987b1a20cf92d20614c55ac35"
@@ -1834,12 +1827,11 @@
   dependencies:
     dexie "3.2.2"
 
-"@wireapp/store-engine-fs@2.4.9":
-  version "2.4.9"
-  resolved "https://registry.npmjs.org/@wireapp/store-engine-fs/-/store-engine-fs-2.4.9.tgz#2511696363982e7d1669abbc0526c18da914b793"
-  integrity sha512-MpPgCFgda7pxqFI5n8nvdwXfFnGP8CfJZD6yPNciT2bFvG28xCDExzogqjljdp6ku4p/NWQAWk/sMl2TH+IqLQ==
+"@wireapp/store-engine-fs@2.5.6":
+  version "2.5.6"
+  resolved "https://registry.npmjs.org/@wireapp/store-engine-fs/-/store-engine-fs-2.5.6.tgz#74b5b0227d1aa8269e089eb9e77c5778178c0ec3"
+  integrity sha512-po0l1TDS2dVM0HEM4YDMEDjKxm3I3UDEVEJ5doY6uvoLYvSHoYd24HucuiwCVAn9HNbVzdPE9vg0qjdhdzkuYg==
   dependencies:
-    "@types/fs-extra" "9.0.12"
     fs-extra "10.0.0"
 
 "@wireapp/store-engine@4.10.6":
