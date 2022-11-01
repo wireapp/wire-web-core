@@ -1834,10 +1834,10 @@
   dependencies:
     fs-extra "10.0.0"
 
-"@wireapp/store-engine@4.10.6":
-  version "4.10.6"
-  resolved "https://registry.npmjs.org/@wireapp/store-engine/-/store-engine-4.10.6.tgz#4c71b800e909eeb5f3181c220fa5565db7d5d4a7"
-  integrity sha512-p3QjZTXRhlhXagMXe+URqrfkBO15OL0M9Cwk6JCSpAfDOmRyG5FA5jDMScs+FZrn2yvBUmapE5fnuiHAWNiW9Q==
+"@wireapp/store-engine@4.10.13":
+  version "4.10.13"
+  resolved "https://registry.npmjs.org/@wireapp/store-engine/-/store-engine-4.10.13.tgz#11aacf9245e83711a077a630fe3c8f9cd27aeabe"
+  integrity sha512-wjPdsO01GfY0JvNPRVEAjl3oFNHicAS49px/ONxXyu8Mubwjx6YNfOE9BtIDtUHNBYBzOpST8mb4vSHy0x/oYA==
 
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
