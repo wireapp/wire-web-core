@@ -33,8 +33,8 @@ describe('DecryptError', () => {
   });
 
   describe('Wire for web compatibility', () => {
-    const errorCode = 300;
-    const errorMessage = 'The received message was too big.';
+    const errorCode = DecryptError.CODE.CASE_202;
+    const errorMessage = 'Unknown message format: The message is neither a "CipherMessage" nor a "PreKeyMessage".';
 
     it('uses the generic error class as namespace', () => {
       const error = new DecryptError.InvalidMessage(errorMessage, errorCode);
