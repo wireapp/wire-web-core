@@ -2641,10 +2641,10 @@ combined-stream@^1.0.6, combined-stream@~1.0.6:
   dependencies:
     delayed-stream "~1.0.0"
 
-comlink@4.3.1:
-  version "4.3.1"
-  resolved "https://registry.npmjs.org/comlink/-/comlink-4.3.1.tgz#0c6b9d69bcd293715c907c33fe8fc45aecad13c5"
-  integrity sha512-+YbhUdNrpBZggBAHWcgQMLPLH1KDF3wJpeqrCKieWQ8RL7atmgsgTQko1XEBK6PsecfopWNntopJ+ByYG1lRaA==
+comlink@4.4.0:
+  version "4.4.0"
+  resolved "https://registry.npmjs.org/comlink/-/comlink-4.4.0.tgz#8a9cd441faf4023721bcf178e7d7075246ec172a"
+  integrity sha512-kId+c11FgiQdqMcgaBICxZ9UgQtE2xefMCmcpY/O9qGr0mRRN/8exnR4YcOCk2mVRPkTMiuPXvGt/vog+2nMfA==
 
 commander@8.2.0:
   version "8.2.0"
