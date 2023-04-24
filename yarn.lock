@@ -5451,17 +5451,17 @@ libnpmpublish@^4.0.0:
     semver "^7.1.3"
     ssri "^8.0.1"
 
-libsodium-sumo@^0.7.0:
-  version "0.7.9"
-  resolved "https://registry.npmjs.org/libsodium-sumo/-/libsodium-sumo-0.7.9.tgz#dff3d6144849e30d9b9a7bf628d28243f1c49102"
-  integrity sha512-DcfJ57zlSlcmQU4s8KOX78pT0zKx5S9RLi0oyDuoIgm4K95+VNSaOidK/y9lUK4lxft14PtTPjoBy8tmLk1TDQ==
+libsodium-sumo@^0.7.11:
+  version "0.7.11"
+  resolved "https://registry.npmjs.org/libsodium-sumo/-/libsodium-sumo-0.7.11.tgz#ab0389e2424fca5c1dc8c4fd394906190da88a11"
+  integrity sha512-bY+7ph7xpk51Ez2GbE10lXAQ5sJma6NghcIDaSPbM/G9elfrjLa0COHl/7P6Wb/JizQzl5UQontOOP1z0VwbLA==
 
-libsodium-wrappers-sumo@0.7.10:
-  version "0.7.10"
-  resolved "https://registry.npmjs.org/libsodium-wrappers-sumo/-/libsodium-wrappers-sumo-0.7.10.tgz#592b0cc714ddf3954f93e2292ff3aadebd2b282b"
-  integrity sha512-1noz8Mcl/LUzO/iSO/FJzoJyIaPwxl+/+E4CoTIXtsPiEEXQx2sxalmrVWxteLpynqgX0ASo28ChB9NEVRh0Pg==
+libsodium-wrappers-sumo@0.7.11:
+  version "0.7.11"
+  resolved "https://registry.npmjs.org/libsodium-wrappers-sumo/-/libsodium-wrappers-sumo-0.7.11.tgz#d96329ee3c0e7ec7f5fcf4cdde16cc3a1ae91d82"
+  integrity sha512-DGypHOmJbB1nZn89KIfGOAkDgfv5N6SBGC3Qvmy/On0P0WD1JQvNRS/e3UL3aFF+xC0m+MYz5M+MnRnK2HMrKQ==
   dependencies:
-    libsodium-sumo "^0.7.0"
+    libsodium-sumo "^0.7.11"
 
 lines-and-columns@^1.1.6:
   version "1.1.6"
