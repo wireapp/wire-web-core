@@ -14,7 +14,7 @@
     "@babel/preset-typescript": "7.21.4",
     "@types/terser-webpack-plugin": "5.2.0",
     "babel-loader": "8.2.5",
-    "html-webpack-plugin": "5.5.0",
+    "html-webpack-plugin": "5.5.1",
     "terser-webpack-plugin": "5.3.7",
     "webpack": "5.80.0",
     "webpack-dev-server": "4.13.3"
