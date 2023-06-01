@@ -17,7 +17,7 @@
     "html-webpack-plugin": "5.5.1",
     "terser-webpack-plugin": "5.3.7",
     "webpack": "5.81.0",
-    "webpack-dev-server": "4.13.3"
+    "webpack-dev-server": "4.15.0"
   },
   "description": "Cryptobox Web Worker",
   "files": [
