@@ -1870,10 +1870,10 @@
   resolved "https://registry.npmjs.org/@wireapp/prettier-config/-/prettier-config-0.5.2.tgz#79c2d304018a0719652e9aae2da13b5e117d2468"
   integrity sha512-TmighzfiDQqKyZZkFKUmB1u22svVd5m+EOknKhfdiOT63wYqcfdm36x3bhi9vG6pRqAZu3pRh9kuJwV3mB7CpQ==
 
-"@wireapp/priority-queue@1.8.6":
-  version "1.8.6"
-  resolved "https://registry.npmjs.org/@wireapp/priority-queue/-/priority-queue-1.8.6.tgz#9d1e2c27883813a4df9010d9219c45a5787ff5b6"
-  integrity sha512-h0r/KDf8Af92hjd8tEi41u3k8Tf4lP6I/UwJM5+yoBU56lDPZV0Ca8UNJmeUVXwaXYagAZ9TzZnkL9W0Z1eS+g==
+"@wireapp/priority-queue@2.1.1":
+  version "2.1.1"
+  resolved "https://registry.npmjs.org/@wireapp/priority-queue/-/priority-queue-2.1.1.tgz#fd555d1d51edf4b0ae5c06a19d977678f37004a9"
+  integrity sha512-osvagFSTdiG8rqItrKiexAQXg4vBWxV+2xL/PEIXQ2xtoN9qTEt2VFkmPnOlNzQXgmNbrRlxUBv1hnS5cTXTUA==
 
 "@wireapp/store-engine-dexie@1.7.6":
   version "1.7.6"
