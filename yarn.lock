@@ -1875,12 +1875,12 @@
   resolved "https://registry.npmjs.org/@wireapp/priority-queue/-/priority-queue-1.8.6.tgz#9d1e2c27883813a4df9010d9219c45a5787ff5b6"
   integrity sha512-h0r/KDf8Af92hjd8tEi41u3k8Tf4lP6I/UwJM5+yoBU56lDPZV0Ca8UNJmeUVXwaXYagAZ9TzZnkL9W0Z1eS+g==
 
-"@wireapp/store-engine-dexie@1.7.6":
-  version "1.7.6"
-  resolved "https://registry.npmjs.org/@wireapp/store-engine-dexie/-/store-engine-dexie-1.7.6.tgz#cfd4ecb694ed057a9f2e4959a14b2e75028d7bf7"
-  integrity sha512-D1Se/nJeIKECqdz7m7QWJ+orSpKjzTV3Y3J5DagBfw2Ju+AxOBkWOotSYtct6uyoJTdTFPicAT5qh0ebJ7Jfow==
+"@wireapp/store-engine-dexie@2.1.1":
+  version "2.1.1"
+  resolved "https://registry.npmjs.org/@wireapp/store-engine-dexie/-/store-engine-dexie-2.1.1.tgz#a790ad86ab49ecae265fbe040714e05fea8ef452"
+  integrity sha512-YJdNo+MJsd/Y2rqwu5iscQc+9BHtLEMEGabN+cgPZEbcEKTqu0/drZYXLCYHHxTeNhk7km9qmGDjyj8SGmeSYw==
   dependencies:
-    dexie "3.2.2"
+    dexie "3.2.3"
 
 "@wireapp/store-engine-fs@2.5.6":
   version "2.5.6"
@@ -3161,10 +3161,10 @@ detect-node@^2.0.4:
   resolved "https://registry.npmjs.org/detect-node/-/detect-node-2.1.0.tgz#c9c70775a49c3d03bc2c06d9a73be550f978f8b1"
   integrity sha512-T0NIuQpnTvFDATNuHN5roPwSBG83rFsuO+MXXH9/3N1eFbn4wcPjttvjMLEPWJ0RGUYgQE7cGgS3tNxbqCGM7g==
 
-dexie@3.2.2:
-  version "3.2.2"
-  resolved "https://registry.npmjs.org/dexie/-/dexie-3.2.2.tgz#fa6f2a3c0d6ed0766f8d97a03720056f88fe0e01"
-  integrity sha512-q5dC3HPmir2DERlX+toCBbHQXW5MsyrFqPFcovkH9N2S/UW/H3H5AWAB6iEOExeraAu+j+zRDG+zg/D7YhH0qg==
+dexie@3.2.3:
+  version "3.2.3"
+  resolved "https://registry.npmjs.org/dexie/-/dexie-3.2.3.tgz#f35c91ca797599df8e771b998e9ae9669c877f8c"
+  integrity sha512-iHayBd4UYryDCVUNa3PMsJMEnd8yjyh5p7a+RFeC8i8n476BC9wMhVvqiImq5zJZJf5Tuer+s4SSj+AA3x+ZbQ==
 
 dezalgo@^1.0.0:
   version "1.0.3"
