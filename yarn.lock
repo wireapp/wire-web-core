@@ -1904,12 +1904,12 @@
   dependencies:
     dexie "3.2.2"
 
-"@wireapp/store-engine-fs@2.5.6":
-  version "2.5.6"
-  resolved "https://registry.npmjs.org/@wireapp/store-engine-fs/-/store-engine-fs-2.5.6.tgz#74b5b0227d1aa8269e089eb9e77c5778178c0ec3"
-  integrity sha512-po0l1TDS2dVM0HEM4YDMEDjKxm3I3UDEVEJ5doY6uvoLYvSHoYd24HucuiwCVAn9HNbVzdPE9vg0qjdhdzkuYg==
+"@wireapp/store-engine-fs@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.npmjs.org/@wireapp/store-engine-fs/-/store-engine-fs-3.1.1.tgz#8e0a81c7368f312fdff1e303f35e8b8ac3137cc1"
+  integrity sha512-J4kKy1iXcIlWLAI5uu1NIpOMdpX3uW5kwP+YrA1DHMnmBlnXI7By2UmsnHaTDBTYDkY56CDhnqCHk3/kygDeMg==
   dependencies:
-    fs-extra "10.0.0"
+    fs-extra "11.1.0"
 
 "@wireapp/store-engine@4.10.13":
   version "4.10.13"
@@ -4147,7 +4147,16 @@ fromentries@^1.2.0:
   resolved "https://registry.npmjs.org/fromentries/-/fromentries-1.3.2.tgz#e4bca6808816bf8f93b52750f1127f5a6fd86e3a"
   integrity sha512-cHEpEQHUg0f8XdtZCc2ZAhrHzKzT0MrFUTcvx+hfxYu7rGMDc5SKoXFh+n4YigxsHXRzc6OrCshdR1bWH6HHyg==
 
-fs-extra@10.0.0, fs-extra@^10.0.0:
+fs-extra@11.1.0:
+  version "11.1.0"
+  resolved "https://registry.npmjs.org/fs-extra/-/fs-extra-11.1.0.tgz#5784b102104433bb0e090f48bfc4a30742c357ed"
+  integrity sha512-0rcTq621PD5jM/e0a3EJoGC/1TC5ZBCERW82LQuwfGnCa1V8w7dpYH1yNu+SLb6E5dkeCBzKEyLGlFrnr+dUyw==
+  dependencies:
+    graceful-fs "^4.2.0"
+    jsonfile "^6.0.1"
+    universalify "^2.0.0"
+
+fs-extra@^10.0.0:
   version "10.0.0"
   resolved "https://registry.npmjs.org/fs-extra/-/fs-extra-10.0.0.tgz#9ff61b655dde53fb34a82df84bb214ce802e17c1"
   integrity sha512-C5owb14u9eJwizKGdchcDUQeFtlSHHthBk8pbX9Vc1PFZrLombudjDnNns88aYslCyF6IY5SUw3Roz6xShcEIQ==
