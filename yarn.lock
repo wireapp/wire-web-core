@@ -2375,10 +2375,10 @@ batch@0.6.1:
   resolved "https://registry.npmjs.org/batch/-/batch-0.6.1.tgz#dc34314f4e679318093fc760272525f94bf25c16"
   integrity sha1-3DQxT05nkxgJP8dgJyUl+UvyXBY=
 
-bazinga64@5.11.6:
-  version "5.11.6"
-  resolved "https://registry.npmjs.org/bazinga64/-/bazinga64-5.11.6.tgz#94cc2057132f656f81ee962ef472f8602d7b276b"
-  integrity sha512-zirkITs82R3JKbtU6/dFVsiCxzSIGy5wukr2t+0O8Q/LqcCC6vu8R5IlNIvrfFJ4bN0bLP2GonrEZ1JJ6mKEoA==
+bazinga64@6.3.3:
+  version "6.3.3"
+  resolved "https://registry.npmjs.org/bazinga64/-/bazinga64-6.3.3.tgz#f3ee05b3d01a156060f9c8d472e991a616480137"
+  integrity sha512-Xi0hp2s5BpzIRBBEBBLcUXiZZskjijrGRJXG2FZ01gmpX17HiTM7HxHUJxPa8pAFjabAM1l8cfo871Rv7Vufnw==
 
 bcrypt-pbkdf@^1.0.0:
   version "1.0.2"
