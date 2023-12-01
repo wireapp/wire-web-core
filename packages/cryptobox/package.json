@@ -13,7 +13,7 @@
     "@babel/plugin-proposal-class-properties": "7.18.6",
     "@babel/plugin-proposal-nullish-coalescing-operator": "7.18.6",
     "@babel/plugin-proposal-optional-chaining": "7.21.0",
-    "@babel/preset-typescript": "7.23.2",
+    "@babel/preset-typescript": "7.23.3",
     "@types/karma": "6.3.8",
     "@types/node": "14.18.63",
     "@wireapp/store-engine-dexie": "1.7.6",
