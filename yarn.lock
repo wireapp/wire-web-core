@@ -1578,10 +1578,10 @@
   resolved "https://registry.npmjs.org/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
 
-"@types/karma@6.3.6":
-  version "6.3.6"
-  resolved "https://registry.npmjs.org/@types/karma/-/karma-6.3.6.tgz#cc6fe60cee1eec8b0ab5db1c54a20bec10f3d53c"
-  integrity sha512-mMz2m0tt/U83yV5/z3k4GHrUqfdTKdXCfhnqdFo56W9dFPwjGiX/WrlOTDBWq5foCgwMHbrOMYdLXHVT/rNWew==
+"@types/karma@6.3.8":
+  version "6.3.8"
+  resolved "https://registry.npmjs.org/@types/karma/-/karma-6.3.8.tgz#06cb3ecddabece81eb43a1087a8f01adecf64645"
+  integrity sha512-+QGoOPhb1f6Oli8pG+hxdnGDzVhIrpsHaFSJ4UJg15Xj+QBtluKELkJY+L4Li532HmT3l5K5o1FoUZHRQeOOaQ==
   dependencies:
     "@types/node" "*"
     log4js "^6.4.1"
