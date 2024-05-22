@@ -20,7 +20,7 @@
 /* eslint no-magic-numbers: "off" */
 
 import {IndexedDBEngine} from '@wireapp/store-engine-dexie';
-import * as UUID from 'uuidjs';
+import {v4 as uuidv4} from 'uuid';
 import {Cryptobox, store as CryptoboxStore} from '../';
 import type {Dexie} from 'dexie';
 import {CryptoboxCRUDStore} from './CryptoboxCRUDStore';
@@ -63,7 +63,7 @@ describe('cryptobox.store.IndexedDB', () => {
   }
 
   async function createStore() {
-    const dbName = UUID.genV4().toString();
+    const dbName = uuidv4();
     const engine = await createEngine(dbName);
     dexieInstances.push(engine['db']);
     return new CryptoboxCRUDStore(engine);
