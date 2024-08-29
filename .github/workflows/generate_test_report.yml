@@ -45,8 +45,11 @@ jobs:
       - name: Install JS dependencies
         run: yarn --immutable
 
+      - name: Link packages
+        run: yarn boot
+
       - name: Build
-        run: yarn dist
+        run: yarn clean && yarn dist
 
       - name: Test
         run: |
