@@ -51,7 +51,7 @@ jobs:
       - name: Test
         run: |
           set -o pipefail
-          yarn test  | tee ./unit-tests.log
+          yarn test --verbose --coverage | tee ./unit-tests.log
 
       - name: Print environment variables
         run: |
