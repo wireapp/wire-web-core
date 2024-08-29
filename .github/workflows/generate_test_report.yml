@@ -51,7 +51,7 @@ jobs:
       - name: Test
         run: |
           set -o pipefail
-          yarn --verbose run lerna run test --stream | tee ./unit-tests.log
+          yarn --verbose --coverage --coverage_reporters=lcov 2>&1 run lerna run test --stream | tee ./unit-tests.log
 
       - name: Print environment variables
         run: |
