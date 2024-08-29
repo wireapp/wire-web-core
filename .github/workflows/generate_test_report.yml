@@ -51,7 +51,7 @@ jobs:
       - name: Test
         run: |
           set -o pipefail
-          yarn run lerna run test --stream | tee ./unit-tests.log
+          yarn --verbose run lerna run test --stream | tee ./unit-tests.log
 
       - name: Print environment variables
         run: |
