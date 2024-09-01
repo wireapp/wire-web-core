@@ -22,7 +22,7 @@
     "babel-loader": "8.2.5",
     "circular-dependency-plugin": "5.2.2",
     "cross-env": "7.0.3",
-    "karma": "6.4.3",
+    "karma": "6.4.4",
     "karma-chrome-launcher": "3.2.0",
     "karma-jasmine": "4.0.2",
     "karma-webpack": "5.0.1",
