@@ -1533,10 +1533,10 @@
   resolved "https://registry.npmjs.org/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==
 
-"@types/karma@6.3.8":
-  version "6.3.8"
-  resolved "https://registry.npmjs.org/@types/karma/-/karma-6.3.8.tgz#06cb3ecddabece81eb43a1087a8f01adecf64645"
-  integrity sha512-+QGoOPhb1f6Oli8pG+hxdnGDzVhIrpsHaFSJ4UJg15Xj+QBtluKELkJY+L4Li532HmT3l5K5o1FoUZHRQeOOaQ==
+"@types/karma@6.3.9":
+  version "6.3.9"
+  resolved "https://registry.npmjs.org/@types/karma/-/karma-6.3.9.tgz#740a967b2662097e136a67f81c18699fbdfae457"
+  integrity sha512-sjE/MHnoAZAQYAKRXAbjTOiBKyGGErEM725bruRcmDdMa2vp1bjWPhApI7/i564PTyHlzc3vIGXLL6TFIpAxFg==
   dependencies:
     "@types/node" "*"
     log4js "^6.4.1"
